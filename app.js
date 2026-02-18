@@ -1,20 +1,20 @@
-require('dotenv').config();
+import 'dotenv/config';
 
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const allowedOrigins = require('./helpers/corsOptions');
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import allowedOrigins from './helpers/corsOptions.js';
+
+import authRouter from './routers/authRouter.js';
+import postRouter from './routers/postRouter.js';
+
 const corsOptions = {
   origin: allowedOrigins,
   credentials: true,
   maxAge: 300,
   optionsSuccessStatus: 204,
 };
-
-const indexRouter = require('./routers/indexRouter');
-const postRouter = require('./routers/postRouter');
 
 const app = express();
 
@@ -28,9 +28,9 @@ app.use(
   '/.well-known',
   express.static('helpers/.well-known', { dotfiles: 'allow' }),
 );
-app.use(express.static(path.join(__dirname, 'helpers')));
+app.use(express.static('helpers'));
 
-app.use('/', indexRouter);
+app.use('/', authRouter);
 app.use('/auth', postRouter);
 
 // Custom error handler
@@ -60,4 +60,4 @@ app.use((req, res, next) => {
   });
 });
 
-module.exports = app;
+export default app;

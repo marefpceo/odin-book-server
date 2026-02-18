@@ -6,4 +6,4 @@ const allowedOrigins = [
   /.*\.railway.app.*/,
 ];
 
-module.exports = allowedOrigins;
+export default { allowedOrigins };
