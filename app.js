@@ -13,7 +13,7 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-const indexRouter = require('./routers/indexRouter');
+const authRouter = require('./routers/authRouter');
 const postRouter = require('./routers/postRouter');
 
 const app = express();
@@ -30,7 +30,7 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, 'helpers')));
 
-app.use('/', indexRouter);
+app.use('/', authRouter);
 app.use('/auth', postRouter);
 
 // Custom error handler
