@@ -3,21 +3,21 @@ import postController from '../controllers/postController.js';
 const router = express.Router();
 
 // GET recent posts from current user and friends
-router.get('/posts', postController.posts_get);
+router.get('/', postController.postsGet);
 
 // GET selected post
-router.get('/post/:postId', postController.selected_post_get);
+router.get('/:postId', postController.selectedPostGet);
 
 // GET info needed to update or create a new post
-router.get('/post/create', postController.create_post_get);
+router.get('/create', postController.createPostGet);
 
 // POST create new post
-router.post('/post/create', postController.create_post_post);
+router.post('/create', postController.createPostPost);
 
 // PUT update post
-router.put('/post/:postId/update', postController.update_post_put);
+router.put('/:postId/update', postController.updatePostPut);
 
 // DEL delete post (ADMIN role only)
-router.delete('/post/:postId/delete', postController.delete_post);
+router.delete('/:postId/delete', postController.deletePost);
 
 export default router;
