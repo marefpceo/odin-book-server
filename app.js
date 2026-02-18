@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const allowedOrigins = require('./helpers/corsOptions');
+const allowedOrigins = require('./helpers/corsOptions').default;
 const corsOptions = {
   origin: allowedOrigins,
   credentials: true,
