@@ -1,7 +1,6 @@
-const express = require('express');
+import express from 'express';
+import postRouter from '../controllers/postController.js';
 const router = express.Router();
-
-const postRouter = require('../controllers/postController');
 
 // GET recent posts from current user and friends
 router.get('/posts', postRouter.posts_get);
@@ -21,4 +20,4 @@ router.put('/post/:postId/update', postRouter.update_post_put);
 // DEL delete post (ADMIN role only)
 router.delete('/post/:postId/delete', postRouter.delete_post);
 
-module.exports = router;
+export default router;

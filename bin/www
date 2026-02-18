@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-import app, { set } from '../app';
+import app from '../app.js';
 import debug from 'debug';
 import { createServer } from 'http';
 
@@ -13,7 +13,7 @@ import { createServer } from 'http';
  */
 
 const port = normalizePort(process.env.PORT || '3000');
-set('port', port);
+app.set('port', port);
 
 /**
  * Create HTTP server.
