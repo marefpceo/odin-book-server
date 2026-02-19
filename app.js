@@ -8,6 +8,7 @@ import allowedOrigins from './helpers/corsOptions.js';
 
 import authRouter from './routers/authRouter.js';
 import postRouter from './routers/postRouter.js';
+import profileRouter from './routers/profileRouter.js';
 import userRouter from './routers/userRouter.js';
 
 const corsOptions = {
@@ -34,6 +35,7 @@ app.use(express.static('helpers'));
 app.use('/auth', authRouter);
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
+app.use('/profile', profileRouter);
 
 // Custom error handler
 app.use((err, req, res, next) => {
