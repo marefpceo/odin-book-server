@@ -6,10 +6,19 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import allowedOrigins from './helpers/corsOptions.js';
 
+import expressSession from 'express-session';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from '@prisma/client/extension';
+import { PrismaSessionStore } from '@quixo3/prisma-session-store';
+
 import authRouter from './routers/authRouter.js';
 import postRouter from './routers/postRouter.js';
 import profileRouter from './routers/profileRouter.js';
 import userRouter from './routers/userRouter.js';
+
+const connectionString = `${process.env.DATABASE_URL}`;
+const adapter = new PrismaPg({ connectionString });
+const prisma = new PrismaClient({ adapter });
 
 const corsOptions = {
   origin: allowedOrigins,
@@ -31,6 +40,25 @@ app.use(
   express.static('helpers/.well-known', { dotfiles: 'allow' }),
 );
 app.use(express.static('helpers'));
+
+// Uses Prisma to store sessions
+app.use(
+  expressSession({
+    cookie: {
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === 'production' ? true : false,
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+    },
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new PrismaSessionStore(prisma, {
+      checkPeriod: 2 * 60 * 1000,
+      dbRecordIdIsSessionId: true,
+      dbRecordIdFunction: undefined,
+    }),
+  }),
+);
 
 app.use('/auth', authRouter);
 app.use('/posts', postRouter);

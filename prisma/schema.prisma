@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Prisma data model. After any changes to this file or changing computers, remember to run 
+// `prisma migrate dev` to update the database with any schema/ computer changes. 
 
 generator client {
   provider = "prisma-client"
@@ -11,4 +8,82 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  username    String    @unique
+  email       String    @unique
+  password    String
+  status      Status    @default(ACTIVE)
+  role        Role      @default(USER)
+  profile     Profile?
+  post        Post[]
+  comment     Comment[]
+  user1       Friendship[] @relation("user1")
+  user2       Friendship[] @relation("user2")
+}
+
+model Profile {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int       @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  firstname   String
+  lastname    String
+  avatar      String
+  bio         String
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int       @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  content     String
+  likes       Int       @default(0)
+  comment     Comment[]
+}
+
+model Comment {
+  id          Int       @id @default(autoincrement())
+  post        Post      @relation(fields: [postId], references: [id])
+  postId      Int       @unique
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int       @unique
+  createdAt   DateTime  @default(now())
+  content     String    
+  likes       Int       @default(0)
+}
+
+model Friendship {
+  user1       User      @relation("user1", fields: [user1Id], references: [id])
+  user1Id     Int       @unique
+  user2       User      @relation("user2", fields: [user2Id], references: [id])
+  user2Id     Int       @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  status      Status    @default(PENDING)
+  @@id([user2Id, user1Id])
+}
+
+model Session {
+  id          String    @id
+  sid         String    @unique
+  data        String    
+  expiresAt   DateTime
+}
+
+enum Status {
+  PENDING
+  ACTIVE
+}
+
+enum Role {
+  USER
+  ADMIN
 }
