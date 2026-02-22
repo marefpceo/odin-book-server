@@ -2,9 +2,6 @@ import express from 'express';
 import authController from '../controllers/authController.js';
 const router = express.Router();
 
-// Test route
-router.get('/', authController.rootGet);
-
 // POST create new user
 router.post('/signup', authController.signupPost);
 
