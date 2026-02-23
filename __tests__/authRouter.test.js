@@ -77,6 +77,18 @@ describe('Test Authentication Routes', () => {
 
   /************* Login seed user James **************/
   /**************************************************/
+  // Login with incorrect email
+  test('should return error due to incorrect email', async () => {
+    const res = (await request(app).post('/login')).setEncoding({
+      email: 'incorrect@email.com',
+      password: 'kkkkkkkkk',
+    });
+
+    expect(res.status).toEqual(401);
+    expect(res.statusMessage).toBe('Unauthorized');
+  });
+
+  // Login with correct credentials
   test('should indicate successful login with seeded user', async () => {
     const res = await request(app).post('/login').send({
       email: 'james1@test.com',
