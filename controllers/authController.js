@@ -3,7 +3,7 @@ async function signupPost(req, res) {
   res.json({ title: 'Signup Route' });
 }
 
-// Handles login (temp)
+// Handles login
 async function loginPost(req, res) {
   res.json({ title: 'Login Route' });
 }
