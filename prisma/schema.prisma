@@ -17,7 +17,6 @@ model User {
   username    String    @unique
   email       String    @unique
   password    String
-  status      Status    @default(ACTIVE)
   role        Role      @default(USER)
   profile     Profile?
   post        Post[]

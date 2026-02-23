@@ -598,6 +598,10 @@ export type FriendshipUncheckedUpdateManyWithoutUser2NestedInput = {
     | Prisma.FriendshipScalarWhereInput[];
 };
 
+export type EnumStatusFieldUpdateOperationsInput = {
+  set?: $Enums.Status;
+};
+
 export type FriendshipCreateWithoutUser1Input = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
