@@ -1,9 +1,15 @@
-import { describe, expect, test } from 'vitest';
-import authRouter from '../routers/authRouter.js';
 import app from '../app.js';
+import { afterAll, afterEach, describe, expect, test } from 'vitest';
+import authRouter from '../routers/authRouter.js';
+
+import { PrismaClient } from '../prisma/generated/prisma/client.ts';
+import { PrismaPg } from '@prisma/adapter-pg';
 
 import request from 'supertest';
 import express from 'express';
+
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 app.use(express.urlencoded({ extended: false }));
 app.use('/', authRouter);
@@ -12,6 +18,7 @@ const testUser = {
   username: 'testuser',
   email: 'testuser@test.com',
   password: 'kkkkkkkkk',
+  confirmPassword: 'kkkkkkkkk',
 };
 
 const testUserProfile = {
@@ -26,6 +33,12 @@ const testUserProfile = {
 
 // Describes overall test
 describe('Test Authentication Routes', () => {
+  // Clears all session data
+  afterAll(async () => {
+    await prisma.session.deleteMany();
+    await prisma.user.delete({ where: { username: 'testuser' } });
+  });
+
   /************* Login seed user James **************/
   /**************************************************/
   // Login with incorrect email
@@ -52,32 +65,36 @@ describe('Test Authentication Routes', () => {
       })
       .set('Accept', 'x-www-form-urlencoded');
 
-    console.log(res.body);
     expect(res.status).toEqual(200);
     expect(res.body.message).toBe('Login successful');
   });
 
-  // /********** Create user with NO profile ***********/
-  // /**************************************************/
-  // test('should create a user with no profile', async () => {
-  //   const res = await request(app)
-  //     .post('/signup')
-  //     .send(testUser)
-  //     .set('Accept', 'x-www-form-urlencoded');
+  /********** Create user with NO profile ***********/
+  /**************************************************/
+  test('should create a user with no profile', async () => {
+    const res = await request(app)
+      .post('/auth/signup')
+      .send({
+        username: 'testuser',
+        email: 'testuser@test.com',
+        password: 'kkkkkkkkk',
+        confirmPassword: 'kkkkkkkkk',
+      })
+      .set('Accept', 'x-www-form-urlencoded');
 
-  //   expect(res.status).toEqual(200);
-  //   expect(res.body).toEqual({
-  //     id: expect.any(Number),
-  //     username: 'testuser',
-  //     email: 'testuser@test.com',
-  //     password: 'kkkkkkkkk',
-  //     status: 'ACTIVE',
-  //     role: 'USER',
-  //     profile: null,
-  //     createdAt: expect.anything(Date),
-  //     updatedAt: expect.anything(Date),
-  //   });
-  // });
+    console.log(res.body);
+    expect(res.status).toEqual(200);
+    expect(res.body.createdUser).toEqual({
+      id: expect.any(Number),
+      username: 'testuser',
+      email: 'testuser@test.com',
+      password: expect.any(String),
+      role: 'USER',
+      profile: null,
+      createdAt: expect.any(String),
+      updatedAt: expect.any(String),
+    });
+  });
 
   // /************ Create user with profile ************/
   // /**************************************************/
