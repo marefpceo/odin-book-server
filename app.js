@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 import express from 'express';
+import passport from 'passport';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -8,8 +9,9 @@ import allowedOrigins from './helpers/corsOptions.js';
 
 import expressSession from 'express-session';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '@prisma/client/extension';
+import { PrismaClient } from './prisma/generated/prisma/client.ts';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
+import { configureLocalStrategy } from './helpers/passportAuth.js';
 
 import authRouter from './routers/authRouter.js';
 import postRouter from './routers/postRouter.js';
@@ -59,6 +61,13 @@ app.use(
     }),
   }),
 );
+
+// Initialize Passport and session support
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Configure Passport Strategies
+configureLocalStrategy();
 
 app.use('/auth', authRouter);
 app.use('/posts', postRouter);

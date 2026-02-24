@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
 import authRouter from '../routers/authRouter.js';
+import app from '../app.js';
 
 import request from 'supertest';
 import express from 'express';
-const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use('/', authRouter);
@@ -30,22 +30,29 @@ describe('Test Authentication Routes', () => {
   /**************************************************/
   // Login with incorrect email
   test('should return error due to incorrect email', async () => {
-    const res = (await request(app).post('/login')).setEncoding({
-      email: 'incorrect@email.com',
-      password: 'kkkkkkkkk',
-    });
+    const res = await request(app)
+      .post('/auth/login')
+      .send({
+        email: 'incorrect@email.com',
+        password: 'kkkkkkkkk',
+      })
+      .set('Accept', 'x-www-form-urlencoded');
 
     expect(res.status).toEqual(401);
-    expect(res.statusMessage).toBe('Unauthorized');
+    expect(res.body.message).toBe('Login failed; Invalid email or password');
   });
 
   // Login with correct credentials
   test('should indicate successful login with seeded user', async () => {
-    const res = await request(app).post('/login').send({
-      email: 'james1@test.com',
-      password: 'kkkkkkkkk',
-    });
+    const res = await request(app)
+      .post('/auth/login')
+      .send({
+        email: 'james1@test.com',
+        password: 'kkkkkkkkk',
+      })
+      .set('Accept', 'x-www-form-urlencoded');
 
+    console.log(res.body);
     expect(res.status).toEqual(200);
     expect(res.body.message).toBe('Login successful');
   });

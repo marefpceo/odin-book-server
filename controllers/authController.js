@@ -1,11 +1,31 @@
+import passport from 'passport';
+
 // Handles user signup
 async function signupPost(req, res) {
   res.json({ title: 'Signup Route' });
 }
 
 // Handles login
-async function loginPost(req, res) {
-  res.json({ title: 'Login Route' });
+async function loginPost(req, res, next) {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({
+        message: info.message,
+      });
+    }
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.status(200).json({
+        message: 'Login successful',
+        user: req.user,
+      });
+    });
+  })(req, res, next);
 }
 
 // Handles logout

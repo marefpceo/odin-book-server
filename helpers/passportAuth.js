@@ -1,7 +1,7 @@
 //
 import passport from 'passport';
-import { LocalStrategy } from 'passport-local';
-import { PrismaClient } from './generated/prisma/client.ts';
+import { Strategy as LocalStrategy } from 'passport-local';
+import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import * as argon2 from 'argon2';
 
@@ -11,7 +11,7 @@ const adapter = new PrismaPg({
 const prisma = new PrismaClient({ adapter });
 
 // Passport LocalStrategy configuration to verify email and password for authentication
-const configureLocalStrategy = () => {
+export const configureLocalStrategy = () => {
   passport.use(
     new LocalStrategy(
       // changes default username input to email
@@ -76,4 +76,4 @@ const configureLocalStrategy = () => {
   });
 };
 
-export default { configureLocalStrategy };
+export default configureLocalStrategy;
