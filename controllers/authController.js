@@ -24,7 +24,11 @@ async function signupPost(req, res, next) {
       password: hash,
     },
     include: {
-      profile: true,
+      profile: {
+        include: {
+          user: true,
+        },
+      },
     },
   });
 

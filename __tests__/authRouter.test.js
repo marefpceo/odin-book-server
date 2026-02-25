@@ -27,7 +27,7 @@ const testUserProfile = {
   password: 'kkkkkkkkk',
   firstname: 'Profile',
   lastname: 'Test',
-  avatar: null,
+  avatar: 'Link to image',
   bio: 'Profile test user',
 };
 
@@ -37,6 +37,7 @@ describe('Test Authentication Routes', () => {
   afterAll(async () => {
     await prisma.session.deleteMany();
     await prisma.user.delete({ where: { username: 'testuser' } });
+    await prisma.user.delete({ where: { username: 'profiletest' } });
   });
 
   /************* Login seed user James **************/
@@ -95,31 +96,4 @@ describe('Test Authentication Routes', () => {
       updatedAt: expect.any(String),
     });
   });
-
-  // /************ Create user with profile ************/
-  // /**************************************************/
-  // test('should create a user with a profile', async () => {
-  //   const res = await request(app).post('/signup').send(testUserProfile);
-
-  //   expect(res.status).toEqual(200);
-  //   expect(res.body).toEqual({
-  //     id: expect.any(Number),
-  //     username: 'profiletest',
-  //     email: 'profiletest@test.com',
-  //     password: 'kkkkkkkkk',
-  //     status: 'ACTIVE',
-  //     role: 'USER',
-  //     profile: {
-  //       id: expect.any(Number),
-  //       firstname: 'Profile',
-  //       lastname: 'Test',
-  //       avatar: null,
-  //       bio: 'Profile test user',
-  //       createdAt: expect.anything(Date),
-  //       updatedAt: expect.anything(Date),
-  //     },
-  //     createdAt: expect.anything(Date),
-  //     updatedAt: expect.anything(Date),
-  //   });
-  // });
 });
