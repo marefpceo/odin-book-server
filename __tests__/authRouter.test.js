@@ -1,5 +1,5 @@
 import app from '../app.js';
-import { afterAll, afterEach, describe, expect, test } from 'vitest';
+import { afterAll, describe, expect, test } from 'vitest';
 import authRouter from '../routers/authRouter.js';
 
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
