@@ -14,30 +14,12 @@ const prisma = new PrismaClient({ adapter });
 app.use(express.urlencoded({ extended: false }));
 app.use('/', authRouter);
 
-const testUser = {
-  username: 'testuser',
-  email: 'testuser@test.com',
-  password: 'kkkkkkkkk',
-  confirmPassword: 'kkkkkkkkk',
-};
-
-const testUserProfile = {
-  username: 'profiletest',
-  email: 'profiletest@test.com',
-  password: 'kkkkkkkkk',
-  firstname: 'Profile',
-  lastname: 'Test',
-  avatar: 'Link to image',
-  bio: 'Profile test user',
-};
-
 // Describes overall test
 describe('Test Authentication Routes', () => {
   // Clears all session data
   afterAll(async () => {
     await prisma.session.deleteMany();
     await prisma.user.delete({ where: { username: 'testuser' } });
-    await prisma.user.delete({ where: { username: 'profiletest' } });
   });
 
   /************* Login seed user James **************/
@@ -70,7 +52,7 @@ describe('Test Authentication Routes', () => {
     expect(res.body.message).toBe('Login successful');
   });
 
-  /********** Create user with NO profile ***********/
+  /**************** Create new user *****************/
   /**************************************************/
   test('should create a user with no profile', async () => {
     const res = await request(app)
