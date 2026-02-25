@@ -65,7 +65,6 @@ describe('Test Authentication Routes', () => {
       })
       .set('Accept', 'x-www-form-urlencoded');
 
-    console.log(res.body);
     expect(res.status).toEqual(200);
     expect(res.body.createdUser).toEqual({
       id: expect.any(Number),
