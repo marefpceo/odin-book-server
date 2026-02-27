@@ -95,4 +95,33 @@ describe('Test all routes in profileRouter', async () => {
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Profile successfully created!');
   });
+
+  test('PUT call to update profile for the logged in user', async () => {
+    const katieProfileId = await prisma.user.findUnique({
+      where: {
+        username: 'katiedid',
+      },
+      include: {
+        profile: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    const updateProfileInfo = {
+      firstname: 'Katie',
+      lastname: 'Diddly',
+      avatar: 'Katie changed image',
+      bio: 'Everyone knows Kate as Katie',
+    };
+
+    const res = await request(app)
+      .put(`/profile/${katieProfileId.profile.id}/update`)
+      .set('Accept', 'x-www-form-urlencoded')
+      .send(updateProfileInfo);
+
+    expect(res.status).toEqual(200);
+    expect(res.body.message).toEqual('Profile successfully updated!');
+  });
 });

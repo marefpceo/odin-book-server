@@ -37,9 +37,24 @@ async function createUserProfile(req, res) {
   });
 }
 
-// Updates the user profile
+// Updates the logged in user's profile
 async function updateUserProfile(req, res) {
-  res.json({ title: 'PUT /profile/:profileId/update' });
+  const updatedProfile = await prisma.profile.update({
+    where: {
+      id: parseInt(req.params.profileId),
+    },
+    data: {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      avatar: req.body.avatar,
+      bio: req.body.bio,
+    },
+  });
+
+  res.status(200).json({
+    message: 'Profile successfully updated!',
+    updatedProfile,
+  });
 }
 
 // DELETE user profile (ADMIN ROLE ONLY)

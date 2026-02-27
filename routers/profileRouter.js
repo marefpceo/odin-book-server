@@ -17,7 +17,12 @@ router.post(
 );
 
 // PUT update profile
-router.put('/:profileId/update', profileController.updateUserProfile);
+router.put(
+  '/:profileId/update',
+  profileValidationRules,
+  validate,
+  profileController.updateUserProfile,
+);
 
 // DELETE profile (ADMIN ROLE ONLY)
 router.delete('/:profileId/delete', profileController.deleteUserProfile);
