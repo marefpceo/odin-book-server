@@ -2,14 +2,12 @@ import passport from 'passport';
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import * as argon2 from 'argon2';
-import inputValidationRules from '../helpers/inputValidationRules.js';
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 // Handles user signup
 async function signupPost(req, res, next) {
-  inputValidationRules.validate(req);
   const hash = await argon2.hash(req.body.password, {
     type: argon2.argon2id,
     memoryCost: 47104,
@@ -46,7 +44,6 @@ async function signupPost(req, res, next) {
 
 // Handles user login
 async function loginPost(req, res, next) {
-  inputValidationRules.validate(req);
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       return next(err);

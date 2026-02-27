@@ -1,5 +1,7 @@
 import express from 'express';
 import profileController from '../controllers/profileController.js';
+import { validate } from '../validation/validator.js';
+import { profileValidationRules } from '../validation/profileValidators.js';
 
 const router = express.Router();
 
@@ -7,7 +9,12 @@ const router = express.Router();
 router.get('/:profileId', profileController.getSelectedProfile);
 
 // POST create profile
-router.post('/create', profileController.createUserProfile);
+router.post(
+  '/create',
+  profileValidationRules,
+  validate,
+  profileController.createUserProfile,
+);
 
 // PUT update profile
 router.put('/:profileId/update', profileController.updateUserProfile);

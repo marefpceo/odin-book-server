@@ -1,12 +1,10 @@
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 
-import { validate } from '../helpers/inputValidationRules.js';
-
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
-// Request to GET profile information for selected User
+// Request to GET profile information
 async function getSelectedProfile(req, res) {
   if (req.params.profileId === '0') {
     res.status(200).json({
@@ -24,7 +22,19 @@ async function getSelectedProfile(req, res) {
 
 // Handles POST request to create a profile
 async function createUserProfile(req, res) {
-  res.json({ title: 'POST /profile/create' });
+  const createdProfile = await prisma.profile.create({
+    data: {
+      userId: parseInt(req.body.userId),
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      avatar: req.body.avatar,
+      bio: req.body.bio,
+    },
+  });
+  res.status(200).json({
+    message: 'Profile successfully created!',
+    createdProfile,
+  });
 }
 
 // Updates the user profile

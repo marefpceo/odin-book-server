@@ -15,6 +15,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', profileRouter);
 
 describe('Test all routes in profileRouter', async () => {
+  afterAll(async () => {
+    await prisma.profile.deleteMany({
+      where: {
+        user: {
+          NOT: {
+            username: 'jimmyOne',
+          },
+        },
+      },
+    });
+  });
+
   const katieUserId = await prisma.user.findUnique({
     where: {
       username: 'katiedid',
@@ -46,7 +58,6 @@ describe('Test all routes in profileRouter', async () => {
 
   test('GET profile route for a user with NO profile', async () => {
     const res = await request(app).get(`/profile/${profileNoId}`);
-    console.log(katieUserId.profile);
 
     expect(res.statusCode).toEqual(200);
     expect(res.body.message).toEqual('User has not created a profile');
@@ -66,5 +77,22 @@ describe('Test all routes in profileRouter', async () => {
       createdAt: expect.any(String),
       updatedAt: expect.any(String),
     });
+  });
+
+  test('POST call to create a profile for the logged in user', async () => {
+    const createProfileInfo = {
+      userId: katieUserId.id,
+      firstname: 'Kate',
+      lastname: 'Did',
+      avatar: 'Katie uploaded image',
+      bio: 'Everyone knows Katie Did',
+    };
+    const res = await request(app)
+      .post(`/profile/create`)
+      .set('Accept', 'x-www-form-urlencoded')
+      .send(createProfileInfo);
+
+    expect(res.status).toEqual(200);
+    expect(res.body.message).toEqual('Profile successfully created!');
   });
 });

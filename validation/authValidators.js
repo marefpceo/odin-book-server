@@ -1,15 +1,11 @@
-// Express-Validator rules can be reused in any project that uses Express-Validator.
-// Prisma ORM import can be added/ removed as necessary
-
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
-// Reuseable validation rules
-const validationRules = [
+const authValidationRules = [
   body('username')
     .trim()
     .isLength({ min: 8, max: 64 })
@@ -25,6 +21,7 @@ const validationRules = [
         throw new Error('Username already in use');
       }
     }),
+
   body('email')
     .trim()
     .isEmail()
@@ -41,11 +38,13 @@ const validationRules = [
       }
     })
     .withMessage('Email already in use'),
+
   body('password')
     .trim()
     .isLength({ min: 9 })
     .withMessage('Password must contain a minimum of 9 characters')
     .escape(),
+
   body('confirmPassword')
     .trim()
     .custom((value, { req }) => {
@@ -56,13 +55,4 @@ const validationRules = [
     }),
 ];
 
-// Middleware to handle results
-const validate = (req, res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-};
-
-export default { validationRules, validate };
+export { authValidationRules };
