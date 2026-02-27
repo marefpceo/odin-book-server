@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', profileRouter);
 
 describe('Test all routes in profileRouter', async () => {
-  const testUserId = await prisma.user.findUnique({
+  const katieUserId = await prisma.user.findUnique({
     where: {
       username: 'katiedid',
     },
@@ -28,20 +28,41 @@ describe('Test all routes in profileRouter', async () => {
     },
   });
 
-  const profileId = 0 || testUserId.profile?.id;
+  const jamesUserId = await prisma.user.findUnique({
+    where: {
+      username: 'jimmyOne',
+    },
+    include: {
+      profile: {
+        select: {
+          id: true,
+        },
+      },
+    },
+  });
 
-  test('GET route to return profile by profileId', async () => {
+  const profileNoId = katieUserId.profile === null ? 0 : katieUserId.profile.id;
+  const profileId = jamesUserId.profile === null ? 0 : jamesUserId.profile.id;
+
+  test('GET profile route for a user with NO profile', async () => {
+    const res = await request(app).get(`/profile/${profileNoId}`);
+    console.log(katieUserId.profile);
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.message).toEqual('User has not created a profile');
+  });
+
+  test('GET profile route for a user with profile', async () => {
     const res = await request(app).get(`/profile/${profileId}`);
-    console.log(testUserId.profile?.id);
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
-      id: expect.any(Number),
-      username: 'katiedid',
-      email: 'kate@test.com',
-      password: expect.any(String),
-      role: 'USER',
-      profile: null,
+      id: jamesUserId.id,
+      userId: jamesUserId.id,
+      firstname: 'James',
+      lastname: 'Roundtree',
+      avatar: 'NULL',
+      bio: 'Happy go lucky who likes to fish',
       createdAt: expect.any(String),
       updatedAt: expect.any(String),
     });

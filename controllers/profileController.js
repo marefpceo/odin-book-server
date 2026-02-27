@@ -8,12 +8,17 @@ const prisma = new PrismaClient({ adapter });
 
 // Request to GET profile information for selected User
 async function getSelectedProfile(req, res) {
-  if (req.params.profileId === null) {
+  if (req.params.profileId === '0') {
     res.status(200).json({
       message: 'User has not created a profile',
     });
   } else {
-    res.json({ title: req.params.profileId });
+    const selectedProfile = await prisma.profile.findUnique({
+      where: {
+        id: parseInt(req.params.profileId),
+      },
+    });
+    res.status(200).json(selectedProfile);
   }
 }
 
