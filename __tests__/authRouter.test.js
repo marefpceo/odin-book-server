@@ -47,6 +47,7 @@ describe('Test Authentication Routes', () => {
         password: 'kkkkkkkkk',
       })
       .set('Accept', 'x-www-form-urlencoded');
+    console.log(res.body);
 
     expect(res.status).toEqual(200);
     expect(res.body.message).toBe('Login successful');

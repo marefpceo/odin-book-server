@@ -5,7 +5,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
-const authValidationRules = [
+const signupValidationRules = [
   body('username')
     .trim()
     .isLength({ min: 8, max: 64 })
@@ -55,4 +55,18 @@ const authValidationRules = [
     }),
 ];
 
-export { authValidationRules };
+const loginValidationRules = [
+  body('email')
+    .trim()
+    .isEmail()
+    .withMessage('Email format invalid. (ex. user@email.com')
+    .escape(),
+
+  body('password')
+    .trim()
+    .isLength({ min: 9 })
+    .withMessage('Password must contain a minimum of 9 characters')
+    .escape(),
+];
+
+export { signupValidationRules, loginValidationRules };
