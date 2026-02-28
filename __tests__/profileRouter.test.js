@@ -1,4 +1,6 @@
 import app from '../app.js';
+import fs from 'fs/promises';
+import path from 'node:path';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import profileRouter from '../routers/profileRouter.js';
 
@@ -10,6 +12,12 @@ import express from 'express';
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
+
+// Path to Uploads directory
+const uploadDirectory = './helpers/uploads';
+// Test image locations used to test multer routes
+const testFilePath = path.join(__dirname, 'test-image.png');
+const testFilePath2 = path.join(__dirname, 'test-image2.png');
 
 app.use(express.urlencoded({ extended: false }));
 app.use('/', profileRouter);
@@ -25,6 +33,29 @@ describe('Test all routes in profileRouter', async () => {
         },
       },
     });
+  });
+
+  afterAll(async () => {
+    // Clear uploads directory from testing image uploads
+    try {
+      const files = await fs.readdir(uploadDirectory);
+
+      for (const file of files) {
+        const filePath = path.join(uploadDirectory, file);
+        const stat = await fs.stat(filePath);
+
+        if (stat.isFile()) {
+          await fs.unlink(filePath);
+          console.log(`Deleted file: ${filePath}`);
+        } else if (stat.isDirectory()) {
+          await fs.rm(filePath, { recursive: true, force: true });
+          console.log(`Removed subdirectory: ${filePath}`);
+        }
+      }
+      console.log(`Emptied directory: ${dirPath}`);
+    } catch (err) {
+      console.log(`Error removing directory: ${err}`);
+    }
   });
 
   const katieUserId = await prisma.user.findUnique({
@@ -80,18 +111,14 @@ describe('Test all routes in profileRouter', async () => {
   });
 
   test('POST call to create a profile for the logged in user', async () => {
-    const createProfileInfo = {
-      userId: katieUserId.id,
-      firstname: 'Kate',
-      lastname: 'Did',
-      avatar: 'Katie uploaded image',
-      bio: 'Everyone knows Katie Did',
-    };
     const res = await request(app)
       .post(`/profile/create`)
-      .set('Accept', 'x-www-form-urlencoded')
-      .send(createProfileInfo);
-
+      .field('userId', katieUserId.id)
+      .field('firstname', 'Kate')
+      .field('lastname', 'Did')
+      .field('bio', 'Everyone knows Katie Did')
+      .attach('avatar', testFilePath);
+    console.log(res.body);
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Profile successfully created!');
   });
@@ -118,8 +145,10 @@ describe('Test all routes in profileRouter', async () => {
 
     const res = await request(app)
       .put(`/profile/${katieProfileId.profile.id}/update`)
-      .set('Accept', 'x-www-form-urlencoded')
-      .send(updateProfileInfo);
+      .field('firstname', 'Katie')
+      .field('lastname', 'Diddly')
+      .field('bio', 'Everyone knows Kate as Katie')
+      .attach('avatar', testFilePath2);
 
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Profile successfully updated!');

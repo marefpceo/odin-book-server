@@ -135,8 +135,8 @@ createdb odin-book;
 | `PUT`    | `/users/:userId/update`      | updates the friendship status                        |
 | `DELETE` | `/users/:userId/remove`      | remove selected user from friend list                |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 [Nodejs-url]: https://nodejs.org/en/download
 [NPM-url]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 [postgres-url]: https://www.postgresql.org/download/
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>

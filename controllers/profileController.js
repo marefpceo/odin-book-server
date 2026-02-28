@@ -27,7 +27,7 @@ async function createUserProfile(req, res) {
       userId: parseInt(req.body.userId),
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      avatar: req.body.avatar,
+      avatar: req.file.filename,
       bio: req.body.bio,
     },
   });
