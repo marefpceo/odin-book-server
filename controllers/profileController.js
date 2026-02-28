@@ -59,7 +59,16 @@ async function updateUserProfile(req, res) {
 
 // DELETE user profile (ADMIN ROLE ONLY)
 async function deleteUserProfile(req, res) {
-  res.json({ title: 'DELETE /profile/:profileId/delete' });
+  const profileToDelete = await prisma.profile.delete({
+    where: {
+      id: parseInt(req.params.profileId),
+    },
+  });
+
+  res.status(200).json({
+    message: 'Profile deleted!',
+    profileToDelete,
+  });
 }
 
 export default {

@@ -1,7 +1,7 @@
 import app from '../app.js';
 import fs from 'fs/promises';
 import path from 'node:path';
-import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { afterAll, describe, expect, test } from 'vitest';
 import profileRouter from '../routers/profileRouter.js';
 
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
@@ -24,18 +24,6 @@ app.use('/', profileRouter);
 
 describe('Test all routes in profileRouter', async () => {
   afterAll(async () => {
-    await prisma.profile.deleteMany({
-      where: {
-        user: {
-          NOT: {
-            username: 'jimmyOne',
-          },
-        },
-      },
-    });
-  });
-
-  afterAll(async () => {
     // Clear uploads directory from testing image uploads
     try {
       const files = await fs.readdir(uploadDirectory);
@@ -52,7 +40,7 @@ describe('Test all routes in profileRouter', async () => {
           console.log(`Removed subdirectory: ${filePath}`);
         }
       }
-      console.log(`Emptied directory: ${dirPath}`);
+      console.log(`Emptied directory: ${uploadDirectory}`);
     } catch (err) {
       console.log(`Error removing directory: ${err}`);
     }
@@ -136,12 +124,6 @@ describe('Test all routes in profileRouter', async () => {
         },
       },
     });
-    const updateProfileInfo = {
-      firstname: 'Katie',
-      lastname: 'Diddly',
-      avatar: 'Katie changed image',
-      bio: 'Everyone knows Kate as Katie',
-    };
 
     const res = await request(app)
       .put(`/profile/${katieProfileId.profile.id}/update`)
@@ -152,5 +134,27 @@ describe('Test all routes in profileRouter', async () => {
 
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Profile successfully updated!');
+  });
+
+  test('deleting profile', async () => {
+    const katieProfileId = await prisma.user.findUnique({
+      where: {
+        username: 'katiedid',
+      },
+      include: {
+        profile: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+
+    const res = await request(app).delete(
+      `/profile/${katieProfileId.profile.id}/delete`,
+    );
+
+    expect(res.status).toEqual(200);
+    expect(res.body.message).toEqual('Profile deleted!');
   });
 });
