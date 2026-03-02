@@ -20,19 +20,38 @@ async function usersGet(req, res) {
   });
 }
 
-// Handles getting record for the selected user by userId
-async function selectedUserGet(req, res) {
-  res.json({ title: 'GET /users/:userId' });
-}
-
 // POST request to add selected user as a friend
 async function addSelectedUser(req, res) {
-  res.json({ title: 'POST /users/:userId/add' });
+  const friendRequest = await prisma.friendship.create({
+    data: {
+      user1Id: parseInt(req.params.userId),
+      user2Id: parseInt(req.body.userToAdd),
+    },
+  });
+  res.status(200).json({
+    message: 'Friend request submitted.',
+    friendRequest,
+  });
 }
 
 // PUT request to update friendship status
 async function updateFriendshipStatus(req, res) {
-  res.json({ title: 'PUT /users/:userId/update' });
+  const friendStatusUpdate = await prisma.friendship.update({
+    where: {
+      user2Id_user1Id: {
+        user2Id: parseInt(req.params.userId),
+        user1Id: parseInt(req.body.user1Id),
+      },
+    },
+    data: {
+      status: req.body.status,
+    },
+  });
+
+  res.status(200).json({
+    message: 'Friendship accepted',
+    friendStatusUpdate,
+  });
 }
 
 // Handles DELETE request to remove selected user from friend's list
@@ -42,7 +61,6 @@ async function removeFriend(req, res) {
 
 export default {
   usersGet,
-  selectedUserGet,
   addSelectedUser,
   updateFriendshipStatus,
   removeFriend,

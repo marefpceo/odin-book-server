@@ -5,9 +5,6 @@ const router = express.Router();
 // GET users
 router.get('/', userController.usersGet);
 
-// GET selected user
-router.get('/:userId', userController.selectedUserGet);
-
 // POST add selected user
 router.post('/:userId/add', userController.addSelectedUser);
 
