@@ -130,7 +130,6 @@ createdb odin-book;
 | `PUT`    | `/profile/:profileId/update` | update user profile                                  |
 | `DELETE` | `/profile/:profileId/delete` | delete user profile (ADMIN role)                     |
 | `GET`    | `/users`                     | gets list of all users and status                    |
-| `GET`    | `/users/:userId`             | returns info for selected user                       |
 | `POST`   | `/users/:userId/add`         | sends add request to selected user                   |
 | `PUT`    | `/users/:userId/update`      | updates the friendship status                        |
 | `DELETE` | `/users/:userId/remove`      | remove selected user from friend list                |
