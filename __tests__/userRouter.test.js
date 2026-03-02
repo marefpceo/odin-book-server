@@ -1,7 +1,7 @@
 import app from '../app';
 import request from 'supertest';
 import express from 'express';
-import { beforeAll, describe, expect, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import userRouter from '../routers/userRouter.js';
 
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
@@ -40,6 +40,7 @@ describe('Test all routes in userRouter', async () => {
         expect.objectContaining({
           id: expect.any(Number),
           username: expect.any(String),
+          user1: expect.any(Array),
           user2: expect.any(Array),
         }),
       ]),
@@ -51,8 +52,6 @@ describe('Test all routes in userRouter', async () => {
       .post(`/users/${jimmyOne.id}/add`)
       .send({ userToAdd: `${billy.id}` });
 
-    console.log(res.body);
-
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Friend request submitted.');
   });
@@ -63,13 +62,17 @@ describe('Test all routes in userRouter', async () => {
       user1Id: jimmyOne.id,
     });
 
-    console.log(res.body);
-
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Friendship accepted');
   });
 
-  test('should show the friendship was ended', async () => {
-    const res = await request(app).del(`/users/`);
+  test('should show the friendship was removed', async () => {
+    const res = await request(app).del(`/users/${billy.id}/remove`).send({
+      user1Id: jimmyOne.id,
+      user2Id: billy.id,
+    });
+
+    expect(res.status).toEqual(200);
+    expect(res.body.message).toEqual('User removed');
   });
 });

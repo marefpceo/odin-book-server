@@ -10,6 +10,9 @@ async function usersGet(req, res) {
     select: {
       id: true,
       username: true,
+      user1: {
+        include: true,
+      },
       user2: {
         include: true,
       },
@@ -56,7 +59,18 @@ async function updateFriendshipStatus(req, res) {
 
 // Handles DELETE request to remove selected user from friend's list
 async function removeFriend(req, res) {
-  res.json({ title: 'DELETE /users/:userId/remove' });
+  const removeFromFriendList = await prisma.friendship.delete({
+    where: {
+      user2Id_user1Id: {
+        user1Id: parseInt(req.body.user1Id),
+        user2Id: parseInt(req.body.user2Id),
+      },
+    },
+  });
+  res.status(200).json({
+    message: 'User removed',
+    removeFromFriendList,
+  });
 }
 
 export default {
