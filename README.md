@@ -113,26 +113,24 @@ createdb odin-book;
 | `POST`   | method used to send data to the server        |
 | `DELETE` | method used to delete an item from the server |
 
-| Method   | URL                          | Description                                          |
-| -------- | ---------------------------- | ---------------------------------------------------- |
-| `POST`   | `/auth/signup`               | creates a new user                                   |
-| `POST`   | `/auth/login`                | verifies user credentials and logs the user in       |
-| `POST`   | `/auth/logout`               | logs the user out and terminates the session         |
-| `GET`    | `/posts`                     | timeline view showing user and friend's recent posts |
-| `GET`    | `/posts/:postId`             | get selected post                                    |
-| `GET`    | `/posts/create`              | gets info to create or update a post                 |
-| `POST`   | `/posts/create`              | creates a new post                                   |
-| `PUT`    | `/posts/:postId/update`      | update a previously created message                  |
-| `DELETE` | `/posts/:postId/delete`      | delete a post                                        |
-| `GET`    | `/profile`                   | gets profile information for the current user        |
-| `GET`    | `/profile/:profileId`        | gets profile of selected user (if one is created)    |
-| `POST`   | `/profile/create`            | create a user profile                                |
-| `PUT`    | `/profile/:profileId/update` | update user profile                                  |
-| `DELETE` | `/profile/:profileId/delete` | delete user profile (ADMIN role)                     |
-| `GET`    | `/users`                     | gets list of all users and status                    |
-| `POST`   | `/users/:userId/add`         | sends add request to selected user                   |
-| `PUT`    | `/users/:userId/update`      | updates the friendship status                        |
-| `DELETE` | `/users/:userId/remove`      | remove selected user from friend list                |
+| Method   | URL                             | Description                                          |
+| -------- | ------------------------------- | ---------------------------------------------------- |
+| `POST`   | `/auth/signup`                  | creates a new user                                   |
+| `POST`   | `/auth/login`                   | verifies user credentials and logs the user in       |
+| `POST`   | `/auth/logout`                  | logs the user out and terminates the session         |
+| `GET`    | `/posts/:userId`                | timeline view showing user and friend's recent posts |
+| `POST`   | `/posts/:userId/create`         | creates a new post                                   |
+| `GET`    | `/posts/:userId/:postId`        | get selected post                                    |
+| `DELETE` | `/posts/:userId/:postId/delete` | delete a post                                        |
+| `GET`    | `/profile`                      | gets profile information for the current user        |
+| `GET`    | `/profile/:profileId`           | gets profile of selected user (if one is created)    |
+| `POST`   | `/profile/create`               | create a user profile                                |
+| `PUT`    | `/profile/:profileId/update`    | update user profile                                  |
+| `DELETE` | `/profile/:profileId/delete`    | delete user profile (ADMIN role)                     |
+| `GET`    | `/users`                        | gets list of all users and status                    |
+| `POST`   | `/users/:userId/add`            | sends add request to selected user                   |
+| `PUT`    | `/users/:userId/update`         | updates the friendship status                        |
+| `DELETE` | `/users/:userId/remove`         | remove selected user from friend list                |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

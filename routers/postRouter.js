@@ -5,16 +5,13 @@ const router = express.Router();
 // GET recent posts from current user and friends
 router.get('/:userId', postController.postsGet);
 
-// GET selected post
-router.get('/:userId/:postId', postController.selectedPostGet);
-
 // POST create new post
 router.post('/:userId/create', postController.createPost);
 
-// PUT update post
-router.put('/:userId/:postId/update', postController.updatePostPut);
+// GET selected post
+router.get('/:userId/:postId', postController.selectedPostGet);
 
-// DEL delete post (ADMIN role only)
+// DEL delete post (Post author or ADMIN role Only)
 router.delete('/:userId/:postId/delete', postController.deletePost);
 
 export default router;

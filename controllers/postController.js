@@ -6,7 +6,7 @@ const prisma = new PrismaClient({ adapter });
 
 // Handles returning all recent posts for user and friends
 async function postsGet(req, res) {
-  // Get current user and list of friends ids
+  // Get list of current user and friend ids
   const user = await prisma.user.findUnique({
     where: {
       id: parseInt(req.params.userId),
@@ -15,22 +15,26 @@ async function postsGet(req, res) {
       user1: {
         where: {
           user1Id: parseInt(req.params.userId),
+          status: 'ACTIVE',
         },
       },
       user2: {
         where: {
           user2Id: parseInt(req.params.userId),
+          status: 'ACTIVE',
         },
       },
     },
   });
 
+  // Extract and store id's in an array
   const friendIds = [
     ...user.user1.map((f) => parseInt(f.user2Id)),
     ...user.user2.map((f) => parseInt(f.user1Id)),
     parseInt(req.params.userId),
   ];
 
+  // Return all posts using friendIds
   const feedPosts = await prisma.post.findMany({
     where: {
       userId: {
@@ -48,14 +52,6 @@ async function postsGet(req, res) {
   res.status(200).json({
     message: feedPosts.length === 0 ? 'No posts found' : '',
     feedPosts,
-  });
-}
-
-// Handles getting selected post
-async function selectedPostGet(req, res) {
-  res.json({
-    title: 'GET selected post route',
-    postId: req.params.postId,
   });
 }
 
@@ -83,20 +79,43 @@ async function createPost(req, res) {
   });
 }
 
-// Handles updating selected post
-async function updatePostPut(req, res) {
-  res.json({ title: 'PUT post/update route' });
+// Handles getting selected post
+async function selectedPostGet(req, res) {
+  const selectedPost = await prisma.post.findUnique({
+    where: {
+      id: parseInt(req.params.postId),
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          username: true,
+        },
+      },
+      comment: true,
+    },
+  });
+
+  res.status(200).json({
+    selectedPost,
+  });
 }
 
-// Handles updating selected post
+// Handles deleting selected post
 async function deletePost(req, res) {
-  res.json({ title: 'DELETE post/delete route' });
+  await prisma.post.delete({
+    where: {
+      id: parseInt(req.params.postId),
+    },
+  });
+  res.status(200).json({
+    message: 'Post deleted',
+  });
 }
 
 export default {
   postsGet,
   selectedPostGet,
   createPost,
-  updatePostPut,
   deletePost,
 };
