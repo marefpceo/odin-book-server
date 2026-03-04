@@ -14,4 +14,18 @@ const prisma = new PrismaClient({ adapter });
 app.use(express.urlencoded({ extended: false }));
 app.use('/', postRouter);
 
-describe('Test post routes', async () => {});
+const jimmyOne = await prisma.user.findUnique({
+  where: {
+    username: 'jimmyOne',
+  },
+});
+
+describe('Test post routes', async () => {
+  test('that route returns no posts', async () => {
+    const res = await request(app).get(`/posts/${jimmyOne.id}`);
+
+    console.log(res.body);
+    expect(res.status).toEqual(200);
+    expect(res.body.message).toEqual('No posts found');
+  });
+});
