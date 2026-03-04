@@ -67,7 +67,12 @@ async function createPost(req, res) {
       content: req.body.content,
     },
     include: {
-      user: true,
+      user: {
+        select: {
+          id: true,
+          username: true,
+        },
+      },
       comment: true,
     },
   });

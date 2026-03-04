@@ -8,11 +8,8 @@ router.get('/:userId', postController.postsGet);
 // GET selected post
 router.get('/:userId/:postId', postController.selectedPostGet);
 
-// GET info needed to update or create a new post
-router.get('/:userId/create', postController.createPostGet);
-
 // POST create new post
-router.post('/:userId/create', postController.createPostPost);
+router.post('/:userId/create', postController.createPost);
 
 // PUT update post
 router.put('/:userId/:postId/update', postController.updatePostPut);
