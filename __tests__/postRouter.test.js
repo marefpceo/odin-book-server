@@ -7,7 +7,6 @@ import { PrismaPg } from '@prisma/adapter-pg';
 
 import request from 'supertest';
 import express from 'express';
-import { resolve } from 'dns';
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
