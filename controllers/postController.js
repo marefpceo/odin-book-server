@@ -13,21 +13,28 @@ async function postsGet(req, res) {
     },
     select: {
       user1: {
-        select: {
-          user1: true,
+        where: {
+          user1Id: parseInt(req.params.userId),
+        },
+      },
+      user2: {
+        where: {
+          user2Id: parseInt(req.params.userId),
         },
       },
     },
   });
 
-  const friendIds = user.user1.map((f) => parseInt(f.id));
-  const userAndFriendIds = [...friendIds, parseInt(req.params.userId)];
+  const friendIds = [
+    ...user.user1.map((f) => parseInt(f.user2Id)),
+    ...user.user2.map((f) => parseInt(f.user1Id)),
+    parseInt(req.params.userId),
+  ];
 
-  // Get all posts by user IDs
   const feedPosts = await prisma.post.findMany({
     where: {
       userId: {
-        in: userAndFriendIds,
+        in: friendIds,
       },
     },
     orderBy: {
@@ -39,8 +46,8 @@ async function postsGet(req, res) {
   });
 
   res.status(200).json({
-    feedPosts,
     message: feedPosts.length === 0 ? 'No posts found' : '',
+    feedPosts,
   });
 }
 
@@ -52,14 +59,23 @@ async function selectedPostGet(req, res) {
   });
 }
 
-// Handles getting info needed to create or update a post
-async function createPostGet(req, res) {
-  res.json({ title: 'GET post/create Route' });
-}
+// Creates a new post and returns the information
+async function createPost(req, res) {
+  const post = await prisma.post.create({
+    data: {
+      userId: parseInt(req.params.userId),
+      content: req.body.content,
+    },
+    include: {
+      user: true,
+      comment: true,
+    },
+  });
 
-// Handles getting info needed to create or update a post
-async function createPostPost(req, res) {
-  res.json({ title: 'POST post/create Route' });
+  res.status(200).json({
+    post,
+    message: 'New post created',
+  });
 }
 
 // Handles updating selected post
@@ -75,8 +91,7 @@ async function deletePost(req, res) {
 export default {
   postsGet,
   selectedPostGet,
-  createPostGet,
-  createPostPost,
+  createPost,
   updatePostPut,
   deletePost,
 };
