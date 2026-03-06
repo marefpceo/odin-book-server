@@ -1,6 +1,9 @@
 import express from 'express';
 import postController from '../controllers/postController.js';
 import commentController from '../controllers/commentController.js';
+
+import { postValidationRules } from '../validation/postValidators.js';
+import { validate } from '../validation/validator.js';
 const router = express.Router();
 
 /************************************************/
@@ -10,7 +13,12 @@ const router = express.Router();
 router.get('/:userId', postController.postsGet);
 
 // POST create new post
-router.post('/:userId/create', postController.createPost);
+router.post(
+  '/:userId/create',
+  postValidationRules,
+  validate,
+  postController.createPost,
+);
 
 // GET selected post
 router.get('/:userId/:postId', postController.selectedPostGet);
@@ -22,7 +30,12 @@ router.delete('/:userId/:postId/delete', postController.deletePost);
 /*****************Comment Routes********************/
 
 // Create comment for post
-router.post('/:postId/comment/create', commentController.createComment);
+router.post(
+  '/:postId/comment/create',
+  postValidationRules,
+  validate,
+  commentController.createComment,
+);
 
 // Get comment
 router.get('/:postId/comment/:commentId', commentController.getComment);
