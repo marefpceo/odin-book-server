@@ -258,18 +258,18 @@ export type CommentOrderByWithRelationInput = {
 export type CommentWhereUniqueInput = Prisma.AtLeast<
   {
     id?: number;
-    postId?: number;
-    userId?: number;
     AND?: Prisma.CommentWhereInput | Prisma.CommentWhereInput[];
     OR?: Prisma.CommentWhereInput[];
     NOT?: Prisma.CommentWhereInput | Prisma.CommentWhereInput[];
+    postId?: Prisma.IntFilter<'Comment'> | number;
+    userId?: Prisma.IntFilter<'Comment'> | number;
     createdAt?: Prisma.DateTimeFilter<'Comment'> | Date | string;
     content?: Prisma.StringFilter<'Comment'> | string;
     likes?: Prisma.IntFilter<'Comment'> | number;
     post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
   },
-  'id' | 'postId' | 'userId'
+  'id'
 >;
 
 export type CommentOrderByWithAggregationInput = {

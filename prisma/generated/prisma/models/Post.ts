@@ -253,10 +253,10 @@ export type PostOrderByWithRelationInput = {
 export type PostWhereUniqueInput = Prisma.AtLeast<
   {
     id?: number;
-    userId?: number;
     AND?: Prisma.PostWhereInput | Prisma.PostWhereInput[];
     OR?: Prisma.PostWhereInput[];
     NOT?: Prisma.PostWhereInput | Prisma.PostWhereInput[];
+    userId?: Prisma.IntFilter<'Post'> | number;
     createdAt?: Prisma.DateTimeFilter<'Post'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'Post'> | Date | string;
     content?: Prisma.StringFilter<'Post'> | string;
@@ -264,7 +264,7 @@ export type PostWhereUniqueInput = Prisma.AtLeast<
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     comment?: Prisma.CommentListRelationFilter;
   },
-  'id' | 'userId'
+  'id'
 >;
 
 export type PostOrderByWithAggregationInput = {
