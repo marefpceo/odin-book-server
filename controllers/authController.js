@@ -66,8 +66,21 @@ async function loginPost(req, res, next) {
 }
 
 // Handles logout
-async function logoutPost(req, res) {
-  res.json({ title: 'Logout Route' });
+async function logoutPost(req, res, next) {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
+      res.clearCookie('connect.sid').status(200).json({
+        message: 'Logged out',
+      });
+    });
+  });
 }
 
 export default { signupPost, loginPost, logoutPost };

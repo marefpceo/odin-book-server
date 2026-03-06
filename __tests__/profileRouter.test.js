@@ -106,7 +106,7 @@ describe('Test all routes in profileRouter', async () => {
       .field('lastname', 'Did')
       .field('bio', 'Everyone knows Katie Did')
       .attach('avatar', testFilePath);
-    console.log(res.body);
+
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Profile successfully created!');
   });
