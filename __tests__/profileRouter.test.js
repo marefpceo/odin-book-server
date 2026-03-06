@@ -78,6 +78,7 @@ describe('Test all routes in profileRouter', async () => {
   test('GET profile route for a user with NO profile', async () => {
     const res = await request(app).get(`/profile/${profileNoId}`);
 
+    console.log(res.body);
     expect(res.statusCode).toEqual(200);
     expect(res.body.message).toEqual('User has not created a profile');
   });
@@ -87,7 +88,7 @@ describe('Test all routes in profileRouter', async () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
-      id: jamesUserId.id,
+      id: jamesUserId.profile.id,
       userId: jamesUserId.id,
       firstname: 'James',
       lastname: 'Roundtree',
@@ -137,6 +138,14 @@ describe('Test all routes in profileRouter', async () => {
   });
 
   test('deleting profile', async () => {
+    // Login with user Katie
+    const kateRes = await request.agent(app).post('/auth/login').send({
+      email: 'kate@test.com',
+      password: 'kkkkkkkkk',
+    });
+
+    const cookies = kateRes.headers['set-cookie'];
+
     const katieProfileId = await prisma.user.findUnique({
       where: {
         username: 'katiedid',
@@ -150,11 +159,14 @@ describe('Test all routes in profileRouter', async () => {
       },
     });
 
-    const res = await request(app).delete(
-      `/profile/${katieProfileId.profile.id}/delete`,
-    );
+    console.log(katieProfileId.profile.id);
 
+    const res = await request(app)
+      .delete(`/profile/${katieProfileId.profile.id}/delete`)
+      .set('Cookie', cookies);
+
+    console.log(res.body.message);
     expect(res.status).toEqual(200);
-    expect(res.body.message).toEqual('Profile deleted!');
+    expect(res.body.message).toEqual('Profile deleted');
   });
 });

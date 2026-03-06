@@ -51,6 +51,7 @@ describe('Test Authentication Routes', () => {
 
     const cookies = res.headers['set-cookie'];
 
+    console.log(res.body);
     expect(res.status).toEqual(200);
     expect(res.body.message).toBe('Login successful');
 

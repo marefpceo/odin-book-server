@@ -59,15 +59,26 @@ async function updateUserProfile(req, res) {
 
 // DELETE user profile (ADMIN ROLE ONLY)
 async function deleteUserProfile(req, res) {
-  const profileToDelete = await prisma.profile.delete({
+  await prisma.profile.deleteMany({
     where: {
       id: parseInt(req.params.profileId),
+      AND: {
+        OR: [
+          {
+            userId: parseInt(req.session.passport.user.id),
+          },
+          {
+            user: {
+              role: 'ADMIN',
+            },
+          },
+        ],
+      },
     },
   });
 
   res.status(200).json({
-    message: 'Profile deleted!',
-    profileToDelete,
+    message: 'Profile deleted',
   });
 }
 
