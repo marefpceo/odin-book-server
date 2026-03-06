@@ -28,7 +28,7 @@ router.post('/:postId/comment/create', commentController.createComment);
 router.get('/:postId/comment/:commentId', commentController.getComment);
 
 // Like comment
-router.post('/:postId/comment/:commentId/like', commentController.likeComment);
+router.put('/:postId/comment/:commentId/like', commentController.likeComment);
 
 // Delete comment (Post Author)
 router.delete(
