@@ -18,7 +18,7 @@ app.use('/', authRouter);
 describe('Test Authentication Routes', () => {
   // Clears all session data
   afterAll(async () => {
-    await prisma.session.deleteMany();
+    // await prisma.session.deleteMany();
     await prisma.user.delete({ where: { username: 'testuser' } });
   });
 
@@ -39,8 +39,9 @@ describe('Test Authentication Routes', () => {
   });
 
   // Login with correct credentials
-  test('should indicate successful login with seeded user', async () => {
-    const res = await request(app)
+  test('should indicate successful login with seeded user James', async () => {
+    const res = await request
+      .agent(app)
       .post('/auth/login')
       .send({
         email: 'james1@test.com',
@@ -48,14 +49,24 @@ describe('Test Authentication Routes', () => {
       })
       .set('Accept', 'x-www-form-urlencoded');
 
+    const cookies = res.headers['set-cookie'];
+
     expect(res.status).toEqual(200);
     expect(res.body.message).toBe('Login successful');
+
+    const logoutRes = await request
+      .agent(app)
+      .post('/auth/logout')
+      .set('Cookie', cookies);
+
+    expect(logoutRes.status).toEqual(200);
   });
 
   /**************** Create new user *****************/
   /**************************************************/
   test('should create a user with no profile', async () => {
-    const res = await request(app)
+    const res = await request
+      .agent(app)
       .post('/auth/signup')
       .send({
         username: 'testuser',
@@ -64,6 +75,8 @@ describe('Test Authentication Routes', () => {
         confirmPassword: 'kkkkkkkkk',
       })
       .set('Accept', 'x-www-form-urlencoded');
+
+    const cookies = res.headers['set-cookie'];
 
     expect(res.status).toEqual(200);
     expect(res.body.createdUser).toEqual({
@@ -76,5 +89,12 @@ describe('Test Authentication Routes', () => {
       createdAt: expect.any(String),
       updatedAt: expect.any(String),
     });
+
+    const logoutRes = await request
+      .agent(app)
+      .post('/auth/logout')
+      .set('Cookie', cookies);
+
+    expect(logoutRes.status).toEqual(200);
   });
 });

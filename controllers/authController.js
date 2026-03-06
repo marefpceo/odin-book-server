@@ -59,7 +59,6 @@ async function loginPost(req, res, next) {
       }
       res.status(200).json({
         message: 'Login successful',
-        user: req.user,
       });
     });
   })(req, res, next);
