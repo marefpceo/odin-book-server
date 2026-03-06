@@ -23,6 +23,8 @@ router.post(
 // GET selected post
 router.get('/:userId/:postId', postController.selectedPostGet);
 
+// TODO create a route for liking a post
+
 // DEL delete post (Post author or ADMIN role Only)
 router.delete('/:userId/:postId/delete', postController.deletePost);
 

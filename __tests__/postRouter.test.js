@@ -99,6 +99,7 @@ describe('Test post routes', async () => {
     expect(res.body.post).toEqual(postExpectedResults);
   });
 
+  // TODO Add test to check that the like value was incremented by one
   describe('getting selected post and deleting it', async () => {
     test('returning the selected post to view and or initiate comment', async () => {
       const res = await request(app).get(`/posts/${billy.id}/${cleanUpIds[0]}`);

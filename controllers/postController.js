@@ -101,6 +101,8 @@ async function selectedPostGet(req, res) {
   });
 }
 
+// TODO create function for likes
+
 // Handles deleting selected post
 async function deletePost(req, res) {
   await prisma.post.delete({
