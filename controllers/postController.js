@@ -101,7 +101,28 @@ async function selectedPostGet(req, res) {
   });
 }
 
-// TODO create function for likes
+// Update record likes count by anyone other than the post author
+async function likePost(req, res) {
+  const postLikes = await prisma.post.update({
+    where: {
+      id: parseInt(req.params.postId),
+      NOT: [
+        {
+          userId: parseInt(req.params.userId),
+        },
+      ],
+    },
+    data: {
+      likes: {
+        increment: 1,
+      },
+    },
+  });
+
+  res.status(200).json({
+    postLikes,
+  });
+}
 
 // Handles deleting selected post
 async function deletePost(req, res) {
@@ -119,5 +140,6 @@ export default {
   postsGet,
   selectedPostGet,
   createPost,
+  likePost,
   deletePost,
 };

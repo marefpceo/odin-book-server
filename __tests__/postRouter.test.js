@@ -1,5 +1,5 @@
 import app from '../app';
-import { describe, test, expect, afterAll } from 'vitest';
+import { describe, test, expect, afterAll, beforeAll } from 'vitest';
 import postRouter from '../routers/postRouter.js';
 
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
@@ -99,7 +99,48 @@ describe('Test post routes', async () => {
     expect(res.body.post).toEqual(postExpectedResults);
   });
 
-  // TODO Add test to check that the like value was incremented by one
+  describe('test like post function and reset like counter to zero', async () => {
+    afterAll(async () => {
+      await prisma.post.update({
+        where: {
+          id: postId.post[0].id,
+        },
+        data: {
+          likes: 0,
+        },
+      });
+    });
+
+    const postId = await prisma.user.findUnique({
+      where: {
+        id: parseInt(jimmyOne.id),
+      },
+      include: {
+        post: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+
+    test('increment post like count by one', async () => {
+      const res = await request(app).put(
+        `/posts/${billy.id}/${postId.post[0].id}/like`,
+      );
+
+      expect(res.status).toEqual(200);
+      expect(res.body.postLikes).toEqual({
+        id: expect.any(Number),
+        userId: expect.any(Number),
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+        content: expect.any(String),
+        likes: 1,
+      });
+    });
+  });
+
   describe('getting selected post and deleting it', async () => {
     test('returning the selected post to view and or initiate comment', async () => {
       const res = await request(app).get(`/posts/${billy.id}/${cleanUpIds[0]}`);
