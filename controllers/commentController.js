@@ -6,13 +6,29 @@ const prisma = new PrismaClient({ adapter });
 
 // Create a new comment and return the record
 async function createComment(req, res) {
-  const comment = await prisma.comment.create({
+  const newComment = await prisma.comment.create({
     data: {
       postId: parseInt(req.params.postId),
       userId: parseInt(req.body.userId),
       content: req.body.content,
     },
+    include: {
+      _count: {
+        select: {
+          likes: true,
+        },
+      },
+    },
   });
+
+  const comment = {
+    id: newComment.id,
+    postId: newComment.postId,
+    userId: newComment.userId,
+    createdAt: newComment.createdAt,
+    content: newComment.content,
+    likes: newComment._count.likes,
+  };
   res.status(200).json({
     comment,
   });
@@ -20,23 +36,36 @@ async function createComment(req, res) {
 
 // Get selected comment by comment id
 async function getComment(req, res) {
-  const comment = await prisma.comment.findUnique({
+  const selectedComment = await prisma.comment.findUnique({
     where: {
       id: parseInt(req.params.commentId),
     },
     include: {
-      user: true,
+      _count: {
+        select: {
+          likes: true,
+        },
+      },
     },
   });
+
+  const comment = {
+    id: selectedComment.id,
+    postId: selectedComment.postId,
+    userId: selectedComment.userId,
+    createdAt: selectedComment.createdAt,
+    content: selectedComment.content,
+    likes: selectedComment._count.likes,
+  };
 
   res.status(200).json({
     comment,
   });
 }
 
-// Update record likes count for anyone other than the post author
+// Update record likes count for users other than the post author
 async function likeComment(req, res) {
-  const commentLikes = await prisma.comment.update({
+  const comment = await prisma.comment.update({
     where: {
       id: parseInt(req.params.commentId),
       NOT: [
@@ -47,10 +76,28 @@ async function likeComment(req, res) {
     },
     data: {
       likes: {
-        increment: 1,
+        create: {
+          userId: parseInt(req.body.userId),
+        },
+      },
+    },
+    include: {
+      _count: {
+        select: {
+          likes: true,
+        },
       },
     },
   });
+
+  const commentLikes = {
+    id: comment.id,
+    postId: comment.postId,
+    userId: comment.userId,
+    createdAt: comment.createdAt,
+    content: comment.content,
+    likes: comment._count.likes,
+  };
 
   res.status(200).json({
     commentLikes,
