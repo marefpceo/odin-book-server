@@ -11,70 +11,90 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  username    String    @unique
-  email       String    @unique
-  password    String
-  role        Role      @default(USER)
-  profile     Profile?
-  post        Post[]
-  comment     Comment[]
-  user1       Friendship[] @relation("user1")
-  user2       Friendship[] @relation("user2")
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  username        String    @unique
+  email           String    @unique
+  password        String
+  role            Role      @default(USER)
+  profile         Profile?
+  post            Post[]
+  comment         Comment[]
+  user1           Friendship[] @relation("user1")
+  user2           Friendship[] @relation("user2")
+  post_likes      Post_Like[]
+  comment_likes   Comment_Like[]
 }
 
 model Profile {
-  id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int       @unique
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  firstname   String
-  lastname    String
-  avatar      String
-  bio         String
+  id              Int       @id @default(autoincrement())
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          Int       @unique
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  firstname       String
+  lastname        String
+  avatar          String
+  bio             String
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int       
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  content     String
-  likes       Int       @default(0)
-  comment     Comment[]
+  id              Int       @id @default(autoincrement())
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int       
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  content         String
+  likes           Post_Like[]
+  comment         Comment[]
+}
+
+model Post_Like {
+  post            Post      @relation(fields: [postId], references: [id])
+  postId          Int
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
+  createdAt       DateTime  @default(now())
+  @@id([postId, userId])
 }
 
 model Comment {
-  id          Int       @id @default(autoincrement())
-  post        Post      @relation(fields: [postId], references: [id])
-  postId      Int       
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int       
-  createdAt   DateTime  @default(now())
-  content     String    
-  likes       Int       @default(0)
+  id              Int       @id @default(autoincrement())
+  post            Post      @relation(fields: [postId], references: [id])
+  postId          Int       
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int       
+  createdAt       DateTime  @default(now())
+  content         String    
+  likes           Comment_Like[]
+}
+
+model Comment_Like {
+  comment         Comment   @relation(fields: [commentId], references: [id])
+  commentId       Int
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
+  createdAt       DateTime  @default(now())
+  @@id([commentId, userId])
 }
 
 model Friendship {
-  user1       User      @relation("user1", fields: [user1Id], references: [id])
-  user1Id     Int       @unique
-  user2       User      @relation("user2", fields: [user2Id], references: [id])
-  user2Id     Int       @unique
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  status      Status    @default(PENDING)
+  user1           User      @relation("user1", fields: [user1Id], references: [id])
+  user1Id         Int       @unique
+  user2           User      @relation("user2", fields: [user2Id], references: [id])
+  user2Id         Int       @unique
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  status          Status    @default(PENDING)
   @@id([user2Id, user1Id])
 }
 
 model Session {
-  id          String    @id
-  sid         String    @unique
-  data        String    
-  expiresAt   DateTime
+  id              String    @id
+  sid             String    @unique
+  data            String    
+  expiresAt       DateTime
 }
 
 enum Status {
