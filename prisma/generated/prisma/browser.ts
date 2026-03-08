@@ -32,10 +32,20 @@ export type Profile = Prisma.ProfileModel;
  */
 export type Post = Prisma.PostModel;
 /**
+ * Model Post_Like
+ *
+ */
+export type Post_Like = Prisma.Post_LikeModel;
+/**
  * Model Comment
  *
  */
 export type Comment = Prisma.CommentModel;
+/**
+ * Model Comment_Like
+ *
+ */
+export type Comment_Like = Prisma.Comment_LikeModel;
 /**
  * Model Friendship
  *

@@ -10,7 +10,9 @@
 export type * from './models/User.ts';
 export type * from './models/Profile.ts';
 export type * from './models/Post.ts';
+export type * from './models/Post_Like.ts';
 export type * from './models/Comment.ts';
+export type * from './models/Comment_Like.ts';
 export type * from './models/Friendship.ts';
 export type * from './models/Session.ts';
 export type * from './commonInputTypes.ts';

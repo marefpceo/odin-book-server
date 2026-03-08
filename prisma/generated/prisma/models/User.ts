@@ -243,6 +243,8 @@ export type UserWhereInput = {
   comment?: Prisma.CommentListRelationFilter;
   user1?: Prisma.FriendshipListRelationFilter;
   user2?: Prisma.FriendshipListRelationFilter;
+  post_likes?: Prisma.Post_LikeListRelationFilter;
+  comment_likes?: Prisma.Comment_LikeListRelationFilter;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -258,6 +260,8 @@ export type UserOrderByWithRelationInput = {
   comment?: Prisma.CommentOrderByRelationAggregateInput;
   user1?: Prisma.FriendshipOrderByRelationAggregateInput;
   user2?: Prisma.FriendshipOrderByRelationAggregateInput;
+  post_likes?: Prisma.Post_LikeOrderByRelationAggregateInput;
+  comment_likes?: Prisma.Comment_LikeOrderByRelationAggregateInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -280,6 +284,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     comment?: Prisma.CommentListRelationFilter;
     user1?: Prisma.FriendshipListRelationFilter;
     user2?: Prisma.FriendshipListRelationFilter;
+    post_likes?: Prisma.Post_LikeListRelationFilter;
+    comment_likes?: Prisma.Comment_LikeListRelationFilter;
   },
   'id' | 'username' | 'email'
 >;
@@ -328,6 +334,8 @@ export type UserCreateInput = {
   comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateInput = {
@@ -343,6 +351,8 @@ export type UserUncheckedCreateInput = {
   comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserUpdateInput = {
@@ -357,6 +367,8 @@ export type UserUpdateInput = {
   comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -372,6 +384,8 @@ export type UserUncheckedUpdateInput = {
   comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateManyInput = {
@@ -518,6 +532,32 @@ export type UserUpdateOneRequiredWithoutPostNestedInput = {
   >;
 };
 
+export type UserCreateNestedOneWithoutPost_likesInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPost_likesInput,
+    Prisma.UserUncheckedCreateWithoutPost_likesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPost_likesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutPost_likesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPost_likesInput,
+    Prisma.UserUncheckedCreateWithoutPost_likesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPost_likesInput;
+  upsert?: Prisma.UserUpsertWithoutPost_likesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutPost_likesInput,
+      Prisma.UserUpdateWithoutPost_likesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutPost_likesInput
+  >;
+};
+
 export type UserCreateNestedOneWithoutCommentInput = {
   create?: Prisma.XOR<
     Prisma.UserCreateWithoutCommentInput,
@@ -541,6 +581,32 @@ export type UserUpdateOneRequiredWithoutCommentNestedInput = {
       Prisma.UserUpdateWithoutCommentInput
     >,
     Prisma.UserUncheckedUpdateWithoutCommentInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutComment_likesInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutComment_likesInput,
+    Prisma.UserUncheckedCreateWithoutComment_likesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutComment_likesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutComment_likesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutComment_likesInput,
+    Prisma.UserUncheckedCreateWithoutComment_likesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutComment_likesInput;
+  upsert?: Prisma.UserUpsertWithoutComment_likesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutComment_likesInput,
+      Prisma.UserUpdateWithoutComment_likesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutComment_likesInput
   >;
 };
 
@@ -607,6 +673,8 @@ export type UserCreateWithoutProfileInput = {
   comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -621,6 +689,8 @@ export type UserUncheckedCreateWithoutProfileInput = {
   comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -662,6 +732,8 @@ export type UserUpdateWithoutProfileInput = {
   comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -676,6 +748,8 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutPostInput = {
@@ -689,6 +763,8 @@ export type UserCreateWithoutPostInput = {
   comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutPostInput = {
@@ -703,6 +779,8 @@ export type UserUncheckedCreateWithoutPostInput = {
   comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutPostInput = {
@@ -744,6 +822,8 @@ export type UserUpdateWithoutPostInput = {
   comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutPostInput = {
@@ -758,6 +838,98 @@ export type UserUncheckedUpdateWithoutPostInput = {
   comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutPost_likesInput = {
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  username: string;
+  email: string;
+  password: string;
+  role?: $Enums.Role;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
+  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
+  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
+  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutPost_likesInput = {
+  id?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  username: string;
+  email: string;
+  password: string;
+  role?: $Enums.Role;
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
+  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
+  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
+  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
+  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
+  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutPost_likesInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPost_likesInput,
+    Prisma.UserUncheckedCreateWithoutPost_likesInput
+  >;
+};
+
+export type UserUpsertWithoutPost_likesInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutPost_likesInput,
+    Prisma.UserUncheckedUpdateWithoutPost_likesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPost_likesInput,
+    Prisma.UserUncheckedCreateWithoutPost_likesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutPost_likesInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutPost_likesInput,
+    Prisma.UserUncheckedUpdateWithoutPost_likesInput
+  >;
+};
+
+export type UserUpdateWithoutPost_likesInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  username?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
+  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
+  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
+  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutPost_likesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  username?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
+  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
+  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
+  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
+  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutCommentInput = {
@@ -771,6 +943,8 @@ export type UserCreateWithoutCommentInput = {
   post?: Prisma.PostCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutCommentInput = {
@@ -785,6 +959,8 @@ export type UserUncheckedCreateWithoutCommentInput = {
   post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
   user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutCommentInput = {
@@ -826,6 +1002,8 @@ export type UserUpdateWithoutCommentInput = {
   post?: Prisma.PostUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutCommentInput = {
@@ -840,6 +1018,98 @@ export type UserUncheckedUpdateWithoutCommentInput = {
   post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
   user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutComment_likesInput = {
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  username: string;
+  email: string;
+  password: string;
+  role?: $Enums.Role;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
+  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
+  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutComment_likesInput = {
+  id?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  username: string;
+  email: string;
+  password: string;
+  role?: $Enums.Role;
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
+  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
+  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
+  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
+  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutComment_likesInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutComment_likesInput,
+    Prisma.UserUncheckedCreateWithoutComment_likesInput
+  >;
+};
+
+export type UserUpsertWithoutComment_likesInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutComment_likesInput,
+    Prisma.UserUncheckedUpdateWithoutComment_likesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutComment_likesInput,
+    Prisma.UserUncheckedCreateWithoutComment_likesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutComment_likesInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutComment_likesInput,
+    Prisma.UserUncheckedUpdateWithoutComment_likesInput
+  >;
+};
+
+export type UserUpdateWithoutComment_likesInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  username?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
+  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
+  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutComment_likesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  username?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
+  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
+  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
+  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
+  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutUser1Input = {
@@ -853,6 +1123,8 @@ export type UserCreateWithoutUser1Input = {
   post?: Prisma.PostCreateNestedManyWithoutUserInput;
   comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
   user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutUser1Input = {
@@ -867,6 +1139,8 @@ export type UserUncheckedCreateWithoutUser1Input = {
   post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
   comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
   user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
+  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutUser1Input = {
@@ -888,6 +1162,8 @@ export type UserCreateWithoutUser2Input = {
   post?: Prisma.PostCreateNestedManyWithoutUserInput;
   comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
+  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutUser2Input = {
@@ -902,6 +1178,8 @@ export type UserUncheckedCreateWithoutUser2Input = {
   post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
   comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
   user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
+  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutUser2Input = {
@@ -943,6 +1221,8 @@ export type UserUpdateWithoutUser1Input = {
   post?: Prisma.PostUpdateManyWithoutUserNestedInput;
   comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
   user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutUser1Input = {
@@ -957,6 +1237,8 @@ export type UserUncheckedUpdateWithoutUser1Input = {
   post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
   comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
   user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
+  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUpsertWithoutUser2Input = {
@@ -990,6 +1272,8 @@ export type UserUpdateWithoutUser2Input = {
   post?: Prisma.PostUpdateManyWithoutUserNestedInput;
   comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
+  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutUser2Input = {
@@ -1004,6 +1288,8 @@ export type UserUncheckedUpdateWithoutUser2Input = {
   post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
   comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
   user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
+  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 /**
@@ -1015,6 +1301,8 @@ export type UserCountOutputType = {
   comment: number;
   user1: number;
   user2: number;
+  post_likes: number;
+  comment_likes: number;
 };
 
 export type UserCountOutputTypeSelect<
@@ -1025,6 +1313,8 @@ export type UserCountOutputTypeSelect<
   comment?: boolean | UserCountOutputTypeCountCommentArgs;
   user1?: boolean | UserCountOutputTypeCountUser1Args;
   user2?: boolean | UserCountOutputTypeCountUser2Args;
+  post_likes?: boolean | UserCountOutputTypeCountPost_likesArgs;
+  comment_likes?: boolean | UserCountOutputTypeCountComment_likesArgs;
 };
 
 /**
@@ -1080,6 +1370,26 @@ export type UserCountOutputTypeCountUser2Args<
   where?: Prisma.FriendshipWhereInput;
 };
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPost_likesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.Post_LikeWhereInput;
+};
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountComment_likesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.Comment_LikeWhereInput;
+};
+
 export type UserSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -1097,6 +1407,8 @@ export type UserSelect<
     comment?: boolean | Prisma.User$commentArgs<ExtArgs>;
     user1?: boolean | Prisma.User$user1Args<ExtArgs>;
     user2?: boolean | Prisma.User$user2Args<ExtArgs>;
+    post_likes?: boolean | Prisma.User$post_likesArgs<ExtArgs>;
+    comment_likes?: boolean | Prisma.User$comment_likesArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
@@ -1160,6 +1472,8 @@ export type UserInclude<
   comment?: boolean | Prisma.User$commentArgs<ExtArgs>;
   user1?: boolean | Prisma.User$user1Args<ExtArgs>;
   user2?: boolean | Prisma.User$user2Args<ExtArgs>;
+  post_likes?: boolean | Prisma.User$post_likesArgs<ExtArgs>;
+  comment_likes?: boolean | Prisma.User$comment_likesArgs<ExtArgs>;
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
@@ -1182,6 +1496,8 @@ export type $UserPayload<
     comment: Prisma.$CommentPayload<ExtArgs>[];
     user1: Prisma.$FriendshipPayload<ExtArgs>[];
     user2: Prisma.$FriendshipPayload<ExtArgs>[];
+    post_likes: Prisma.$Post_LikePayload<ExtArgs>[];
+    comment_likes: Prisma.$Comment_LikePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1793,6 +2109,28 @@ export interface Prisma__UserClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$FriendshipPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  post_likes<T extends Prisma.User$post_likesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$post_likesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$Post_LikePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  comment_likes<T extends Prisma.User$comment_likesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$comment_likesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$Comment_LikePayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -2428,6 +2766,68 @@ export type User$user2Args<
   distinct?:
     | Prisma.FriendshipScalarFieldEnum
     | Prisma.FriendshipScalarFieldEnum[];
+};
+
+/**
+ * User.post_likes
+ */
+export type User$post_likesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Post_Like
+   */
+  select?: Prisma.Post_LikeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Post_Like
+   */
+  omit?: Prisma.Post_LikeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Post_LikeInclude<ExtArgs> | null;
+  where?: Prisma.Post_LikeWhereInput;
+  orderBy?:
+    | Prisma.Post_LikeOrderByWithRelationInput
+    | Prisma.Post_LikeOrderByWithRelationInput[];
+  cursor?: Prisma.Post_LikeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.Post_LikeScalarFieldEnum
+    | Prisma.Post_LikeScalarFieldEnum[];
+};
+
+/**
+ * User.comment_likes
+ */
+export type User$comment_likesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Comment_Like
+   */
+  select?: Prisma.Comment_LikeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Comment_Like
+   */
+  omit?: Prisma.Comment_LikeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Comment_LikeInclude<ExtArgs> | null;
+  where?: Prisma.Comment_LikeWhereInput;
+  orderBy?:
+    | Prisma.Comment_LikeOrderByWithRelationInput
+    | Prisma.Comment_LikeOrderByWithRelationInput[];
+  cursor?: Prisma.Comment_LikeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.Comment_LikeScalarFieldEnum
+    | Prisma.Comment_LikeScalarFieldEnum[];
 };
 
 /**

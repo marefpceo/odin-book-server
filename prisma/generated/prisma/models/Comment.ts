@@ -30,14 +30,12 @@ export type CommentAvgAggregateOutputType = {
   id: number | null;
   postId: number | null;
   userId: number | null;
-  likes: number | null;
 };
 
 export type CommentSumAggregateOutputType = {
   id: number | null;
   postId: number | null;
   userId: number | null;
-  likes: number | null;
 };
 
 export type CommentMinAggregateOutputType = {
@@ -46,7 +44,6 @@ export type CommentMinAggregateOutputType = {
   userId: number | null;
   createdAt: Date | null;
   content: string | null;
-  likes: number | null;
 };
 
 export type CommentMaxAggregateOutputType = {
@@ -55,7 +52,6 @@ export type CommentMaxAggregateOutputType = {
   userId: number | null;
   createdAt: Date | null;
   content: string | null;
-  likes: number | null;
 };
 
 export type CommentCountAggregateOutputType = {
@@ -64,7 +60,6 @@ export type CommentCountAggregateOutputType = {
   userId: number;
   createdAt: number;
   content: number;
-  likes: number;
   _all: number;
 };
 
@@ -72,14 +67,12 @@ export type CommentAvgAggregateInputType = {
   id?: true;
   postId?: true;
   userId?: true;
-  likes?: true;
 };
 
 export type CommentSumAggregateInputType = {
   id?: true;
   postId?: true;
   userId?: true;
-  likes?: true;
 };
 
 export type CommentMinAggregateInputType = {
@@ -88,7 +81,6 @@ export type CommentMinAggregateInputType = {
   userId?: true;
   createdAt?: true;
   content?: true;
-  likes?: true;
 };
 
 export type CommentMaxAggregateInputType = {
@@ -97,7 +89,6 @@ export type CommentMaxAggregateInputType = {
   userId?: true;
   createdAt?: true;
   content?: true;
-  likes?: true;
 };
 
 export type CommentCountAggregateInputType = {
@@ -106,7 +97,6 @@ export type CommentCountAggregateInputType = {
   userId?: true;
   createdAt?: true;
   content?: true;
-  likes?: true;
   _all?: true;
 };
 
@@ -209,7 +199,6 @@ export type CommentGroupByOutputType = {
   userId: number;
   createdAt: Date;
   content: string;
-  likes: number;
   _count: CommentCountAggregateOutputType | null;
   _avg: CommentAvgAggregateOutputType | null;
   _sum: CommentSumAggregateOutputType | null;
@@ -239,9 +228,9 @@ export type CommentWhereInput = {
   userId?: Prisma.IntFilter<'Comment'> | number;
   createdAt?: Prisma.DateTimeFilter<'Comment'> | Date | string;
   content?: Prisma.StringFilter<'Comment'> | string;
-  likes?: Prisma.IntFilter<'Comment'> | number;
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>;
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  likes?: Prisma.Comment_LikeListRelationFilter;
 };
 
 export type CommentOrderByWithRelationInput = {
@@ -250,9 +239,9 @@ export type CommentOrderByWithRelationInput = {
   userId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   content?: Prisma.SortOrder;
-  likes?: Prisma.SortOrder;
   post?: Prisma.PostOrderByWithRelationInput;
   user?: Prisma.UserOrderByWithRelationInput;
+  likes?: Prisma.Comment_LikeOrderByRelationAggregateInput;
 };
 
 export type CommentWhereUniqueInput = Prisma.AtLeast<
@@ -265,9 +254,9 @@ export type CommentWhereUniqueInput = Prisma.AtLeast<
     userId?: Prisma.IntFilter<'Comment'> | number;
     createdAt?: Prisma.DateTimeFilter<'Comment'> | Date | string;
     content?: Prisma.StringFilter<'Comment'> | string;
-    likes?: Prisma.IntFilter<'Comment'> | number;
     post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    likes?: Prisma.Comment_LikeListRelationFilter;
   },
   'id'
 >;
@@ -278,7 +267,6 @@ export type CommentOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   content?: Prisma.SortOrder;
-  likes?: Prisma.SortOrder;
   _count?: Prisma.CommentCountOrderByAggregateInput;
   _avg?: Prisma.CommentAvgOrderByAggregateInput;
   _max?: Prisma.CommentMaxOrderByAggregateInput;
@@ -299,15 +287,14 @@ export type CommentScalarWhereWithAggregatesInput = {
   userId?: Prisma.IntWithAggregatesFilter<'Comment'> | number;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'Comment'> | Date | string;
   content?: Prisma.StringWithAggregatesFilter<'Comment'> | string;
-  likes?: Prisma.IntWithAggregatesFilter<'Comment'> | number;
 };
 
 export type CommentCreateInput = {
   createdAt?: Date | string;
   content: string;
-  likes?: number;
   post: Prisma.PostCreateNestedOneWithoutCommentInput;
   user: Prisma.UserCreateNestedOneWithoutCommentInput;
+  likes?: Prisma.Comment_LikeCreateNestedManyWithoutCommentInput;
 };
 
 export type CommentUncheckedCreateInput = {
@@ -316,15 +303,15 @@ export type CommentUncheckedCreateInput = {
   userId: number;
   createdAt?: Date | string;
   content: string;
-  likes?: number;
+  likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutCommentInput;
 };
 
 export type CommentUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
   post?: Prisma.PostUpdateOneRequiredWithoutCommentNestedInput;
   user?: Prisma.UserUpdateOneRequiredWithoutCommentNestedInput;
+  likes?: Prisma.Comment_LikeUpdateManyWithoutCommentNestedInput;
 };
 
 export type CommentUncheckedUpdateInput = {
@@ -333,7 +320,7 @@ export type CommentUncheckedUpdateInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
+  likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutCommentNestedInput;
 };
 
 export type CommentCreateManyInput = {
@@ -342,13 +329,11 @@ export type CommentCreateManyInput = {
   userId: number;
   createdAt?: Date | string;
   content: string;
-  likes?: number;
 };
 
 export type CommentUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
 export type CommentUncheckedUpdateManyInput = {
@@ -357,7 +342,6 @@ export type CommentUncheckedUpdateManyInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
 export type CommentListRelationFilter = {
@@ -376,14 +360,12 @@ export type CommentCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   content?: Prisma.SortOrder;
-  likes?: Prisma.SortOrder;
 };
 
 export type CommentAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   postId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
-  likes?: Prisma.SortOrder;
 };
 
 export type CommentMaxOrderByAggregateInput = {
@@ -392,7 +374,6 @@ export type CommentMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   content?: Prisma.SortOrder;
-  likes?: Prisma.SortOrder;
 };
 
 export type CommentMinOrderByAggregateInput = {
@@ -401,14 +382,17 @@ export type CommentMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   content?: Prisma.SortOrder;
-  likes?: Prisma.SortOrder;
 };
 
 export type CommentSumOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   postId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
-  likes?: Prisma.SortOrder;
+};
+
+export type CommentScalarRelationFilter = {
+  is?: Prisma.CommentWhereInput;
+  isNot?: Prisma.CommentWhereInput;
 };
 
 export type CommentCreateNestedManyWithoutUserInput = {
@@ -599,11 +583,37 @@ export type CommentUncheckedUpdateManyWithoutPostNestedInput = {
     | Prisma.CommentScalarWhereInput[];
 };
 
+export type CommentCreateNestedOneWithoutLikesInput = {
+  create?: Prisma.XOR<
+    Prisma.CommentCreateWithoutLikesInput,
+    Prisma.CommentUncheckedCreateWithoutLikesInput
+  >;
+  connectOrCreate?: Prisma.CommentCreateOrConnectWithoutLikesInput;
+  connect?: Prisma.CommentWhereUniqueInput;
+};
+
+export type CommentUpdateOneRequiredWithoutLikesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.CommentCreateWithoutLikesInput,
+    Prisma.CommentUncheckedCreateWithoutLikesInput
+  >;
+  connectOrCreate?: Prisma.CommentCreateOrConnectWithoutLikesInput;
+  upsert?: Prisma.CommentUpsertWithoutLikesInput;
+  connect?: Prisma.CommentWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.CommentUpdateToOneWithWhereWithoutLikesInput,
+      Prisma.CommentUpdateWithoutLikesInput
+    >,
+    Prisma.CommentUncheckedUpdateWithoutLikesInput
+  >;
+};
+
 export type CommentCreateWithoutUserInput = {
   createdAt?: Date | string;
   content: string;
-  likes?: number;
   post: Prisma.PostCreateNestedOneWithoutCommentInput;
+  likes?: Prisma.Comment_LikeCreateNestedManyWithoutCommentInput;
 };
 
 export type CommentUncheckedCreateWithoutUserInput = {
@@ -611,7 +621,7 @@ export type CommentUncheckedCreateWithoutUserInput = {
   postId: number;
   createdAt?: Date | string;
   content: string;
-  likes?: number;
+  likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutCommentInput;
 };
 
 export type CommentCreateOrConnectWithoutUserInput = {
@@ -664,14 +674,13 @@ export type CommentScalarWhereInput = {
   userId?: Prisma.IntFilter<'Comment'> | number;
   createdAt?: Prisma.DateTimeFilter<'Comment'> | Date | string;
   content?: Prisma.StringFilter<'Comment'> | string;
-  likes?: Prisma.IntFilter<'Comment'> | number;
 };
 
 export type CommentCreateWithoutPostInput = {
   createdAt?: Date | string;
   content: string;
-  likes?: number;
   user: Prisma.UserCreateNestedOneWithoutCommentInput;
+  likes?: Prisma.Comment_LikeCreateNestedManyWithoutCommentInput;
 };
 
 export type CommentUncheckedCreateWithoutPostInput = {
@@ -679,7 +688,7 @@ export type CommentUncheckedCreateWithoutPostInput = {
   userId: number;
   createdAt?: Date | string;
   content: string;
-  likes?: number;
+  likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutCommentInput;
 };
 
 export type CommentCreateOrConnectWithoutPostInput = {
@@ -723,19 +732,76 @@ export type CommentUpdateManyWithWhereWithoutPostInput = {
   >;
 };
 
+export type CommentCreateWithoutLikesInput = {
+  createdAt?: Date | string;
+  content: string;
+  post: Prisma.PostCreateNestedOneWithoutCommentInput;
+  user: Prisma.UserCreateNestedOneWithoutCommentInput;
+};
+
+export type CommentUncheckedCreateWithoutLikesInput = {
+  id?: number;
+  postId: number;
+  userId: number;
+  createdAt?: Date | string;
+  content: string;
+};
+
+export type CommentCreateOrConnectWithoutLikesInput = {
+  where: Prisma.CommentWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.CommentCreateWithoutLikesInput,
+    Prisma.CommentUncheckedCreateWithoutLikesInput
+  >;
+};
+
+export type CommentUpsertWithoutLikesInput = {
+  update: Prisma.XOR<
+    Prisma.CommentUpdateWithoutLikesInput,
+    Prisma.CommentUncheckedUpdateWithoutLikesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.CommentCreateWithoutLikesInput,
+    Prisma.CommentUncheckedCreateWithoutLikesInput
+  >;
+  where?: Prisma.CommentWhereInput;
+};
+
+export type CommentUpdateToOneWithWhereWithoutLikesInput = {
+  where?: Prisma.CommentWhereInput;
+  data: Prisma.XOR<
+    Prisma.CommentUpdateWithoutLikesInput,
+    Prisma.CommentUncheckedUpdateWithoutLikesInput
+  >;
+};
+
+export type CommentUpdateWithoutLikesInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  content?: Prisma.StringFieldUpdateOperationsInput | string;
+  post?: Prisma.PostUpdateOneRequiredWithoutCommentNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutCommentNestedInput;
+};
+
+export type CommentUncheckedUpdateWithoutLikesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number;
+  postId?: Prisma.IntFieldUpdateOperationsInput | number;
+  userId?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  content?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+
 export type CommentCreateManyUserInput = {
   id?: number;
   postId: number;
   createdAt?: Date | string;
   content: string;
-  likes?: number;
 };
 
 export type CommentUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
   post?: Prisma.PostUpdateOneRequiredWithoutCommentNestedInput;
+  likes?: Prisma.Comment_LikeUpdateManyWithoutCommentNestedInput;
 };
 
 export type CommentUncheckedUpdateWithoutUserInput = {
@@ -743,7 +809,7 @@ export type CommentUncheckedUpdateWithoutUserInput = {
   postId?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
+  likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutCommentNestedInput;
 };
 
 export type CommentUncheckedUpdateManyWithoutUserInput = {
@@ -751,7 +817,6 @@ export type CommentUncheckedUpdateManyWithoutUserInput = {
   postId?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 
 export type CommentCreateManyPostInput = {
@@ -759,14 +824,13 @@ export type CommentCreateManyPostInput = {
   userId: number;
   createdAt?: Date | string;
   content: string;
-  likes?: number;
 };
 
 export type CommentUpdateWithoutPostInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
   user?: Prisma.UserUpdateOneRequiredWithoutCommentNestedInput;
+  likes?: Prisma.Comment_LikeUpdateManyWithoutCommentNestedInput;
 };
 
 export type CommentUncheckedUpdateWithoutPostInput = {
@@ -774,7 +838,7 @@ export type CommentUncheckedUpdateWithoutPostInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
+  likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutCommentNestedInput;
 };
 
 export type CommentUncheckedUpdateManyWithoutPostInput = {
@@ -782,7 +846,44 @@ export type CommentUncheckedUpdateManyWithoutPostInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   content?: Prisma.StringFieldUpdateOperationsInput | string;
-  likes?: Prisma.IntFieldUpdateOperationsInput | number;
+};
+
+/**
+ * Count Type CommentCountOutputType
+ */
+
+export type CommentCountOutputType = {
+  likes: number;
+};
+
+export type CommentCountOutputTypeSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  likes?: boolean | CommentCountOutputTypeCountLikesArgs;
+};
+
+/**
+ * CommentCountOutputType without action
+ */
+export type CommentCountOutputTypeDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the CommentCountOutputType
+   */
+  select?: Prisma.CommentCountOutputTypeSelect<ExtArgs> | null;
+};
+
+/**
+ * CommentCountOutputType without action
+ */
+export type CommentCountOutputTypeCountLikesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.Comment_LikeWhereInput;
 };
 
 export type CommentSelect<
@@ -795,9 +896,10 @@ export type CommentSelect<
     userId?: boolean;
     createdAt?: boolean;
     content?: boolean;
-    likes?: boolean;
     post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    likes?: boolean | Prisma.Comment$likesArgs<ExtArgs>;
+    _count?: boolean | Prisma.CommentCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['comment']
 >;
@@ -812,7 +914,6 @@ export type CommentSelectCreateManyAndReturn<
     userId?: boolean;
     createdAt?: boolean;
     content?: boolean;
-    likes?: boolean;
     post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
@@ -829,7 +930,6 @@ export type CommentSelectUpdateManyAndReturn<
     userId?: boolean;
     createdAt?: boolean;
     content?: boolean;
-    likes?: boolean;
     post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
@@ -842,14 +942,13 @@ export type CommentSelectScalar = {
   userId?: boolean;
   createdAt?: boolean;
   content?: boolean;
-  likes?: boolean;
 };
 
 export type CommentOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  'id' | 'postId' | 'userId' | 'createdAt' | 'content' | 'likes',
+  'id' | 'postId' | 'userId' | 'createdAt' | 'content',
   ExtArgs['result']['comment']
 >;
 export type CommentInclude<
@@ -858,6 +957,8 @@ export type CommentInclude<
 > = {
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  likes?: boolean | Prisma.Comment$likesArgs<ExtArgs>;
+  _count?: boolean | Prisma.CommentCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type CommentIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
@@ -882,6 +983,7 @@ export type $CommentPayload<
   objects: {
     post: Prisma.$PostPayload<ExtArgs>;
     user: Prisma.$UserPayload<ExtArgs>;
+    likes: Prisma.$Comment_LikePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -890,7 +992,6 @@ export type $CommentPayload<
       userId: number;
       createdAt: Date;
       content: string;
-      likes: number;
     },
     ExtArgs['result']['comment']
   >;
@@ -1469,6 +1570,17 @@ export interface Prisma__CommentClient<
     ExtArgs,
     GlobalOmitOptions
   >;
+  likes<T extends Prisma.Comment$likesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Comment$likesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$Comment_LikePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1516,7 +1628,6 @@ export interface CommentFieldRefs {
   readonly userId: Prisma.FieldRef<'Comment', 'Int'>;
   readonly createdAt: Prisma.FieldRef<'Comment', 'DateTime'>;
   readonly content: Prisma.FieldRef<'Comment', 'String'>;
-  readonly likes: Prisma.FieldRef<'Comment', 'Int'>;
 }
 
 // Custom InputTypes
@@ -1975,6 +2086,37 @@ export type CommentDeleteManyArgs<
    * Limit how many Comments to delete.
    */
   limit?: number;
+};
+
+/**
+ * Comment.likes
+ */
+export type Comment$likesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Comment_Like
+   */
+  select?: Prisma.Comment_LikeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Comment_Like
+   */
+  omit?: Prisma.Comment_LikeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.Comment_LikeInclude<ExtArgs> | null;
+  where?: Prisma.Comment_LikeWhereInput;
+  orderBy?:
+    | Prisma.Comment_LikeOrderByWithRelationInput
+    | Prisma.Comment_LikeOrderByWithRelationInput[];
+  cursor?: Prisma.Comment_LikeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.Comment_LikeScalarFieldEnum
+    | Prisma.Comment_LikeScalarFieldEnum[];
 };
 
 /**

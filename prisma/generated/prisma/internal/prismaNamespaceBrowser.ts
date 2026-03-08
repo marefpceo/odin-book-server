@@ -57,7 +57,9 @@ export const ModelName = {
   User: 'User',
   Profile: 'Profile',
   Post: 'Post',
+  Post_Like: 'Post_Like',
   Comment: 'Comment',
+  Comment_Like: 'Comment_Like',
   Friendship: 'Friendship',
   Session: 'Session',
 } as const;
@@ -111,11 +113,19 @@ export const PostScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   content: 'content',
-  likes: 'likes',
 } as const;
 
 export type PostScalarFieldEnum =
   (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum];
+
+export const Post_LikeScalarFieldEnum = {
+  postId: 'postId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+} as const;
+
+export type Post_LikeScalarFieldEnum =
+  (typeof Post_LikeScalarFieldEnum)[keyof typeof Post_LikeScalarFieldEnum];
 
 export const CommentScalarFieldEnum = {
   id: 'id',
@@ -123,11 +133,19 @@ export const CommentScalarFieldEnum = {
   userId: 'userId',
   createdAt: 'createdAt',
   content: 'content',
-  likes: 'likes',
 } as const;
 
 export type CommentScalarFieldEnum =
   (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum];
+
+export const Comment_LikeScalarFieldEnum = {
+  commentId: 'commentId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+} as const;
+
+export type Comment_LikeScalarFieldEnum =
+  (typeof Comment_LikeScalarFieldEnum)[keyof typeof Comment_LikeScalarFieldEnum];
 
 export const FriendshipScalarFieldEnum = {
   user1Id: 'user1Id',
