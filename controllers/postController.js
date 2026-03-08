@@ -57,7 +57,7 @@ async function postsGet(req, res) {
 
 // Creates a new post and returns the information
 async function createPost(req, res) {
-  const post = await prisma.post.create({
+  const createdPost = await prisma.post.create({
     data: {
       userId: parseInt(req.params.userId),
       content: req.body.content,
@@ -70,8 +70,24 @@ async function createPost(req, res) {
         },
       },
       comment: true,
+      _count: {
+        select: {
+          likes: true,
+        },
+      },
     },
   });
+
+  const post = {
+    id: createdPost.id,
+    userId: createdPost.userId,
+    createdAt: createdPost.createdAt,
+    updatedAt: createdPost.updatedAt,
+    content: createdPost.content,
+    likes: createdPost._count.likes,
+    user: createdPost.user,
+    comment: createdPost.comment,
+  };
 
   res.status(200).json({
     post,
@@ -81,7 +97,7 @@ async function createPost(req, res) {
 
 // Handles getting selected post
 async function selectedPostGet(req, res) {
-  const selectedPost = await prisma.post.findUnique({
+  const post = await prisma.post.findUnique({
     where: {
       id: parseInt(req.params.postId),
     },
@@ -93,17 +109,33 @@ async function selectedPostGet(req, res) {
         },
       },
       comment: true,
+      _count: {
+        select: {
+          likes: true,
+        },
+      },
     },
   });
+
+  const selectedPost = {
+    id: post.id,
+    userId: post.userId,
+    createdAt: post.createdAt,
+    updatedAt: post.updatedAt,
+    content: post.content,
+    likes: post._count.likes,
+    user: post.user,
+    comment: post.comment,
+  };
 
   res.status(200).json({
     selectedPost,
   });
 }
 
-// Update record likes count by anyone other than the post author
+// Update post by creating a like record for the selected user
 async function likePost(req, res) {
-  const postLikes = await prisma.post.update({
+  const post = await prisma.post.update({
     where: {
       id: parseInt(req.params.postId),
       NOT: [
@@ -114,10 +146,30 @@ async function likePost(req, res) {
     },
     data: {
       likes: {
-        increment: 1,
+        create: {
+          userId: parseInt(req.params.userId),
+        },
+      },
+    },
+    include: {
+      _count: {
+        select: {
+          likes: true,
+        },
       },
     },
   });
+
+  const postLikes = {
+    id: post.id,
+    userId: post.userId,
+    createdAt: post.createdAt,
+    updatedAt: post.updatedAt,
+    content: post.content,
+    likes: post._count.likes,
+    user: post.user,
+    comment: post.comment,
+  };
 
   res.status(200).json({
     postLikes,

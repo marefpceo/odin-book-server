@@ -83,7 +83,7 @@ describe('Test post routes', async () => {
       content: 'New post. Jimmy One here!',
     });
 
-    postToDeleteResult = res.body.post.id;
+    postToDeleteResult = await res.body.post.id;
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('New post created');
     expect(res.body.post).toEqual(postExpectedResults);
@@ -100,15 +100,9 @@ describe('Test post routes', async () => {
   });
 
   describe('test like post function and reset like counter to zero', async () => {
+    // clears the created like record
     afterAll(async () => {
-      await prisma.post.update({
-        where: {
-          id: postId.post[0].id,
-        },
-        data: {
-          likes: 0,
-        },
-      });
+      await prisma.post_Like.deleteMany({});
     });
 
     const postId = await prisma.user.findUnique({
@@ -124,7 +118,7 @@ describe('Test post routes', async () => {
       },
     });
 
-    test('increment post like count by one', async () => {
+    test('create a like for the selected post and increase the count by one', async () => {
       const res = await request(app).put(
         `/posts/${billy.id}/${postId.post[0].id}/like`,
       );
@@ -144,7 +138,7 @@ describe('Test post routes', async () => {
   describe('getting selected post and deleting it', async () => {
     test('returning the selected post to view and or initiate comment', async () => {
       const res = await request(app).get(`/posts/${billy.id}/${cleanUpIds[0]}`);
-
+      console.log(res.body);
       expect(res.status).toEqual(200);
       expect(res.body.selectedPost).toEqual(postExpectedResults);
     });
