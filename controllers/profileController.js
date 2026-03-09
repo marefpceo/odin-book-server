@@ -1,6 +1,8 @@
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 
+import { v2 as cloudinary } from 'cloudinary';
+
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
@@ -22,15 +24,19 @@ async function getSelectedProfile(req, res) {
 
 // Handles POST request to create a profile
 async function createUserProfile(req, res) {
+  const avatarUploadResponse = await cloudinary.uploader.upload(req.file.path, {
+    use_filename: true,
+  });
   const createdProfile = await prisma.profile.create({
     data: {
       userId: parseInt(req.body.userId),
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      avatar: req.file.filename,
+      avatar: avatarUploadResponse.secure_url,
       bio: req.body.bio,
     },
   });
+
   res.status(200).json({
     message: 'Profile successfully created!',
     createdProfile,
