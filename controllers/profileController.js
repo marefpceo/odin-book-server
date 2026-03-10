@@ -1,5 +1,8 @@
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
+import fs from 'fs/promises';
+import path from 'path';
+import { getCloudinaryPublicId } from '../helpers/extractFilename.js';
 
 import { v2 as cloudinary } from 'cloudinary';
 
@@ -37,6 +40,21 @@ async function createUserProfile(req, res) {
     },
   });
 
+  if (avatarUploadResponse.created_at) {
+    const filename = req.file.filename;
+    const filePath = path.join(__dirname, '../helpers/uploads', filename);
+
+    try {
+      await fs.unlink(filePath);
+    } catch (err) {
+      console.error(err);
+      if (err.code === 'ENOENT') {
+        return res.status(404).json({ error: 'File not found' });
+      }
+      res.status(500).json({ error: 'Could not delete file' });
+    }
+  }
+
   res.status(200).json({
     message: 'Profile successfully created!',
     createdProfile,
@@ -65,6 +83,21 @@ async function updateUserProfile(req, res) {
 
 // DELETE user profile (ADMIN ROLE ONLY)
 async function deleteUserProfile(req, res) {
+  const profile = await prisma.profile.findUnique({
+    where: {
+      id: parseInt(req.params.profileId),
+    },
+    select: {
+      avatar: true,
+    },
+  });
+
+  if (profile.avatar !== null) {
+    const filename = await getCloudinaryPublicId(profile.avatar);
+    // delete asset from cloudinary
+    await cloudinary.uploader.destroy(filename, { resource_type: 'image' });
+  }
+
   await prisma.profile.deleteMany({
     where: {
       id: parseInt(req.params.profileId),

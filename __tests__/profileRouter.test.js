@@ -23,28 +23,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', profileRouter);
 
 describe('Test all routes in profileRouter', async () => {
-  afterAll(async () => {
-    // Clear uploads directory from testing image uploads
-    try {
-      const files = await fs.readdir(uploadDirectory);
+  // afterAll(async () => {
+  //   // Clear uploads directory from testing image uploads
+  //   try {
+  //     const files = await fs.readdir(uploadDirectory);
 
-      for (const file of files) {
-        const filePath = path.join(uploadDirectory, file);
-        const stat = await fs.stat(filePath);
+  //     for (const file of files) {
+  //       const filePath = path.join(uploadDirectory, file);
+  //       const stat = await fs.stat(filePath);
 
-        if (stat.isFile()) {
-          await fs.unlink(filePath);
-          console.log(`Deleted file: ${filePath}`);
-        } else if (stat.isDirectory()) {
-          await fs.rm(filePath, { recursive: true, force: true });
-          console.log(`Removed subdirectory: ${filePath}`);
-        }
-      }
-      console.log(`Emptied directory: ${uploadDirectory}`);
-    } catch (err) {
-      console.log(`Error removing directory: ${err}`);
-    }
-  });
+  //       if (stat.isFile()) {
+  //         await fs.unlink(filePath);
+  //         console.log(`Deleted file: ${filePath}`);
+  //       } else if (stat.isDirectory()) {
+  //         await fs.rm(filePath, { recursive: true, force: true });
+  //         console.log(`Removed subdirectory: ${filePath}`);
+  //       }
+  //     }
+  //     console.log(`Emptied directory: ${uploadDirectory}`);
+  //   } catch (err) {
+  //     console.log(`Error removing directory: ${err}`);
+  //   }
+  // });
 
   const katieUserId = await prisma.user.findUnique({
     where: {
@@ -165,7 +165,7 @@ describe('Test all routes in profileRouter', async () => {
       .delete(`/profile/${katieProfileId.profile.id}/delete`)
       .set('Cookie', cookies);
 
-    console.log(res.body.message);
+    console.log(res.body);
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Profile deleted');
   });
