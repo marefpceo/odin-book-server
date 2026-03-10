@@ -63,6 +63,42 @@ async function createUserProfile(req, res) {
 
 // Updates the logged in user's profile
 async function updateUserProfile(req, res) {
+  const profile = await prisma.profile.findUnique({
+    where: {
+      id: parseInt(req.params.profileId),
+    },
+    select: {
+      avatar: true,
+    },
+  });
+
+  if (profile.avatar !== null) {
+    const filename = await getCloudinaryPublicId(profile.avatar);
+    // delete asset from cloudinary
+    await cloudinary.uploader.destroy(filename, { resource_type: 'image' });
+  }
+
+  const avatarUploadResponse = await cloudinary.uploader.upload(req.file.path, {
+    use_filename: true,
+  });
+
+  // Checks if upload was successful before deleting the temp file
+  if (avatarUploadResponse.created_at) {
+    const filename = req.file.filename;
+    const filePath = path.join(__dirname, '../helpers/uploads', filename);
+
+    try {
+      await fs.unlink(filePath);
+    } catch (err) {
+      console.error(err);
+      if (err.code === 'ENOENT') {
+        return res.status(404).json({ error: 'File not found' });
+      }
+      res.status(500).json({ error: 'Could not delete file' });
+    }
+  }
+
+  // Update the profile with new information
   const updatedProfile = await prisma.profile.update({
     where: {
       id: parseInt(req.params.profileId),
@@ -70,7 +106,7 @@ async function updateUserProfile(req, res) {
     data: {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      avatar: req.body.avatar,
+      avatar: avatarUploadResponse.secure_url,
       bio: req.body.bio,
     },
   });
