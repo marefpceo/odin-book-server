@@ -34,25 +34,31 @@ async function postsGet(req, res) {
     parseInt(req.params.userId),
   ];
 
-  // Return all posts using friendIds
-  const feedPosts = await prisma.post.findMany({
-    where: {
-      userId: {
-        in: friendIds,
+  if (!user) {
+    res.status(404).json({
+      message: 'User not found',
+    });
+  } else {
+    // Return all posts using friendIds
+    const feedPosts = await prisma.post.findMany({
+      where: {
+        userId: {
+          in: friendIds,
+        },
       },
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-    include: {
-      user: true,
-    },
-  });
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        user: true,
+      },
+    });
 
-  res.status(200).json({
-    message: feedPosts.length === 0 ? 'No posts found' : '',
-    feedPosts,
-  });
+    res.status(200).json({
+      message: feedPosts.length === 0 ? 'No posts found' : '',
+      feedPosts,
+    });
+  }
 }
 
 // Creates a new post and returns the information
@@ -117,20 +123,26 @@ async function selectedPostGet(req, res) {
     },
   });
 
-  const selectedPost = {
-    id: post.id,
-    userId: post.userId,
-    createdAt: post.createdAt,
-    updatedAt: post.updatedAt,
-    content: post.content,
-    likes: post._count.likes,
-    user: post.user,
-    comment: post.comment,
-  };
+  if (!post) {
+    res.status(200).json({
+      message: 'Post not found',
+    });
+  } else {
+    const selectedPost = {
+      id: post.id,
+      userId: post.userId,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+      content: post.content,
+      likes: post._count.likes,
+      user: post.user,
+      comment: post.comment,
+    };
 
-  res.status(200).json({
-    selectedPost,
-  });
+    res.status(200).json({
+      selectedPost,
+    });
+  }
 }
 
 // Update post by creating a like record for the selected user
@@ -160,32 +172,45 @@ async function likePost(req, res) {
     },
   });
 
-  const postLikes = {
-    id: post.id,
-    userId: post.userId,
-    createdAt: post.createdAt,
-    updatedAt: post.updatedAt,
-    content: post.content,
-    likes: post._count.likes,
-    user: post.user,
-    comment: post.comment,
-  };
+  if (!post) {
+    res.status(200).json({
+      message: 'Post not found',
+    });
+  } else {
+    const postLikes = {
+      id: post.id,
+      userId: post.userId,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+      content: post.content,
+      likes: post._count.likes,
+      user: post.user,
+      comment: post.comment,
+    };
 
-  res.status(200).json({
-    postLikes,
-  });
+    res.status(200).json({
+      postLikes,
+    });
+  }
 }
 
 // Handles deleting selected post
 async function deletePost(req, res) {
-  await prisma.post.delete({
+  const post = await prisma.post.delete({
     where: {
       id: parseInt(req.params.postId),
     },
   });
-  res.status(200).json({
-    message: 'Post deleted',
-  });
+
+  if (!post) {
+    res.status(200).json({
+      message: 'Post not found',
+    });
+  } else {
+    res.status(200).json({
+      message: 'Post deleted',
+    });
+  }
 }
 
 export default {
