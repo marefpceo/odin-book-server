@@ -49,18 +49,24 @@ async function getComment(req, res) {
     },
   });
 
-  const comment = {
-    id: selectedComment.id,
-    postId: selectedComment.postId,
-    userId: selectedComment.userId,
-    createdAt: selectedComment.createdAt,
-    content: selectedComment.content,
-    likes: selectedComment._count.likes,
-  };
+  if (!selectedComment) {
+    res.status(200).json({
+      message: 'Comment not found',
+    });
+  } else {
+    const comment = {
+      id: selectedComment.id,
+      postId: selectedComment.postId,
+      userId: selectedComment.userId,
+      createdAt: selectedComment.createdAt,
+      content: selectedComment.content,
+      likes: selectedComment._count.likes,
+    };
 
-  res.status(200).json({
-    comment,
-  });
+    res.status(200).json({
+      comment,
+    });
+  }
 }
 
 // Update record likes count for users other than the post author
@@ -90,18 +96,24 @@ async function likeComment(req, res) {
     },
   });
 
-  const commentLikes = {
-    id: comment.id,
-    postId: comment.postId,
-    userId: comment.userId,
-    createdAt: comment.createdAt,
-    content: comment.content,
-    likes: comment._count.likes,
-  };
+  if (!comment) {
+    res.status(200).json({
+      message: 'Comment not found',
+    });
+  } else {
+    const commentLikes = {
+      id: comment.id,
+      postId: comment.postId,
+      userId: comment.userId,
+      createdAt: comment.createdAt,
+      content: comment.content,
+      likes: comment._count.likes,
+    };
 
-  res.status(200).json({
-    commentLikes,
-  });
+    res.status(200).json({
+      commentLikes,
+    });
+  }
 }
 
 // Delete the selected comment. Can be done by comment author and post author
@@ -112,10 +124,16 @@ async function deleteComment(req, res) {
     },
   });
 
-  res.status(200).json({
-    commentToDelete,
-    message: 'Comment deleted',
-  });
+  if (!commentToDelete) {
+    res.status(200).json({
+      message: 'Comment not found',
+    });
+  } else {
+    res.status(200).json({
+      commentToDelete,
+      message: 'Comment deleted',
+    });
+  }
 }
 
 export default { createComment, getComment, likeComment, deleteComment };
