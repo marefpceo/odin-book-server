@@ -18,8 +18,8 @@ router.get(
 // POST create profile
 router.post(
   '/create',
-  verifyValidSession,
   uploadMulter.single('avatar'),
+  verifyValidSession,
   profileValidationRules,
   validate,
   profileController.createUserProfile,
@@ -28,8 +28,8 @@ router.post(
 // PUT update profile
 router.put(
   '/:profileId/update',
-  verifyValidSession,
   uploadMulter.single('avatar'),
+  verifyValidSession,
   profileValidationRules,
   validate,
   profileController.updateUserProfile,

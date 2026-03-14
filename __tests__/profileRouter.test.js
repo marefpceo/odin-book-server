@@ -1,8 +1,8 @@
 import app from '../app.js';
-import fs from 'fs/promises';
 import path from 'node:path';
-import { afterAll, describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import profileRouter from '../routers/profileRouter.js';
+import { verifyValidSession } from '../helpers/protectRoutes.js';
 
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
@@ -22,30 +22,11 @@ const testFilePath2 = path.join(__dirname, 'test-image2.png');
 app.use(express.urlencoded({ extended: false }));
 app.use('/', profileRouter);
 
+vi.mock('../helpers/protectRoutes.js', async () => ({
+  verifyValidSession: vi.fn(),
+}));
+
 describe('Test all routes in profileRouter', async () => {
-  // afterAll(async () => {
-  //   // Clear uploads directory from testing image uploads
-  //   try {
-  //     const files = await fs.readdir(uploadDirectory);
-
-  //     for (const file of files) {
-  //       const filePath = path.join(uploadDirectory, file);
-  //       const stat = await fs.stat(filePath);
-
-  //       if (stat.isFile()) {
-  //         await fs.unlink(filePath);
-  //         console.log(`Deleted file: ${filePath}`);
-  //       } else if (stat.isDirectory()) {
-  //         await fs.rm(filePath, { recursive: true, force: true });
-  //         console.log(`Removed subdirectory: ${filePath}`);
-  //       }
-  //     }
-  //     console.log(`Emptied directory: ${uploadDirectory}`);
-  //   } catch (err) {
-  //     console.log(`Error removing directory: ${err}`);
-  //   }
-  // });
-
   const katieUserId = await prisma.user.findUnique({
     where: {
       username: 'katiedid',
@@ -76,6 +57,11 @@ describe('Test all routes in profileRouter', async () => {
   const profileId = jamesUserId.profile === null ? 0 : jamesUserId.profile.id;
 
   test('GET profile route for a user with NO profile', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).get(`/profile/${profileNoId}`);
 
     console.log(res.body);
@@ -84,6 +70,11 @@ describe('Test all routes in profileRouter', async () => {
   });
 
   test('GET profile route for a user with profile', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).get(`/profile/${profileId}`);
 
     expect(res.statusCode).toEqual(200);
@@ -100,6 +91,11 @@ describe('Test all routes in profileRouter', async () => {
   });
 
   test('POST call to create a profile for the logged in user', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app)
       .post(`/profile/create`)
       .field('userId', katieUserId.id)
@@ -113,6 +109,11 @@ describe('Test all routes in profileRouter', async () => {
   });
 
   test('PUT call to update profile for the logged in user', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const katieProfileId = await prisma.user.findUnique({
       where: {
         username: 'katiedid',
