@@ -1,5 +1,7 @@
 import express from 'express';
 import profileController from '../controllers/profileController.js';
+
+import { verifyValidSession } from '../helpers/protectRoutes.js';
 import { validate } from '../validation/validator.js';
 import { profileValidationRules } from '../validation/profileValidators.js';
 import { uploadMulter } from '../helpers/multerConfig.js';
@@ -7,11 +9,16 @@ import { uploadMulter } from '../helpers/multerConfig.js';
 const router = express.Router();
 
 // GET selected profile
-router.get('/:profileId', profileController.getSelectedProfile);
+router.get(
+  '/:profileId',
+  verifyValidSession,
+  profileController.getSelectedProfile,
+);
 
 // POST create profile
 router.post(
   '/create',
+  verifyValidSession,
   uploadMulter.single('avatar'),
   profileValidationRules,
   validate,
@@ -21,6 +28,7 @@ router.post(
 // PUT update profile
 router.put(
   '/:profileId/update',
+  verifyValidSession,
   uploadMulter.single('avatar'),
   profileValidationRules,
   validate,
@@ -28,6 +36,10 @@ router.put(
 );
 
 // DELETE profile (ADMIN ROLE ONLY)
-router.delete('/:profileId/delete', profileController.deleteUserProfile);
+router.delete(
+  '/:profileId/delete',
+  verifyValidSession,
+  profileController.deleteUserProfile,
+);
 
 export default router;
