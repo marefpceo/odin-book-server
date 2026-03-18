@@ -134,7 +134,7 @@ async function deleteUserProfile(req, res) {
     await cloudinary.uploader.destroy(filename, { resource_type: 'image' });
   }
 
-  await prisma.profile.deleteMany({
+  const profileToDelete = await prisma.profile.deleteMany({
     where: {
       id: parseInt(req.params.profileId),
       AND: {
@@ -154,6 +154,7 @@ async function deleteUserProfile(req, res) {
 
   res.status(200).json({
     message: 'Profile deleted',
+    profileToDelete,
   });
 }
 

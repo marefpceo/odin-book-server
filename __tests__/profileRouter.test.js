@@ -1,6 +1,6 @@
 import app from '../app.js';
 import path from 'node:path';
-import { describe, expect, test, vi } from 'vitest';
+import { describe, expect, test, vi, afterEach, beforeAll } from 'vitest';
 import profileRouter from '../routers/profileRouter.js';
 import { verifyValidSession } from '../helpers/protectRoutes.js';
 
@@ -27,6 +27,10 @@ vi.mock('../helpers/protectRoutes.js', async () => ({
 }));
 
 describe('Test all routes in profileRouter', async () => {
+  afterEach(async () => {
+    vi.resetAllMocks();
+  });
+
   const katieUserId = await prisma.user.findUnique({
     where: {
       username: 'katiedid',
@@ -64,7 +68,6 @@ describe('Test all routes in profileRouter', async () => {
 
     const res = await request(app).get(`/profile/${profileNoId}`);
 
-    console.log(res.body);
     expect(res.statusCode).toEqual(200);
     expect(res.body.message).toEqual('User has not created a profile');
   });
@@ -103,7 +106,7 @@ describe('Test all routes in profileRouter', async () => {
       .field('lastname', 'Did')
       .field('bio', 'Everyone knows Katie Did')
       .attach('avatar', testFilePath);
-    console.log(res.body);
+
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('Profile successfully created!');
   });
@@ -138,36 +141,34 @@ describe('Test all routes in profileRouter', async () => {
     expect(res.body.message).toEqual('Profile successfully updated!');
   });
 
-  test('deleting profile', async () => {
-    // Login with user Katie
-    const kateRes = await request.agent(app).post('/auth/login').send({
-      email: 'kate@test.com',
-      password: 'kkkkkkkkk',
+  describe('test delete route with actual login data', () => {
+    let kateRes;
+    let cookies;
+    let profileId;
+
+    beforeAll(async () => {
+      kateRes = await request.agent(app).post(`/auth/login`).send({
+        email: 'kate@test.com',
+        password: 'kkkkkkkkk',
+      });
+
+      cookies = kateRes.headers['set-cookie'];
+      profileId = kateRes.body.user.profile;
     });
 
-    const cookies = kateRes.headers['set-cookie'];
+    test('deleting profile for logged in user', async () => {
+      verifyValidSession.mockImplementation((req, res, next) => {
+        req.session.passport.user = { id: kateRes.body.user.id, role: 'USER' };
+        next();
+      });
 
-    const katieProfileId = await prisma.user.findUnique({
-      where: {
-        username: 'katiedid',
-      },
-      include: {
-        profile: {
-          select: {
-            id: true,
-          },
-        },
-      },
+      const res = await request
+        .agent(app)
+        .delete(`/profile/${profileId}/delete`)
+        .set('Cookie', cookies);
+
+      expect(res.status).toEqual(200);
+      expect(res.body.message).toEqual('Profile deleted');
     });
-
-    console.log(katieProfileId.profile.id);
-
-    const res = await request(app)
-      .delete(`/profile/${katieProfileId.profile.id}/delete`)
-      .set('Cookie', cookies);
-
-    console.log(res.body);
-    expect(res.status).toEqual(200);
-    expect(res.body.message).toEqual('Profile deleted');
   });
 });
