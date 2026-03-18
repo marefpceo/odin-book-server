@@ -1,8 +1,9 @@
 import app from '../app';
 import request from 'supertest';
 import express from 'express';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import userRouter from '../routers/userRouter.js';
+import { verifyValidSession } from '../helpers/protectRoutes.js';
 
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
@@ -12,6 +13,11 @@ const prisma = new PrismaClient({ adapter });
 
 app.use(express.urlencoded({ extended: false }));
 app.use('/', userRouter);
+
+// Mocks verifyValidSession for protected routes
+vi.mock('../helpers/protectRoutes.js', async () => ({
+  verifyValidSession: vi.fn(),
+}));
 
 describe('Test all routes in userRouter', async () => {
   const jimmyOne = await prisma.user.findUnique({
@@ -32,6 +38,11 @@ describe('Test all routes in userRouter', async () => {
   });
 
   test('GET route to return all users', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).get('/users');
 
     expect(res.status).toEqual(200);
@@ -48,6 +59,11 @@ describe('Test all routes in userRouter', async () => {
   });
 
   test('should submit a friend request for the selected user', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app)
       .post(`/users/${jimmyOne.id}/add`)
       .send({ userToAdd: `${billy.id}` });
@@ -57,6 +73,11 @@ describe('Test all routes in userRouter', async () => {
   });
 
   test('should show the friendship was accepted by updating status to ACTIVE', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).put(`/users/${billy.id}/update`).send({
       status: 'ACTIVE',
       user1Id: jimmyOne.id,
@@ -67,6 +88,11 @@ describe('Test all routes in userRouter', async () => {
   });
 
   test('should show the friendship was removed', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).del(`/users/${billy.id}/remove`).send({
       user1Id: jimmyOne.id,
       user2Id: billy.id,
