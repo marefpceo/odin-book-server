@@ -138,7 +138,7 @@ describe('Test post routes', async () => {
   describe('getting selected post and deleting it', async () => {
     test('returning the selected post to view and or initiate comment', async () => {
       const res = await request(app).get(`/posts/${billy.id}/${cleanUpIds[0]}`);
-      console.log(res.body);
+
       expect(res.status).toEqual(200);
       expect(res.body.selectedPost).toEqual(postExpectedResults);
     });
