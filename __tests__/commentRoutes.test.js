@@ -1,6 +1,7 @@
 import app from '../app.js';
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, vi } from 'vitest';
 import postRouter from '../routers/postRouter.js';
+import { verifyValidSession } from '../helpers/protectRoutes.js';
 
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
@@ -13,6 +14,10 @@ const prisma = new PrismaClient({ adapter });
 
 app.use(express.urlencoded({ extended: false }));
 app.use('/', postRouter);
+
+vi.mock('../helpers/protectRoutes.js', async () => ({
+  verifyValidSession: vi.fn(),
+}));
 
 // Get user info for billy
 const billy = await prisma.user.findUnique({
@@ -35,6 +40,11 @@ describe('Test comment routes and controllers', async () => {
   const postId = jimmyOne.post[0].id;
   let commentId = {};
   test('route to create a comment from billy to jimmyOne post', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app)
       .post(`/posts/${postId}/comment/create`)
       .send({
@@ -57,6 +67,11 @@ describe('Test comment routes and controllers', async () => {
   });
 
   test('get created comment from billy to jimmyOne post', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).get(`/posts/${postId}/comment/${commentId}`);
 
     expect(res.status).toEqual(200);
@@ -73,6 +88,11 @@ describe('Test comment routes and controllers', async () => {
   });
 
   test('updating likes for the comment from billy to jimmyOne post', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app)
       .put(`/posts/${postId}/comment/${commentId}/like`)
       .send({ userId: jimmyOne.id });
@@ -91,6 +111,11 @@ describe('Test comment routes and controllers', async () => {
   });
 
   test('delete comment that was created', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: 1, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).delete(
       `/posts/${postId}/comment/${commentId}/delete`,
     );
