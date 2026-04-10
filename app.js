@@ -24,10 +24,18 @@ import compression from 'compression';
 import helmet from 'helmet';
 import helmetConfig from './helpers/helmetConfig.js';
 
+// Rate Limiter
+import rateLimit from 'express-rate-limit';
+import opts from './helpers/rateLimitOpts.js';
+
 // Logger setup
 import logger from './helpers/logger.js';
 import { pinoHttp } from 'pino-http';
 
+//
+const limiter = rateLimit(opts);
+
+// Http logger for all routes
 const httpLogger = pinoHttp({
   logger,
   serializers: {
@@ -61,6 +69,7 @@ app.use(compression());
 app.use(httpLogger);
 app.disable('x-powered-by');
 app.use(helmet(helmetConfig));
+app.use(limiter);
 
 app.use(cors(corsOptions));
 app.use(express.json());
