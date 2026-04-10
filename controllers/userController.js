@@ -1,6 +1,8 @@
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 
+import logger from '../helpers/logger.js';
+
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
@@ -31,6 +33,9 @@ async function addSelectedUser(req, res) {
       user2Id: parseInt(req.body.userToAdd),
     },
   });
+  logger.info(
+    `User ${req.params.userId} requested ${req.body.userToAdd} for friendship.`,
+  );
   res.status(200).json({
     message: 'Friend request submitted.',
     friendRequest,

@@ -4,7 +4,6 @@ import express from 'express';
 import passport from 'passport';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import logger from 'morgan';
 import allowedOrigins from './helpers/corsOptions.js';
 
 import expressSession from 'express-session';
@@ -17,6 +16,9 @@ import authRouter from './routers/authRouter.js';
 import postRouter from './routers/postRouter.js';
 import profileRouter from './routers/profileRouter.js';
 import userRouter from './routers/userRouter.js';
+
+// Gzip compression
+import compression from 'compression';
 
 const connectionString = `${process.env.DATABASE_URL}`;
 const adapter = new PrismaPg({ connectionString });
@@ -31,8 +33,10 @@ const corsOptions = {
 
 const app = express();
 
+// Production middleware
+app.use(compression());
+
 app.use(cors(corsOptions));
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -76,6 +80,12 @@ app.use('/profile', profileRouter);
 
 // Custom error handler
 app.use((err, req, res, next) => {
+  // Capture error logs
+  req.log.error({
+    message: err.message,
+    stack: err.stack,
+    status: res.statusCode,
+  });
   if (res.headersSent) {
     return next(err);
   }

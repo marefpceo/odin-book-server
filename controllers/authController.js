@@ -3,6 +3,8 @@ import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import * as argon2 from 'argon2';
 
+import logger from '../helpers/logger.js';
+
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
@@ -35,6 +37,8 @@ async function signupPost(req, res, next) {
     if (err) {
       return next(err);
     } else {
+      logger.info(`New user ${createdUser.username} created.`);
+      logger.info(`User ${createdUser.username} logged in.`);
       res.status(200).json({
         createdUser,
       });
@@ -49,6 +53,7 @@ async function loginPost(req, res, next) {
       return next(err);
     }
     if (!user) {
+      logger.error('User authentication error');
       return res.status(401).json({
         message: info.message,
       });
@@ -57,6 +62,7 @@ async function loginPost(req, res, next) {
       if (err) {
         return next(err);
       }
+      logger.info(`User ${req.session.passport.user.username} logged in.`);
       res.status(200).json({
         message: 'Login successful',
         user: req.session.passport.user,
@@ -73,7 +79,7 @@ async function logoutPost(req, res, next) {
     }
     req.session.destroy((err) => {
       if (err) {
-        console.log(err);
+        logger.log(err);
         return next(err);
       }
       res.clearCookie('connect.sid').status(200).json({

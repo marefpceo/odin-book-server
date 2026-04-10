@@ -127,7 +127,6 @@ describe('Test post routes', async () => {
       content: 'New post. Billy here!',
     });
 
-    console.log(res);
     expect(res.status).toEqual(200);
     expect(res.body.message).toEqual('New post created');
     expect(res.body.post).toEqual(postExpectedResults);
