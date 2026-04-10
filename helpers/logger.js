@@ -1,16 +1,14 @@
 import pino from 'pino';
 
 const transport = pino.transport({
-  // target: 'pino/file',
-  // options: { destination: './logs.log' },
   target: 'pino-roll',
   options: {
     file: './logs/log.log',
-    frequency: 'weekly',
-    size: '20MB',
+    frequency: 'daily',
+    size: 20,
     mkdir: true,
     symlink: true,
-    limit: { count: 3 },
+    limit: { count: 6 },
   },
   level: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
 });

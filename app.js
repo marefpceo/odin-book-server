@@ -20,7 +20,11 @@ import userRouter from './routers/userRouter.js';
 // Gzip compression
 import compression from 'compression';
 
-// Logger settup
+// Helmet
+import helmet from 'helmet';
+import helmetConfig from './helpers/helmetConfig.js';
+
+// Logger setup
 import logger from './helpers/logger.js';
 import { pinoHttp } from 'pino-http';
 
@@ -55,11 +59,14 @@ const app = express();
 // Production middleware
 app.use(compression());
 app.use(httpLogger);
+app.disable('x-powered-by');
+app.use(helmet(helmetConfig));
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 // Allows for the use of dotfiles from the static folder(s)
 app.use(
   '/.well-known',
