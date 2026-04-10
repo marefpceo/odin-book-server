@@ -20,6 +20,25 @@ import userRouter from './routers/userRouter.js';
 // Gzip compression
 import compression from 'compression';
 
+// Logger settup
+import logger from './helpers/logger.js';
+import { pinoHttp } from 'pino-http';
+
+const httpLogger = pinoHttp({
+  logger,
+  serializers: {
+    req: (req) => ({
+      id: req.id,
+      method: req.method,
+      url: req.url,
+      host: req.headers.host,
+    }),
+    res: (res) => ({
+      statusCode: res.statusCode,
+    }),
+  },
+});
+
 const connectionString = `${process.env.DATABASE_URL}`;
 const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
@@ -35,6 +54,7 @@ const app = express();
 
 // Production middleware
 app.use(compression());
+app.use(httpLogger);
 
 app.use(cors(corsOptions));
 app.use(express.json());
