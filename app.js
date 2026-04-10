@@ -70,6 +70,7 @@ app.use(httpLogger);
 app.disable('x-powered-by');
 app.use(helmet(helmetConfig));
 app.use(limiter);
+app.set('trust proxy', 1);
 
 app.use(cors(corsOptions));
 app.use(express.json());
