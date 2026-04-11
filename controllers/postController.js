@@ -1,6 +1,8 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 
+import logger from '../helpers/logger.js';
+
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
@@ -35,6 +37,7 @@ async function postsGet(req, res) {
   ];
 
   if (!user) {
+    logger.error('User not found');
     res.status(404).json({
       message: 'User not found',
     });
@@ -95,6 +98,7 @@ async function createPost(req, res) {
     comment: createdPost.comment,
   };
 
+  logger.info(`Post ${post.id} created`);
   res.status(200).json({
     post,
     message: 'New post created',
@@ -203,10 +207,12 @@ async function deletePost(req, res) {
   });
 
   if (!post) {
+    logger.error(`Post id: ${req.params.postId} to delete not found.`);
     res.status(200).json({
       message: 'Post not found',
     });
   } else {
+    logger.info(`Post id: ${req.params.postId} deleted.`);
     res.status(200).json({
       message: 'Post deleted',
     });

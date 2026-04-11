@@ -1,6 +1,8 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 
+import logger from '../helpers/logger.js';
+
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
@@ -129,6 +131,7 @@ async function deleteComment(req, res) {
       message: 'Comment not found',
     });
   } else {
+    logger.info(`Comment ${commentToDelete.id} deleted.`);
     res.status(200).json({
       commentToDelete,
       message: 'Comment deleted',

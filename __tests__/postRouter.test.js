@@ -1,6 +1,15 @@
 import app from '../app';
-import { describe, test, expect, afterAll, beforeAll } from 'vitest';
+import {
+  describe,
+  test,
+  expect,
+  vi,
+  afterAll,
+  afterEach,
+  beforeAll,
+} from 'vitest';
 import postRouter from '../routers/postRouter.js';
+import { verifyValidSession } from '../helpers/protectRoutes.js';
 
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
@@ -13,6 +22,10 @@ const prisma = new PrismaClient({ adapter });
 
 app.use(express.urlencoded({ extended: false }));
 app.use('/', postRouter);
+
+vi.mock('../helpers/protectRoutes.js', async () => ({
+  verifyValidSession: vi.fn(),
+}));
 
 const jimmyOne = await prisma.user.findUnique({
   where: {
@@ -52,6 +65,11 @@ const cleanUpIds = seedPost.map((record) => record.id);
 
 describe('Test post routes', async () => {
   let postToDeleteResult = {};
+
+  afterEach(async () => {
+    vi.resetAllMocks();
+  });
+
   afterAll(async () => {
     await prisma.post.deleteMany({
       where: {
@@ -63,6 +81,11 @@ describe('Test post routes', async () => {
   });
 
   test('that route returns all user and friends post for feed', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: jimmyOne.id, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).get(`/posts/${jimmyOne.id}`);
 
     expect(res.status).toEqual(200);
@@ -79,6 +102,11 @@ describe('Test post routes', async () => {
   });
 
   test('jimmyOne creating a new post', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: jimmyOne.id, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).post(`/posts/${jimmyOne.id}/create`).send({
       content: 'New post. Jimmy One here!',
     });
@@ -90,6 +118,11 @@ describe('Test post routes', async () => {
   });
 
   test('billy creating a new post', async () => {
+    verifyValidSession.mockImplementation((req, res, next) => {
+      req.session.passport = { id: billy.id, role: 'USER' };
+      next();
+    });
+
     const res = await request(app).post(`/posts/${billy.id}/create`).send({
       content: 'New post. Billy here!',
     });
@@ -119,6 +152,11 @@ describe('Test post routes', async () => {
     });
 
     test('create a like for the selected post and increase the count by one', async () => {
+      verifyValidSession.mockImplementation((req, res, next) => {
+        req.session.passport = { id: billy.id, role: 'USER' };
+        next();
+      });
+
       const res = await request(app).put(
         `/posts/${billy.id}/${postId.post[0].id}/like`,
       );
@@ -137,6 +175,11 @@ describe('Test post routes', async () => {
 
   describe('getting selected post and deleting it', async () => {
     test('returning the selected post to view and or initiate comment', async () => {
+      verifyValidSession.mockImplementation((req, res, next) => {
+        req.session.passport = { id: billy.id, role: 'USER' };
+        next();
+      });
+
       const res = await request(app).get(`/posts/${billy.id}/${cleanUpIds[0]}`);
 
       expect(res.status).toEqual(200);
@@ -144,6 +187,11 @@ describe('Test post routes', async () => {
     });
 
     test('deleting selected post that was just created', async () => {
+      verifyValidSession.mockImplementation((req, res, next) => {
+        req.session.passport = { id: billy.id, role: 'USER' };
+        next();
+      });
+
       const res = await request(app).delete(
         `/posts/${billy.id}/${postToDeleteResult}/delete`,
       );

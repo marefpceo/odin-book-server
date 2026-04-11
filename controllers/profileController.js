@@ -6,6 +6,8 @@ import { getCloudinaryPublicId } from '../helpers/extractFilename.js';
 
 import { v2 as cloudinary } from 'cloudinary';
 
+import logger from '../helpers/logger.js';
+
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
@@ -47,14 +49,17 @@ async function createUserProfile(req, res) {
     try {
       await fs.unlink(filePath);
     } catch (err) {
-      console.error(err);
+      logger.error(err);
       if (err.code === 'ENOENT') {
         return res.status(404).json({ error: 'File not found' });
       }
       res.status(500).json({ error: 'Could not delete file' });
     }
   }
-
+  // Log profile created
+  logger.info(
+    `Profile created for ${createdProfile.firstname} ${createdProfile.lastname}`,
+  );
   res.status(200).json({
     message: 'Profile successfully created!',
     createdProfile,
@@ -90,7 +95,7 @@ async function updateUserProfile(req, res) {
     try {
       await fs.unlink(filePath);
     } catch (err) {
-      console.error(err);
+      logger.error(err);
       if (err.code === 'ENOENT') {
         return res.status(404).json({ error: 'File not found' });
       }
@@ -152,6 +157,7 @@ async function deleteUserProfile(req, res) {
     },
   });
 
+  logger.info(`Profile id: ${req.params.profileId} deleted!`);
   res.status(200).json({
     message: 'Profile deleted',
     profileToDelete,
