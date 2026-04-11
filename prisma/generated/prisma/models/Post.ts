@@ -202,17 +202,18 @@ export type PostGroupByOutputType = {
   _max: PostMaxAggregateOutputType | null;
 };
 
-type GetPostGroupByPayload<T extends PostGroupByArgs> = Prisma.PrismaPromise<
-  Array<
-    Prisma.PickEnumerable<PostGroupByOutputType, T['by']> & {
-      [P in keyof T & keyof PostGroupByOutputType]: P extends '_count'
-        ? T[P] extends boolean
-          ? number
-          : Prisma.GetScalarType<T[P], PostGroupByOutputType[P]>
-        : Prisma.GetScalarType<T[P], PostGroupByOutputType[P]>;
-    }
-  >
->;
+export type GetPostGroupByPayload<T extends PostGroupByArgs> =
+  Prisma.PrismaPromise<
+    Array<
+      Prisma.PickEnumerable<PostGroupByOutputType, T['by']> & {
+        [P in keyof T & keyof PostGroupByOutputType]: P extends '_count'
+          ? T[P] extends boolean
+            ? number
+            : Prisma.GetScalarType<T[P], PostGroupByOutputType[P]>
+          : Prisma.GetScalarType<T[P], PostGroupByOutputType[P]>;
+      }
+    >
+  >;
 
 export type PostWhereInput = {
   AND?: Prisma.PostWhereInput | Prisma.PostWhereInput[];
@@ -1756,6 +1757,11 @@ export type PostFindManyArgs<
    * Skip the first `n` Posts.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of Posts.
+   */
   distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[];
 };
 

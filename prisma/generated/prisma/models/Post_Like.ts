@@ -188,7 +188,7 @@ export type Post_LikeGroupByOutputType = {
   _max: Post_LikeMaxAggregateOutputType | null;
 };
 
-type GetPost_LikeGroupByPayload<T extends Post_LikeGroupByArgs> =
+export type GetPost_LikeGroupByPayload<T extends Post_LikeGroupByArgs> =
   Prisma.PrismaPromise<
     Array<
       Prisma.PickEnumerable<Post_LikeGroupByOutputType, T['by']> & {
@@ -1643,6 +1643,11 @@ export type Post_LikeFindManyArgs<
    * Skip the first `n` Post_Likes.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of Post_Likes.
+   */
   distinct?:
     | Prisma.Post_LikeScalarFieldEnum
     | Prisma.Post_LikeScalarFieldEnum[];
