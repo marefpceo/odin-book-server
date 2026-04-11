@@ -32,7 +32,7 @@ import opts from './helpers/rateLimitOpts.js';
 import logger from './helpers/logger.js';
 import { pinoHttp } from 'pino-http';
 
-//
+// Express Rate Limiter
 const limiter = rateLimit(opts);
 
 // Http logger for all routes
