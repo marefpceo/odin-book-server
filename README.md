@@ -1,4 +1,5 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a id="readme-top"></a>
 
 # Odin Book Server
@@ -112,12 +113,31 @@ createdb odin-book;
 | `POST`   | method used to send data to the server        |
 | `DELETE` | method used to delete an item from the server |
 
-| Method   | URL                                 | Description                                            |
-| -------- | ----------------------------------- | ------------------------------------------------------ |
+| Method   | URL                                        | Description                                          |
+| -------- | ------------------------------------------ | ---------------------------------------------------- |
+| `POST`   | `/auth/signup`                             | creates a new user                                   |
+| `POST`   | `/auth/login`                              | verifies user credentials and logs the user in       |
+| `POST`   | `/auth/logout`                             | logs the user out and terminates the session         |
+| `GET`    | `/posts/:userId`                           | timeline view showing user and friend's recent posts |
+| `POST`   | `/posts/:userId/create`                    | creates a new post                                   |
+| `GET`    | `/posts/:userId/:postId`                   | get selected post                                    |
+| `PUT`    | `/posts/:userId/:postId/like`              | creates a like record for the selected post          |
+| `DELETE` | `/posts/:userId/:postId/delete`            | delete selected post                                 |
+| `POST`   | `/posts/:postId/comment/create`            | creates a new comment for selected post              |
+| `GET`    | `/posts/:comment/:commentId`               | gets selected comment                                |
+| `PUT`    | `/posts/:postId/comment/:commentId/like`   | creates like record for selected comment             |
+| `DELETE` | `/posts/:postId/comment/:commentId/delete` | delete selected comment                              |
+| `GET`    | `/profile/:profileId`                      | gets profile of selected user (if one is created)    |
+| `POST`   | `/profile/create`                          | create a user profile                                |
+| `PUT`    | `/profile/:profileId/update`               | update user profile                                  |
+| `DELETE` | `/profile/:profileId/delete`               | delete user profile (ADMIN role)                     |
+| `GET`    | `/users`                                   | gets list of all users and status                    |
+| `POST`   | `/users/:userId/add`                       | sends add request to selected user                   |
+| `PUT`    | `/users/:userId/update`                    | updates the friendship status                        |
+| `DELETE` | `/users/:userId/remove`                    | remove selected user from friend list                |
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 [Nodejs-url]: https://nodejs.org/en/download
 [NPM-url]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 [postgres-url]: https://www.postgresql.org/download/
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
