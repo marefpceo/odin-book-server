@@ -22,6 +22,12 @@ async function signupPost(req, res, next) {
       username: req.body.username,
       email: req.body.email,
       password: hash,
+      profile: {
+        create: {
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
+        },
+      },
     },
     include: {
       profile: {
