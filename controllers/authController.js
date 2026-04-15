@@ -72,6 +72,7 @@ async function loginPost(req, res, next) {
       res.status(200).json({
         message: 'Login successful',
         user: req.session.passport.user,
+        isAuthenticated: true,
       });
     });
   })(req, res, next);
@@ -95,4 +96,31 @@ async function logoutPost(req, res, next) {
   });
 }
 
-export default { signupPost, loginPost, logoutPost };
+// Validates the session
+async function validateSession(req, res) {
+  if (req.session.id) {
+    try {
+      const session = await prisma.session.findUnique({
+        where: {
+          sid: `${req.session.id}`,
+        },
+      });
+
+      if (session === null) {
+        res.json({
+          isAuthenticated: false,
+        });
+      } else {
+        res.json({
+          isAuthenticated: true,
+          user:
+            req.session.passport === undefined ? '' : req.session.passport.user,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export default { signupPost, loginPost, logoutPost, validateSession };

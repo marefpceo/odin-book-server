@@ -22,4 +22,7 @@ router.post('/login', loginValidationRules, validate, authController.loginPost);
 // POST logout
 router.post('/logout', authController.logoutPost);
 
+// GET session status for front end
+router.get('/validate-session', authController.validateSession);
+
 export default router;

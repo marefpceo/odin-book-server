@@ -118,6 +118,7 @@ createdb odin-book;
 | `POST`   | `/auth/signup`                             | creates a new user                                   |
 | `POST`   | `/auth/login`                              | verifies user credentials and logs the user in       |
 | `POST`   | `/auth/logout`                             | logs the user out and terminates the session         |
+| `GET`    | `/auth/validate-session`                   | validates the current user session                   |
 | `GET`    | `/posts/:userId`                           | timeline view showing user and friend's recent posts |
 | `POST`   | `/posts/:userId/create`                    | creates a new post                                   |
 | `GET`    | `/posts/:userId/:postId`                   | get selected post                                    |
