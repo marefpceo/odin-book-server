@@ -54,11 +54,17 @@ async function postsGet(req, res) {
       },
       include: {
         user: true,
+        comment: true,
+        _count: {
+          select: {
+            likes: true,
+          },
+        },
       },
     });
 
     res.status(200).json({
-      message: feedPosts.length === 0 ? 'No posts found' : '',
+      message: feedPosts.length === 0 ? 'No posts found' : 'Success',
       feedPosts,
     });
   }
