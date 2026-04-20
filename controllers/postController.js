@@ -53,7 +53,19 @@ async function postsGet(req, res) {
         createdAt: 'desc',
       },
       include: {
-        user: true,
+        user: {
+          select: {
+            id: true,
+            email: true,
+            role: true,
+            username: true,
+            profile: {
+              select: {
+                avatar: true,
+              },
+            },
+          },
+        },
         comment: true,
         _count: {
           select: {
