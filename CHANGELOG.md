@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added route to validate session
+- Added avatar to user log in data
 
 ### Changed
 

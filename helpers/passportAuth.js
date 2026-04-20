@@ -59,6 +59,8 @@ export const configureLocalStrategy = () => {
         email: user.email,
         role: user.role,
         profile: user.profile == null ? '' : user.profile.id,
+        avatar:
+          user.profile.avatar == 'NULL' || null ? '' : user.profile.avatar,
       });
     });
   });
