@@ -77,31 +77,45 @@ async function updateUserProfile(req, res) {
     },
   });
 
-  if (profile.avatar !== null) {
+  if (profile.avatar !== 'NULL' || null) {
     const filename = await getCloudinaryPublicId(profile.avatar);
     // delete asset from cloudinary
     await cloudinary.uploader.destroy(filename, { resource_type: 'image' });
   }
+  console.log(profile.avatar);
 
-  const avatarUploadResponse = await cloudinary.uploader.upload(req.file.path, {
-    use_filename: true,
-  });
-
-  // Checks if upload was successful before deleting the temp file
-  if (avatarUploadResponse.created_at) {
-    const filename = req.file.filename;
-    const filePath = path.join(__dirname, '../helpers/uploads', filename);
-
-    try {
-      await fs.unlink(filePath);
-    } catch (err) {
-      logger.error(err);
-      if (err.code === 'ENOENT') {
-        return res.status(404).json({ error: 'File not found' });
-      }
-      res.status(500).json({ error: 'Could not delete file' });
+  // Updates the user avatar only if file detected
+  async function uploadAvatar() {
+    if (req.file === undefined) {
+      return 'NULL';
     }
+    const avatarUploadResponse = await cloudinary.uploader.upload(
+      req.file.path,
+      {
+        use_filename: true,
+      },
+    );
+
+    // Checks if upload was successful before deleting the temp file
+    if (avatarUploadResponse.created_at) {
+      const filename = req.file.filename;
+      const filePath = path.join(__dirname, '../helpers/uploads', filename);
+
+      try {
+        await fs.unlink(filePath);
+      } catch (err) {
+        logger.error(err);
+        if (err.code === 'ENOENT') {
+          return res.status(404).json({ error: 'File not found' });
+        }
+        res.status(500).json({ error: 'Could not delete file' });
+      }
+    }
+    return avatarUploadResponse.secure_url;
   }
+
+  const avatarUpdated = await uploadAvatar();
+  console.log(avatarUpdated);
 
   // Update the profile with new information
   const updatedProfile = await prisma.profile.update({
@@ -109,9 +123,9 @@ async function updateUserProfile(req, res) {
       id: parseInt(req.params.profileId),
     },
     data: {
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      avatar: avatarUploadResponse.secure_url,
+      firstname: req.body.firstname ?? undefined,
+      lastname: req.body.lastname ?? undefined,
+      avatar: avatarUpdated,
       bio: req.body.bio,
     },
   });
