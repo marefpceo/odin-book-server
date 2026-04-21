@@ -82,7 +82,6 @@ async function updateUserProfile(req, res) {
     // delete asset from cloudinary
     await cloudinary.uploader.destroy(filename, { resource_type: 'image' });
   }
-  console.log(profile.avatar);
 
   // Updates the user avatar only if file detected
   async function uploadAvatar() {
@@ -115,7 +114,6 @@ async function updateUserProfile(req, res) {
   }
 
   const avatarUpdated = await uploadAvatar();
-  console.log(avatarUpdated);
 
   // Update the profile with new information
   const updatedProfile = await prisma.profile.update({
