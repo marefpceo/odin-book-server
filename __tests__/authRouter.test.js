@@ -64,7 +64,7 @@ describe('Test Authentication Routes', () => {
 
   /**************** Create new user *****************/
   /**************************************************/
-  test('should create a user with no profile', async () => {
+  test('should create a user with basic profile, no avatar, no bio', async () => {
     const res = await request
       .agent(app)
       .post('/auth/signup')
@@ -73,6 +73,8 @@ describe('Test Authentication Routes', () => {
         email: 'testuser@test.com',
         password: 'kkkkkkkkk',
         confirmPassword: 'kkkkkkkkk',
+        firstname: 'test',
+        lastname: 'user',
       })
       .set('Accept', 'x-www-form-urlencoded');
 
@@ -85,7 +87,7 @@ describe('Test Authentication Routes', () => {
       email: 'testuser@test.com',
       password: expect.any(String),
       role: 'USER',
-      profile: null,
+      profile: expect.any(Object),
       createdAt: expect.any(String),
       updatedAt: expect.any(String),
     });
