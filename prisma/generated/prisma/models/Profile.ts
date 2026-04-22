@@ -214,7 +214,7 @@ export type ProfileGroupByOutputType = {
   updatedAt: Date;
   firstname: string;
   lastname: string;
-  avatar: string;
+  avatar: string | null;
   bio: string;
   _count: ProfileCountAggregateOutputType | null;
   _avg: ProfileAvgAggregateOutputType | null;
@@ -246,7 +246,7 @@ export type ProfileWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<'Profile'> | Date | string;
   firstname?: Prisma.StringFilter<'Profile'> | string;
   lastname?: Prisma.StringFilter<'Profile'> | string;
-  avatar?: Prisma.StringFilter<'Profile'> | string;
+  avatar?: Prisma.StringNullableFilter<'Profile'> | string | null;
   bio?: Prisma.StringFilter<'Profile'> | string;
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 };
@@ -258,7 +258,7 @@ export type ProfileOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder;
   firstname?: Prisma.SortOrder;
   lastname?: Prisma.SortOrder;
-  avatar?: Prisma.SortOrder;
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder;
   bio?: Prisma.SortOrder;
   user?: Prisma.UserOrderByWithRelationInput;
 };
@@ -274,7 +274,7 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<
     updatedAt?: Prisma.DateTimeFilter<'Profile'> | Date | string;
     firstname?: Prisma.StringFilter<'Profile'> | string;
     lastname?: Prisma.StringFilter<'Profile'> | string;
-    avatar?: Prisma.StringFilter<'Profile'> | string;
+    avatar?: Prisma.StringNullableFilter<'Profile'> | string | null;
     bio?: Prisma.StringFilter<'Profile'> | string;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
   },
@@ -288,7 +288,7 @@ export type ProfileOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder;
   firstname?: Prisma.SortOrder;
   lastname?: Prisma.SortOrder;
-  avatar?: Prisma.SortOrder;
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder;
   bio?: Prisma.SortOrder;
   _count?: Prisma.ProfileCountOrderByAggregateInput;
   _avg?: Prisma.ProfileAvgOrderByAggregateInput;
@@ -311,7 +311,7 @@ export type ProfileScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'Profile'> | Date | string;
   firstname?: Prisma.StringWithAggregatesFilter<'Profile'> | string;
   lastname?: Prisma.StringWithAggregatesFilter<'Profile'> | string;
-  avatar?: Prisma.StringWithAggregatesFilter<'Profile'> | string;
+  avatar?: Prisma.StringNullableWithAggregatesFilter<'Profile'> | string | null;
   bio?: Prisma.StringWithAggregatesFilter<'Profile'> | string;
 };
 
@@ -320,8 +320,8 @@ export type ProfileCreateInput = {
   updatedAt?: Date | string;
   firstname: string;
   lastname: string;
-  avatar: string;
-  bio: string;
+  avatar?: string | null;
+  bio?: string;
   user: Prisma.UserCreateNestedOneWithoutProfileInput;
 };
 
@@ -332,8 +332,8 @@ export type ProfileUncheckedCreateInput = {
   updatedAt?: Date | string;
   firstname: string;
   lastname: string;
-  avatar: string;
-  bio: string;
+  avatar?: string | null;
+  bio?: string;
 };
 
 export type ProfileUpdateInput = {
@@ -341,7 +341,7 @@ export type ProfileUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   firstname?: Prisma.StringFieldUpdateOperationsInput | string;
   lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string;
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   bio?: Prisma.StringFieldUpdateOperationsInput | string;
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput;
 };
@@ -353,7 +353,7 @@ export type ProfileUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   firstname?: Prisma.StringFieldUpdateOperationsInput | string;
   lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string;
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   bio?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
@@ -364,8 +364,8 @@ export type ProfileCreateManyInput = {
   updatedAt?: Date | string;
   firstname: string;
   lastname: string;
-  avatar: string;
-  bio: string;
+  avatar?: string | null;
+  bio?: string;
 };
 
 export type ProfileUpdateManyMutationInput = {
@@ -373,7 +373,7 @@ export type ProfileUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   firstname?: Prisma.StringFieldUpdateOperationsInput | string;
   lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string;
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   bio?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
@@ -384,7 +384,7 @@ export type ProfileUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   firstname?: Prisma.StringFieldUpdateOperationsInput | string;
   lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string;
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   bio?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
@@ -492,13 +492,17 @@ export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
   >;
 };
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null;
+};
+
 export type ProfileCreateWithoutUserInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   firstname: string;
   lastname: string;
-  avatar: string;
-  bio: string;
+  avatar?: string | null;
+  bio?: string;
 };
 
 export type ProfileUncheckedCreateWithoutUserInput = {
@@ -507,8 +511,8 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   updatedAt?: Date | string;
   firstname: string;
   lastname: string;
-  avatar: string;
-  bio: string;
+  avatar?: string | null;
+  bio?: string;
 };
 
 export type ProfileCreateOrConnectWithoutUserInput = {
@@ -544,7 +548,7 @@ export type ProfileUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   firstname?: Prisma.StringFieldUpdateOperationsInput | string;
   lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string;
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   bio?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
@@ -554,7 +558,7 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   firstname?: Prisma.StringFieldUpdateOperationsInput | string;
   lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.StringFieldUpdateOperationsInput | string;
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   bio?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
@@ -672,7 +676,7 @@ export type $ProfilePayload<
       updatedAt: Date;
       firstname: string;
       lastname: string;
-      avatar: string;
+      avatar: string | null;
       bio: string;
     },
     ExtArgs['result']['profile']
