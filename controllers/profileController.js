@@ -1,4 +1,5 @@
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
+import { Prisma } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import fs from 'fs/promises';
 import { fileURLToPath } from 'url';
@@ -81,17 +82,13 @@ async function updateUserProfile(req, res) {
     },
   });
 
-  if (profile.avatar !== 'NULL' || null) {
-    const filename = await getCloudinaryPublicId(profile.avatar);
-    // delete asset from cloudinary
-    await cloudinary.uploader.destroy(filename, { resource_type: 'image' });
-  }
-
   // Updates the user avatar only if file detected
   async function uploadAvatar() {
+    // Verify and image was submitted in the req
     if (req.file === undefined) {
-      return 'NULL';
+      return;
     }
+
     const avatarUploadResponse = await cloudinary.uploader.upload(
       req.file.path,
       {
@@ -103,6 +100,13 @@ async function updateUserProfile(req, res) {
     if (avatarUploadResponse.created_at) {
       const filename = req.file.filename;
       const filePath = join(__dirname, '../helpers/uploads', filename);
+
+      // Gets current avatar filename from cloudinary
+      const previousFilename = await getCloudinaryPublicId(profile.avatar);
+      // delete asset from cloudinary
+      await cloudinary.uploader.destroy(previousFilename, {
+        resource_type: 'image',
+      });
 
       try {
         await fs.unlink(filePath);
@@ -119,20 +123,16 @@ async function updateUserProfile(req, res) {
 
   const avatarUpdated = await uploadAvatar();
 
-  // Takes incoming req and builds dataUpdate object to submit for updates
-  // function buildUpdateObject() {
-
-  // }
   // Update the profile with new information
   const updatedProfile = await prisma.profile.update({
     where: {
       id: parseInt(req.params.profileId),
     },
     data: {
-      // firstname: req.body.firstname,
-      // lastname: req.body.lastname,
-      avatar: avatarUpdated,
-      // bio: req.body.bio,
+      firstname: req.body.firstname || Prisma.skip,
+      lastname: req.body.lastname || Prisma.skip,
+      avatar: avatarUpdated || Prisma.skip,
+      bio: req.body.bio || Prisma.skip,
     },
   });
 
