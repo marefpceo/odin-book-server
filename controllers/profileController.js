@@ -1,7 +1,8 @@
 import { PrismaClient } from '../prisma/generated/prisma/client.ts';
 import { PrismaPg } from '@prisma/adapter-pg';
 import fs from 'fs/promises';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { getCloudinaryPublicId } from '../helpers/extractFilename.js';
 
 import { v2 as cloudinary } from 'cloudinary';
@@ -10,6 +11,9 @@ import logger from '../helpers/logger.js';
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Request to GET profile information
 async function getSelectedProfile(req, res) {
@@ -44,7 +48,7 @@ async function createUserProfile(req, res) {
 
   if (avatarUploadResponse.created_at) {
     const filename = req.file.filename;
-    const filePath = path.join(__dirname, '../helpers/uploads', filename);
+    const filePath = join(__dirname, '../helpers/uploads', filename);
 
     try {
       await fs.unlink(filePath);
@@ -98,7 +102,7 @@ async function updateUserProfile(req, res) {
     // Checks if upload was successful before deleting the temp file
     if (avatarUploadResponse.created_at) {
       const filename = req.file.filename;
-      const filePath = path.join(__dirname, '../helpers/uploads', filename);
+      const filePath = join(__dirname, '../helpers/uploads', filename);
 
       try {
         await fs.unlink(filePath);
@@ -115,16 +119,20 @@ async function updateUserProfile(req, res) {
 
   const avatarUpdated = await uploadAvatar();
 
+  // Takes incoming req and builds dataUpdate object to submit for updates
+  // function buildUpdateObject() {
+
+  // }
   // Update the profile with new information
   const updatedProfile = await prisma.profile.update({
     where: {
       id: parseInt(req.params.profileId),
     },
     data: {
-      firstname: req.body.firstname ?? undefined,
-      lastname: req.body.lastname ?? undefined,
+      // firstname: req.body.firstname,
+      // lastname: req.body.lastname,
       avatar: avatarUpdated,
-      bio: req.body.bio,
+      // bio: req.body.bio,
     },
   });
 
