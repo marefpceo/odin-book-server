@@ -6,6 +6,18 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 const signupValidationRules = [
+  body('firstname')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('First name is required')
+    .escape(),
+
+  body('lastname')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Last name is required')
+    .escape(),
+
   body('username')
     .trim()
     .isLength({ min: 8, max: 64 })
