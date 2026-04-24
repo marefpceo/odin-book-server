@@ -4,6 +4,7 @@ const allowedOrigins = [
   /http:\/\/localhost:5173/,
   /http:\/\/localhost:4173/,
   /.*\.railway.app.*/,
+  /.*res.cloudinary.com\/marefpceo-dev\/*/,
 ];
 
 export default { allowedOrigins };
