@@ -56,32 +56,32 @@ export type Post_LikeCountAggregateOutputType = {
 };
 
 export type Post_LikeAvgAggregateInputType = {
-  postId?: true;
-  userId?: true;
+  postId?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
 };
 
 export type Post_LikeSumAggregateInputType = {
-  postId?: true;
-  userId?: true;
+  postId?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
 };
 
 export type Post_LikeMinAggregateInputType = {
-  postId?: true;
-  userId?: true;
-  createdAt?: true;
+  postId?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
 };
 
 export type Post_LikeMaxAggregateInputType = {
-  postId?: true;
-  userId?: true;
-  createdAt?: true;
+  postId?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
 };
 
 export type Post_LikeCountAggregateInputType = {
-  postId?: true;
-  userId?: true;
-  createdAt?: true;
-  _all?: true;
+  postId?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
+  _all?: true | runtime.Types.Skip;
 };
 
 export type Post_LikeAggregateArgs<
@@ -91,7 +91,7 @@ export type Post_LikeAggregateArgs<
   /**
    * Filter which Post_Like to aggregate.
    */
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -99,25 +99,26 @@ export type Post_LikeAggregateArgs<
    */
   orderBy?:
     | Prisma.Post_LikeOrderByWithRelationInput
-    | Prisma.Post_LikeOrderByWithRelationInput[];
+    | Prisma.Post_LikeOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.Post_LikeWhereUniqueInput;
+  cursor?: Prisma.Post_LikeWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Post_Likes from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Post_Likes.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
@@ -162,14 +163,15 @@ export type Post_LikeGroupByArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.Post_LikeOrderByWithAggregationInput
-    | Prisma.Post_LikeOrderByWithAggregationInput[];
+    | Prisma.Post_LikeOrderByWithAggregationInput[]
+    | runtime.Types.Skip;
   by: Prisma.Post_LikeScalarFieldEnum[] | Prisma.Post_LikeScalarFieldEnum;
-  having?: Prisma.Post_LikeScalarWhereWithAggregatesInput;
-  take?: number;
-  skip?: number;
+  having?: Prisma.Post_LikeScalarWhereWithAggregatesInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
   _count?: Post_LikeCountAggregateInputType | true;
   _avg?: Post_LikeAvgAggregateInputType;
   _sum?: Post_LikeSumAggregateInputType;
@@ -202,65 +204,107 @@ export type GetPost_LikeGroupByPayload<T extends Post_LikeGroupByArgs> =
   >;
 
 export type Post_LikeWhereInput = {
-  AND?: Prisma.Post_LikeWhereInput | Prisma.Post_LikeWhereInput[];
-  OR?: Prisma.Post_LikeWhereInput[];
-  NOT?: Prisma.Post_LikeWhereInput | Prisma.Post_LikeWhereInput[];
-  postId?: Prisma.IntFilter<'Post_Like'> | number;
-  userId?: Prisma.IntFilter<'Post_Like'> | number;
-  createdAt?: Prisma.DateTimeFilter<'Post_Like'> | Date | string;
-  post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>;
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  AND?:
+    | Prisma.Post_LikeWhereInput
+    | Prisma.Post_LikeWhereInput[]
+    | runtime.Types.Skip;
+  OR?: Prisma.Post_LikeWhereInput[] | runtime.Types.Skip;
+  NOT?:
+    | Prisma.Post_LikeWhereInput
+    | Prisma.Post_LikeWhereInput[]
+    | runtime.Types.Skip;
+  postId?: Prisma.IntFilter<'Post_Like'> | number | runtime.Types.Skip;
+  userId?: Prisma.IntFilter<'Post_Like'> | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFilter<'Post_Like'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
+    | runtime.Types.Skip;
+  user?:
+    | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeOrderByWithRelationInput = {
-  postId?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  post?: Prisma.PostOrderByWithRelationInput;
-  user?: Prisma.UserOrderByWithRelationInput;
+  postId?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  post?: Prisma.PostOrderByWithRelationInput | runtime.Types.Skip;
+  user?: Prisma.UserOrderByWithRelationInput | runtime.Types.Skip;
 };
 
 export type Post_LikeWhereUniqueInput = Prisma.AtLeast<
   {
-    postId_userId?: Prisma.Post_LikePostIdUserIdCompoundUniqueInput;
-    AND?: Prisma.Post_LikeWhereInput | Prisma.Post_LikeWhereInput[];
-    OR?: Prisma.Post_LikeWhereInput[];
-    NOT?: Prisma.Post_LikeWhereInput | Prisma.Post_LikeWhereInput[];
-    postId?: Prisma.IntFilter<'Post_Like'> | number;
-    userId?: Prisma.IntFilter<'Post_Like'> | number;
-    createdAt?: Prisma.DateTimeFilter<'Post_Like'> | Date | string;
-    post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>;
-    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    postId_userId?:
+      | Prisma.Post_LikePostIdUserIdCompoundUniqueInput
+      | runtime.Types.Skip;
+    AND?:
+      | Prisma.Post_LikeWhereInput
+      | Prisma.Post_LikeWhereInput[]
+      | runtime.Types.Skip;
+    OR?: Prisma.Post_LikeWhereInput[] | runtime.Types.Skip;
+    NOT?:
+      | Prisma.Post_LikeWhereInput
+      | Prisma.Post_LikeWhereInput[]
+      | runtime.Types.Skip;
+    postId?: Prisma.IntFilter<'Post_Like'> | number | runtime.Types.Skip;
+    userId?: Prisma.IntFilter<'Post_Like'> | number | runtime.Types.Skip;
+    createdAt?:
+      | Prisma.DateTimeFilter<'Post_Like'>
+      | Date
+      | string
+      | runtime.Types.Skip;
+    post?:
+      | Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
+      | runtime.Types.Skip;
+    user?:
+      | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+      | runtime.Types.Skip;
   },
   'postId_userId'
 >;
 
 export type Post_LikeOrderByWithAggregationInput = {
-  postId?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  _count?: Prisma.Post_LikeCountOrderByAggregateInput;
-  _avg?: Prisma.Post_LikeAvgOrderByAggregateInput;
-  _max?: Prisma.Post_LikeMaxOrderByAggregateInput;
-  _min?: Prisma.Post_LikeMinOrderByAggregateInput;
-  _sum?: Prisma.Post_LikeSumOrderByAggregateInput;
+  postId?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  _count?: Prisma.Post_LikeCountOrderByAggregateInput | runtime.Types.Skip;
+  _avg?: Prisma.Post_LikeAvgOrderByAggregateInput | runtime.Types.Skip;
+  _max?: Prisma.Post_LikeMaxOrderByAggregateInput | runtime.Types.Skip;
+  _min?: Prisma.Post_LikeMinOrderByAggregateInput | runtime.Types.Skip;
+  _sum?: Prisma.Post_LikeSumOrderByAggregateInput | runtime.Types.Skip;
 };
 
 export type Post_LikeScalarWhereWithAggregatesInput = {
   AND?:
     | Prisma.Post_LikeScalarWhereWithAggregatesInput
-    | Prisma.Post_LikeScalarWhereWithAggregatesInput[];
-  OR?: Prisma.Post_LikeScalarWhereWithAggregatesInput[];
+    | Prisma.Post_LikeScalarWhereWithAggregatesInput[]
+    | runtime.Types.Skip;
+  OR?: Prisma.Post_LikeScalarWhereWithAggregatesInput[] | runtime.Types.Skip;
   NOT?:
     | Prisma.Post_LikeScalarWhereWithAggregatesInput
-    | Prisma.Post_LikeScalarWhereWithAggregatesInput[];
-  postId?: Prisma.IntWithAggregatesFilter<'Post_Like'> | number;
-  userId?: Prisma.IntWithAggregatesFilter<'Post_Like'> | number;
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<'Post_Like'> | Date | string;
+    | Prisma.Post_LikeScalarWhereWithAggregatesInput[]
+    | runtime.Types.Skip;
+  postId?:
+    | Prisma.IntWithAggregatesFilter<'Post_Like'>
+    | number
+    | runtime.Types.Skip;
+  userId?:
+    | Prisma.IntWithAggregatesFilter<'Post_Like'>
+    | number
+    | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'Post_Like'>
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateInput = {
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
   post: Prisma.PostCreateNestedOneWithoutLikesInput;
   user: Prisma.UserCreateNestedOneWithoutPost_likesInput;
 };
@@ -268,45 +312,65 @@ export type Post_LikeCreateInput = {
 export type Post_LikeUncheckedCreateInput = {
   postId: number;
   userId: number;
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
 };
 
 export type Post_LikeUpdateInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  post?: Prisma.PostUpdateOneRequiredWithoutLikesNestedInput;
-  user?: Prisma.UserUpdateOneRequiredWithoutPost_likesNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUpdateOneRequiredWithoutLikesNestedInput
+    | runtime.Types.Skip;
+  user?:
+    | Prisma.UserUpdateOneRequiredWithoutPost_likesNestedInput
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateInput = {
-  postId?: Prisma.IntFieldUpdateOperationsInput | number;
-  userId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  postId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  userId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateManyInput = {
   postId: number;
   userId: number;
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
 };
 
 export type Post_LikeUpdateManyMutationInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateManyInput = {
-  postId?: Prisma.IntFieldUpdateOperationsInput | number;
-  userId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  postId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  userId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeListRelationFilter = {
-  every?: Prisma.Post_LikeWhereInput;
-  some?: Prisma.Post_LikeWhereInput;
-  none?: Prisma.Post_LikeWhereInput;
+  every?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
+  some?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
+  none?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
 };
 
 export type Post_LikeOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
+  _count?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type Post_LikePostIdUserIdCompoundUniqueInput = {
@@ -315,31 +379,31 @@ export type Post_LikePostIdUserIdCompoundUniqueInput = {
 };
 
 export type Post_LikeCountOrderByAggregateInput = {
-  postId?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
+  postId?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type Post_LikeAvgOrderByAggregateInput = {
-  postId?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
+  postId?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type Post_LikeMaxOrderByAggregateInput = {
-  postId?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
+  postId?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type Post_LikeMinOrderByAggregateInput = {
-  postId?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
+  postId?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type Post_LikeSumOrderByAggregateInput = {
-  postId?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
+  postId?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateNestedManyWithoutUserInput = {
@@ -349,14 +413,17 @@ export type Post_LikeCreateNestedManyWithoutUserInput = {
         Prisma.Post_LikeUncheckedCreateWithoutUserInput
       >
     | Prisma.Post_LikeCreateWithoutUserInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutUserInput
-    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[];
-  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope;
+    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedCreateNestedManyWithoutUserInput = {
@@ -366,14 +433,17 @@ export type Post_LikeUncheckedCreateNestedManyWithoutUserInput = {
         Prisma.Post_LikeUncheckedCreateWithoutUserInput
       >
     | Prisma.Post_LikeCreateWithoutUserInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutUserInput
-    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[];
-  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope;
+    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUpdateManyWithoutUserNestedInput = {
@@ -383,33 +453,45 @@ export type Post_LikeUpdateManyWithoutUserNestedInput = {
         Prisma.Post_LikeUncheckedCreateWithoutUserInput
       >
     | Prisma.Post_LikeCreateWithoutUserInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutUserInput
-    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[];
+    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[]
+    | runtime.Types.Skip;
   upsert?:
     | Prisma.Post_LikeUpsertWithWhereUniqueWithoutUserInput
-    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutUserInput[];
-  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope;
-  set?: Prisma.Post_LikeWhereUniqueInput | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutUserInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope | runtime.Types.Skip;
+  set?:
+    | Prisma.Post_LikeWhereUniqueInput
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   disconnect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   delete?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   update?:
     | Prisma.Post_LikeUpdateWithWhereUniqueWithoutUserInput
-    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutUserInput[];
+    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutUserInput[]
+    | runtime.Types.Skip;
   updateMany?:
     | Prisma.Post_LikeUpdateManyWithWhereWithoutUserInput
-    | Prisma.Post_LikeUpdateManyWithWhereWithoutUserInput[];
+    | Prisma.Post_LikeUpdateManyWithWhereWithoutUserInput[]
+    | runtime.Types.Skip;
   deleteMany?:
     | Prisma.Post_LikeScalarWhereInput
-    | Prisma.Post_LikeScalarWhereInput[];
+    | Prisma.Post_LikeScalarWhereInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateManyWithoutUserNestedInput = {
@@ -419,33 +501,45 @@ export type Post_LikeUncheckedUpdateManyWithoutUserNestedInput = {
         Prisma.Post_LikeUncheckedCreateWithoutUserInput
       >
     | Prisma.Post_LikeCreateWithoutUserInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutUserInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutUserInput
-    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[];
+    | Prisma.Post_LikeCreateOrConnectWithoutUserInput[]
+    | runtime.Types.Skip;
   upsert?:
     | Prisma.Post_LikeUpsertWithWhereUniqueWithoutUserInput
-    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutUserInput[];
-  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope;
-  set?: Prisma.Post_LikeWhereUniqueInput | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutUserInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyUserInputEnvelope | runtime.Types.Skip;
+  set?:
+    | Prisma.Post_LikeWhereUniqueInput
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   disconnect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   delete?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   update?:
     | Prisma.Post_LikeUpdateWithWhereUniqueWithoutUserInput
-    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutUserInput[];
+    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutUserInput[]
+    | runtime.Types.Skip;
   updateMany?:
     | Prisma.Post_LikeUpdateManyWithWhereWithoutUserInput
-    | Prisma.Post_LikeUpdateManyWithWhereWithoutUserInput[];
+    | Prisma.Post_LikeUpdateManyWithWhereWithoutUserInput[]
+    | runtime.Types.Skip;
   deleteMany?:
     | Prisma.Post_LikeScalarWhereInput
-    | Prisma.Post_LikeScalarWhereInput[];
+    | Prisma.Post_LikeScalarWhereInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateNestedManyWithoutPostInput = {
@@ -455,14 +549,17 @@ export type Post_LikeCreateNestedManyWithoutPostInput = {
         Prisma.Post_LikeUncheckedCreateWithoutPostInput
       >
     | Prisma.Post_LikeCreateWithoutPostInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutPostInput
-    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[];
-  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope;
+    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedCreateNestedManyWithoutPostInput = {
@@ -472,14 +569,17 @@ export type Post_LikeUncheckedCreateNestedManyWithoutPostInput = {
         Prisma.Post_LikeUncheckedCreateWithoutPostInput
       >
     | Prisma.Post_LikeCreateWithoutPostInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutPostInput
-    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[];
-  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope;
+    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUpdateManyWithoutPostNestedInput = {
@@ -489,33 +589,45 @@ export type Post_LikeUpdateManyWithoutPostNestedInput = {
         Prisma.Post_LikeUncheckedCreateWithoutPostInput
       >
     | Prisma.Post_LikeCreateWithoutPostInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutPostInput
-    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[];
+    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[]
+    | runtime.Types.Skip;
   upsert?:
     | Prisma.Post_LikeUpsertWithWhereUniqueWithoutPostInput
-    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutPostInput[];
-  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope;
-  set?: Prisma.Post_LikeWhereUniqueInput | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutPostInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope | runtime.Types.Skip;
+  set?:
+    | Prisma.Post_LikeWhereUniqueInput
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   disconnect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   delete?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   update?:
     | Prisma.Post_LikeUpdateWithWhereUniqueWithoutPostInput
-    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutPostInput[];
+    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutPostInput[]
+    | runtime.Types.Skip;
   updateMany?:
     | Prisma.Post_LikeUpdateManyWithWhereWithoutPostInput
-    | Prisma.Post_LikeUpdateManyWithWhereWithoutPostInput[];
+    | Prisma.Post_LikeUpdateManyWithWhereWithoutPostInput[]
+    | runtime.Types.Skip;
   deleteMany?:
     | Prisma.Post_LikeScalarWhereInput
-    | Prisma.Post_LikeScalarWhereInput[];
+    | Prisma.Post_LikeScalarWhereInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateManyWithoutPostNestedInput = {
@@ -525,43 +637,55 @@ export type Post_LikeUncheckedUpdateManyWithoutPostNestedInput = {
         Prisma.Post_LikeUncheckedCreateWithoutPostInput
       >
     | Prisma.Post_LikeCreateWithoutPostInput[]
-    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[];
+    | Prisma.Post_LikeUncheckedCreateWithoutPostInput[]
+    | runtime.Types.Skip;
   connectOrCreate?:
     | Prisma.Post_LikeCreateOrConnectWithoutPostInput
-    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[];
+    | Prisma.Post_LikeCreateOrConnectWithoutPostInput[]
+    | runtime.Types.Skip;
   upsert?:
     | Prisma.Post_LikeUpsertWithWhereUniqueWithoutPostInput
-    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutPostInput[];
-  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope;
-  set?: Prisma.Post_LikeWhereUniqueInput | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeUpsertWithWhereUniqueWithoutPostInput[]
+    | runtime.Types.Skip;
+  createMany?: Prisma.Post_LikeCreateManyPostInputEnvelope | runtime.Types.Skip;
+  set?:
+    | Prisma.Post_LikeWhereUniqueInput
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   disconnect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   delete?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   connect?:
     | Prisma.Post_LikeWhereUniqueInput
-    | Prisma.Post_LikeWhereUniqueInput[];
+    | Prisma.Post_LikeWhereUniqueInput[]
+    | runtime.Types.Skip;
   update?:
     | Prisma.Post_LikeUpdateWithWhereUniqueWithoutPostInput
-    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutPostInput[];
+    | Prisma.Post_LikeUpdateWithWhereUniqueWithoutPostInput[]
+    | runtime.Types.Skip;
   updateMany?:
     | Prisma.Post_LikeUpdateManyWithWhereWithoutPostInput
-    | Prisma.Post_LikeUpdateManyWithWhereWithoutPostInput[];
+    | Prisma.Post_LikeUpdateManyWithWhereWithoutPostInput[]
+    | runtime.Types.Skip;
   deleteMany?:
     | Prisma.Post_LikeScalarWhereInput
-    | Prisma.Post_LikeScalarWhereInput[];
+    | Prisma.Post_LikeScalarWhereInput[]
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateWithoutUserInput = {
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
   post: Prisma.PostCreateNestedOneWithoutLikesInput;
 };
 
 export type Post_LikeUncheckedCreateWithoutUserInput = {
   postId: number;
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateOrConnectWithoutUserInput = {
@@ -576,7 +700,7 @@ export type Post_LikeCreateManyUserInputEnvelope = {
   data:
     | Prisma.Post_LikeCreateManyUserInput
     | Prisma.Post_LikeCreateManyUserInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
 };
 
 export type Post_LikeUpsertWithWhereUniqueWithoutUserInput = {
@@ -608,22 +732,32 @@ export type Post_LikeUpdateManyWithWhereWithoutUserInput = {
 };
 
 export type Post_LikeScalarWhereInput = {
-  AND?: Prisma.Post_LikeScalarWhereInput | Prisma.Post_LikeScalarWhereInput[];
-  OR?: Prisma.Post_LikeScalarWhereInput[];
-  NOT?: Prisma.Post_LikeScalarWhereInput | Prisma.Post_LikeScalarWhereInput[];
-  postId?: Prisma.IntFilter<'Post_Like'> | number;
-  userId?: Prisma.IntFilter<'Post_Like'> | number;
-  createdAt?: Prisma.DateTimeFilter<'Post_Like'> | Date | string;
+  AND?:
+    | Prisma.Post_LikeScalarWhereInput
+    | Prisma.Post_LikeScalarWhereInput[]
+    | runtime.Types.Skip;
+  OR?: Prisma.Post_LikeScalarWhereInput[] | runtime.Types.Skip;
+  NOT?:
+    | Prisma.Post_LikeScalarWhereInput
+    | Prisma.Post_LikeScalarWhereInput[]
+    | runtime.Types.Skip;
+  postId?: Prisma.IntFilter<'Post_Like'> | number | runtime.Types.Skip;
+  userId?: Prisma.IntFilter<'Post_Like'> | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFilter<'Post_Like'>
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateWithoutPostInput = {
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
   user: Prisma.UserCreateNestedOneWithoutPost_likesInput;
 };
 
 export type Post_LikeUncheckedCreateWithoutPostInput = {
   userId: number;
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateOrConnectWithoutPostInput = {
@@ -638,7 +772,7 @@ export type Post_LikeCreateManyPostInputEnvelope = {
   data:
     | Prisma.Post_LikeCreateManyPostInput
     | Prisma.Post_LikeCreateManyPostInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
 };
 
 export type Post_LikeUpsertWithWhereUniqueWithoutPostInput = {
@@ -671,42 +805,70 @@ export type Post_LikeUpdateManyWithWhereWithoutPostInput = {
 
 export type Post_LikeCreateManyUserInput = {
   postId: number;
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
 };
 
 export type Post_LikeUpdateWithoutUserInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  post?: Prisma.PostUpdateOneRequiredWithoutLikesNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUpdateOneRequiredWithoutLikesNestedInput
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateWithoutUserInput = {
-  postId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  postId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateManyWithoutUserInput = {
-  postId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  postId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeCreateManyPostInput = {
   userId: number;
-  createdAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
 };
 
 export type Post_LikeUpdateWithoutPostInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  user?: Prisma.UserUpdateOneRequiredWithoutPost_likesNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  user?:
+    | Prisma.UserUpdateOneRequiredWithoutPost_likesNestedInput
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateWithoutPostInput = {
-  userId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  userId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeUncheckedUpdateManyWithoutPostInput = {
-  userId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  userId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
 };
 
 export type Post_LikeSelect<
@@ -714,11 +876,11 @@ export type Post_LikeSelect<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    postId?: boolean;
-    userId?: boolean;
-    createdAt?: boolean;
-    post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    postId?: boolean | runtime.Types.Skip;
+    userId?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    post?: boolean | Prisma.PostDefaultArgs<ExtArgs> | runtime.Types.Skip;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
   },
   ExtArgs['result']['post_Like']
 >;
@@ -728,11 +890,11 @@ export type Post_LikeSelectCreateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    postId?: boolean;
-    userId?: boolean;
-    createdAt?: boolean;
-    post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    postId?: boolean | runtime.Types.Skip;
+    userId?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    post?: boolean | Prisma.PostDefaultArgs<ExtArgs> | runtime.Types.Skip;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
   },
   ExtArgs['result']['post_Like']
 >;
@@ -742,19 +904,19 @@ export type Post_LikeSelectUpdateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    postId?: boolean;
-    userId?: boolean;
-    createdAt?: boolean;
-    post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    postId?: boolean | runtime.Types.Skip;
+    userId?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    post?: boolean | Prisma.PostDefaultArgs<ExtArgs> | runtime.Types.Skip;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
   },
   ExtArgs['result']['post_Like']
 >;
 
 export type Post_LikeSelectScalar = {
-  postId?: boolean;
-  userId?: boolean;
-  createdAt?: boolean;
+  postId?: boolean | runtime.Types.Skip;
+  userId?: boolean | runtime.Types.Skip;
+  createdAt?: boolean | runtime.Types.Skip;
 };
 
 export type Post_LikeOmit<
@@ -762,28 +924,29 @@ export type Post_LikeOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   'postId' | 'userId' | 'createdAt',
-  ExtArgs['result']['post_Like']
+  ExtArgs['result']['post_Like'],
+  runtime.Types.Skip
 >;
 export type Post_LikeInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  post?: boolean | Prisma.PostDefaultArgs<ExtArgs> | runtime.Types.Skip;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
 };
 export type Post_LikeIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  post?: boolean | Prisma.PostDefaultArgs<ExtArgs> | runtime.Types.Skip;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
 };
 export type Post_LikeIncludeUpdateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  post?: boolean | Prisma.PostDefaultArgs<ExtArgs>;
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  post?: boolean | Prisma.PostDefaultArgs<ExtArgs> | runtime.Types.Skip;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
 };
 
 export type $Post_LikePayload<
@@ -1498,7 +1661,7 @@ export type Post_LikeFindFirstArgs<
   /**
    * Filter, which Post_Like to fetch.
    */
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1506,25 +1669,26 @@ export type Post_LikeFindFirstArgs<
    */
   orderBy?:
     | Prisma.Post_LikeOrderByWithRelationInput
-    | Prisma.Post_LikeOrderByWithRelationInput[];
+    | Prisma.Post_LikeOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Post_Likes.
    */
-  cursor?: Prisma.Post_LikeWhereUniqueInput;
+  cursor?: Prisma.Post_LikeWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Post_Likes from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Post_Likes.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
@@ -1532,7 +1696,8 @@ export type Post_LikeFindFirstArgs<
    */
   distinct?:
     | Prisma.Post_LikeScalarFieldEnum
-    | Prisma.Post_LikeScalarFieldEnum[];
+    | Prisma.Post_LikeScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -1557,7 +1722,7 @@ export type Post_LikeFindFirstOrThrowArgs<
   /**
    * Filter, which Post_Like to fetch.
    */
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1565,25 +1730,26 @@ export type Post_LikeFindFirstOrThrowArgs<
    */
   orderBy?:
     | Prisma.Post_LikeOrderByWithRelationInput
-    | Prisma.Post_LikeOrderByWithRelationInput[];
+    | Prisma.Post_LikeOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Post_Likes.
    */
-  cursor?: Prisma.Post_LikeWhereUniqueInput;
+  cursor?: Prisma.Post_LikeWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Post_Likes from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Post_Likes.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
@@ -1591,7 +1757,8 @@ export type Post_LikeFindFirstOrThrowArgs<
    */
   distinct?:
     | Prisma.Post_LikeScalarFieldEnum
-    | Prisma.Post_LikeScalarFieldEnum[];
+    | Prisma.Post_LikeScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -1616,7 +1783,7 @@ export type Post_LikeFindManyArgs<
   /**
    * Filter, which Post_Likes to fetch.
    */
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1624,25 +1791,26 @@ export type Post_LikeFindManyArgs<
    */
   orderBy?:
     | Prisma.Post_LikeOrderByWithRelationInput
-    | Prisma.Post_LikeOrderByWithRelationInput[];
+    | Prisma.Post_LikeOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing Post_Likes.
    */
-  cursor?: Prisma.Post_LikeWhereUniqueInput;
+  cursor?: Prisma.Post_LikeWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Post_Likes from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Post_Likes.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
@@ -1650,7 +1818,8 @@ export type Post_LikeFindManyArgs<
    */
   distinct?:
     | Prisma.Post_LikeScalarFieldEnum
-    | Prisma.Post_LikeScalarFieldEnum[];
+    | Prisma.Post_LikeScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -1692,7 +1861,7 @@ export type Post_LikeCreateManyArgs<
    * The data used to create many Post_Likes.
    */
   data: Prisma.Post_LikeCreateManyInput | Prisma.Post_LikeCreateManyInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
 };
 
 /**
@@ -1714,7 +1883,7 @@ export type Post_LikeCreateManyAndReturnArgs<
    * The data used to create many Post_Likes.
    */
   data: Prisma.Post_LikeCreateManyInput | Prisma.Post_LikeCreateManyInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -1770,11 +1939,11 @@ export type Post_LikeUpdateManyArgs<
   /**
    * Filter which Post_Likes to update
    */
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Post_Likes to update.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
 };
 
 /**
@@ -1802,11 +1971,11 @@ export type Post_LikeUpdateManyAndReturnArgs<
   /**
    * Filter which Post_Likes to update
    */
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Post_Likes to update.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -1887,11 +2056,11 @@ export type Post_LikeDeleteManyArgs<
   /**
    * Filter which Post_Likes to delete
    */
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Post_Likes to delete.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
 };
 
 /**

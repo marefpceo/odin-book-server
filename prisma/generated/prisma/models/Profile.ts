@@ -71,47 +71,47 @@ export type ProfileCountAggregateOutputType = {
 };
 
 export type ProfileAvgAggregateInputType = {
-  id?: true;
-  userId?: true;
+  id?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
 };
 
 export type ProfileSumAggregateInputType = {
-  id?: true;
-  userId?: true;
+  id?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
 };
 
 export type ProfileMinAggregateInputType = {
-  id?: true;
-  userId?: true;
-  createdAt?: true;
-  updatedAt?: true;
-  firstname?: true;
-  lastname?: true;
-  avatar?: true;
-  bio?: true;
+  id?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
+  updatedAt?: true | runtime.Types.Skip;
+  firstname?: true | runtime.Types.Skip;
+  lastname?: true | runtime.Types.Skip;
+  avatar?: true | runtime.Types.Skip;
+  bio?: true | runtime.Types.Skip;
 };
 
 export type ProfileMaxAggregateInputType = {
-  id?: true;
-  userId?: true;
-  createdAt?: true;
-  updatedAt?: true;
-  firstname?: true;
-  lastname?: true;
-  avatar?: true;
-  bio?: true;
+  id?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
+  updatedAt?: true | runtime.Types.Skip;
+  firstname?: true | runtime.Types.Skip;
+  lastname?: true | runtime.Types.Skip;
+  avatar?: true | runtime.Types.Skip;
+  bio?: true | runtime.Types.Skip;
 };
 
 export type ProfileCountAggregateInputType = {
-  id?: true;
-  userId?: true;
-  createdAt?: true;
-  updatedAt?: true;
-  firstname?: true;
-  lastname?: true;
-  avatar?: true;
-  bio?: true;
-  _all?: true;
+  id?: true | runtime.Types.Skip;
+  userId?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
+  updatedAt?: true | runtime.Types.Skip;
+  firstname?: true | runtime.Types.Skip;
+  lastname?: true | runtime.Types.Skip;
+  avatar?: true | runtime.Types.Skip;
+  bio?: true | runtime.Types.Skip;
+  _all?: true | runtime.Types.Skip;
 };
 
 export type ProfileAggregateArgs<
@@ -121,7 +121,7 @@ export type ProfileAggregateArgs<
   /**
    * Filter which Profile to aggregate.
    */
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -129,25 +129,26 @@ export type ProfileAggregateArgs<
    */
   orderBy?:
     | Prisma.ProfileOrderByWithRelationInput
-    | Prisma.ProfileOrderByWithRelationInput[];
+    | Prisma.ProfileOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.ProfileWhereUniqueInput;
+  cursor?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Profiles from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Profiles.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
@@ -192,14 +193,15 @@ export type ProfileGroupByArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.ProfileOrderByWithAggregationInput
-    | Prisma.ProfileOrderByWithAggregationInput[];
+    | Prisma.ProfileOrderByWithAggregationInput[]
+    | runtime.Types.Skip;
   by: Prisma.ProfileScalarFieldEnum[] | Prisma.ProfileScalarFieldEnum;
-  having?: Prisma.ProfileScalarWhereWithAggregatesInput;
-  take?: number;
-  skip?: number;
+  having?: Prisma.ProfileScalarWhereWithAggregatesInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
   _count?: ProfileCountAggregateInputType | true;
   _avg?: ProfileAvgAggregateInputType;
   _sum?: ProfileSumAggregateInputType;
@@ -237,282 +239,442 @@ export type GetProfileGroupByPayload<T extends ProfileGroupByArgs> =
   >;
 
 export type ProfileWhereInput = {
-  AND?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[];
-  OR?: Prisma.ProfileWhereInput[];
-  NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[];
-  id?: Prisma.IntFilter<'Profile'> | number;
-  userId?: Prisma.IntFilter<'Profile'> | number;
-  createdAt?: Prisma.DateTimeFilter<'Profile'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'Profile'> | Date | string;
-  firstname?: Prisma.StringFilter<'Profile'> | string;
-  lastname?: Prisma.StringFilter<'Profile'> | string;
-  avatar?: Prisma.StringNullableFilter<'Profile'> | string | null;
-  bio?: Prisma.StringFilter<'Profile'> | string;
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  AND?:
+    | Prisma.ProfileWhereInput
+    | Prisma.ProfileWhereInput[]
+    | runtime.Types.Skip;
+  OR?: Prisma.ProfileWhereInput[] | runtime.Types.Skip;
+  NOT?:
+    | Prisma.ProfileWhereInput
+    | Prisma.ProfileWhereInput[]
+    | runtime.Types.Skip;
+  id?: Prisma.IntFilter<'Profile'> | number | runtime.Types.Skip;
+  userId?: Prisma.IntFilter<'Profile'> | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFilter<'Profile'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFilter<'Profile'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?: Prisma.StringFilter<'Profile'> | string | runtime.Types.Skip;
+  lastname?: Prisma.StringFilter<'Profile'> | string | runtime.Types.Skip;
+  avatar?:
+    | Prisma.StringNullableFilter<'Profile'>
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?: Prisma.StringFilter<'Profile'> | string | runtime.Types.Skip;
+  user?:
+    | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+    | runtime.Types.Skip;
 };
 
 export type ProfileOrderByWithRelationInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  firstname?: Prisma.SortOrder;
-  lastname?: Prisma.SortOrder;
-  avatar?: Prisma.SortOrderInput | Prisma.SortOrder;
-  bio?: Prisma.SortOrder;
-  user?: Prisma.UserOrderByWithRelationInput;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  firstname?: Prisma.SortOrder | runtime.Types.Skip;
+  lastname?: Prisma.SortOrder | runtime.Types.Skip;
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder | runtime.Types.Skip;
+  bio?: Prisma.SortOrder | runtime.Types.Skip;
+  user?: Prisma.UserOrderByWithRelationInput | runtime.Types.Skip;
 };
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<
   {
-    id?: number;
-    userId?: number;
-    AND?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[];
-    OR?: Prisma.ProfileWhereInput[];
-    NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[];
-    createdAt?: Prisma.DateTimeFilter<'Profile'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'Profile'> | Date | string;
-    firstname?: Prisma.StringFilter<'Profile'> | string;
-    lastname?: Prisma.StringFilter<'Profile'> | string;
-    avatar?: Prisma.StringNullableFilter<'Profile'> | string | null;
-    bio?: Prisma.StringFilter<'Profile'> | string;
-    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    id?: number | runtime.Types.Skip;
+    userId?: number | runtime.Types.Skip;
+    AND?:
+      | Prisma.ProfileWhereInput
+      | Prisma.ProfileWhereInput[]
+      | runtime.Types.Skip;
+    OR?: Prisma.ProfileWhereInput[] | runtime.Types.Skip;
+    NOT?:
+      | Prisma.ProfileWhereInput
+      | Prisma.ProfileWhereInput[]
+      | runtime.Types.Skip;
+    createdAt?:
+      | Prisma.DateTimeFilter<'Profile'>
+      | Date
+      | string
+      | runtime.Types.Skip;
+    updatedAt?:
+      | Prisma.DateTimeFilter<'Profile'>
+      | Date
+      | string
+      | runtime.Types.Skip;
+    firstname?: Prisma.StringFilter<'Profile'> | string | runtime.Types.Skip;
+    lastname?: Prisma.StringFilter<'Profile'> | string | runtime.Types.Skip;
+    avatar?:
+      | Prisma.StringNullableFilter<'Profile'>
+      | string
+      | null
+      | runtime.Types.Skip;
+    bio?: Prisma.StringFilter<'Profile'> | string | runtime.Types.Skip;
+    user?:
+      | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+      | runtime.Types.Skip;
   },
   'id' | 'userId'
 >;
 
 export type ProfileOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  firstname?: Prisma.SortOrder;
-  lastname?: Prisma.SortOrder;
-  avatar?: Prisma.SortOrderInput | Prisma.SortOrder;
-  bio?: Prisma.SortOrder;
-  _count?: Prisma.ProfileCountOrderByAggregateInput;
-  _avg?: Prisma.ProfileAvgOrderByAggregateInput;
-  _max?: Prisma.ProfileMaxOrderByAggregateInput;
-  _min?: Prisma.ProfileMinOrderByAggregateInput;
-  _sum?: Prisma.ProfileSumOrderByAggregateInput;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  firstname?: Prisma.SortOrder | runtime.Types.Skip;
+  lastname?: Prisma.SortOrder | runtime.Types.Skip;
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder | runtime.Types.Skip;
+  bio?: Prisma.SortOrder | runtime.Types.Skip;
+  _count?: Prisma.ProfileCountOrderByAggregateInput | runtime.Types.Skip;
+  _avg?: Prisma.ProfileAvgOrderByAggregateInput | runtime.Types.Skip;
+  _max?: Prisma.ProfileMaxOrderByAggregateInput | runtime.Types.Skip;
+  _min?: Prisma.ProfileMinOrderByAggregateInput | runtime.Types.Skip;
+  _sum?: Prisma.ProfileSumOrderByAggregateInput | runtime.Types.Skip;
 };
 
 export type ProfileScalarWhereWithAggregatesInput = {
   AND?:
     | Prisma.ProfileScalarWhereWithAggregatesInput
-    | Prisma.ProfileScalarWhereWithAggregatesInput[];
-  OR?: Prisma.ProfileScalarWhereWithAggregatesInput[];
+    | Prisma.ProfileScalarWhereWithAggregatesInput[]
+    | runtime.Types.Skip;
+  OR?: Prisma.ProfileScalarWhereWithAggregatesInput[] | runtime.Types.Skip;
   NOT?:
     | Prisma.ProfileScalarWhereWithAggregatesInput
-    | Prisma.ProfileScalarWhereWithAggregatesInput[];
-  id?: Prisma.IntWithAggregatesFilter<'Profile'> | number;
-  userId?: Prisma.IntWithAggregatesFilter<'Profile'> | number;
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<'Profile'> | Date | string;
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<'Profile'> | Date | string;
-  firstname?: Prisma.StringWithAggregatesFilter<'Profile'> | string;
-  lastname?: Prisma.StringWithAggregatesFilter<'Profile'> | string;
-  avatar?: Prisma.StringNullableWithAggregatesFilter<'Profile'> | string | null;
-  bio?: Prisma.StringWithAggregatesFilter<'Profile'> | string;
+    | Prisma.ProfileScalarWhereWithAggregatesInput[]
+    | runtime.Types.Skip;
+  id?: Prisma.IntWithAggregatesFilter<'Profile'> | number | runtime.Types.Skip;
+  userId?:
+    | Prisma.IntWithAggregatesFilter<'Profile'>
+    | number
+    | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'Profile'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'Profile'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?:
+    | Prisma.StringWithAggregatesFilter<'Profile'>
+    | string
+    | runtime.Types.Skip;
+  lastname?:
+    | Prisma.StringWithAggregatesFilter<'Profile'>
+    | string
+    | runtime.Types.Skip;
+  avatar?:
+    | Prisma.StringNullableWithAggregatesFilter<'Profile'>
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?:
+    | Prisma.StringWithAggregatesFilter<'Profile'>
+    | string
+    | runtime.Types.Skip;
 };
 
 export type ProfileCreateInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   firstname: string;
   lastname: string;
-  avatar?: string | null;
-  bio?: string;
+  avatar?: string | null | runtime.Types.Skip;
+  bio?: string | runtime.Types.Skip;
   user: Prisma.UserCreateNestedOneWithoutProfileInput;
 };
 
 export type ProfileUncheckedCreateInput = {
-  id?: number;
+  id?: number | runtime.Types.Skip;
   userId: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   firstname: string;
   lastname: string;
-  avatar?: string | null;
-  bio?: string;
+  avatar?: string | null | runtime.Types.Skip;
+  bio?: string | runtime.Types.Skip;
 };
 
 export type ProfileUpdateInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string;
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  bio?: Prisma.StringFieldUpdateOperationsInput | string;
-  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  lastname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  avatar?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  user?:
+    | Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+    | runtime.Types.Skip;
 };
 
 export type ProfileUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  userId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string;
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  bio?: Prisma.StringFieldUpdateOperationsInput | string;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  userId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  lastname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  avatar?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
 };
 
 export type ProfileCreateManyInput = {
-  id?: number;
+  id?: number | runtime.Types.Skip;
   userId: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   firstname: string;
   lastname: string;
-  avatar?: string | null;
-  bio?: string;
+  avatar?: string | null | runtime.Types.Skip;
+  bio?: string | runtime.Types.Skip;
 };
 
 export type ProfileUpdateManyMutationInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string;
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  bio?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  lastname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  avatar?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
 };
 
 export type ProfileUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  userId?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string;
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  bio?: Prisma.StringFieldUpdateOperationsInput | string;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  userId?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  lastname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  avatar?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
 };
 
 export type ProfileNullableScalarRelationFilter = {
-  is?: Prisma.ProfileWhereInput | null;
-  isNot?: Prisma.ProfileWhereInput | null;
+  is?: Prisma.ProfileWhereInput | null | runtime.Types.Skip;
+  isNot?: Prisma.ProfileWhereInput | null | runtime.Types.Skip;
 };
 
 export type ProfileCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  firstname?: Prisma.SortOrder;
-  lastname?: Prisma.SortOrder;
-  avatar?: Prisma.SortOrder;
-  bio?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  firstname?: Prisma.SortOrder | runtime.Types.Skip;
+  lastname?: Prisma.SortOrder | runtime.Types.Skip;
+  avatar?: Prisma.SortOrder | runtime.Types.Skip;
+  bio?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type ProfileAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type ProfileMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  firstname?: Prisma.SortOrder;
-  lastname?: Prisma.SortOrder;
-  avatar?: Prisma.SortOrder;
-  bio?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  firstname?: Prisma.SortOrder | runtime.Types.Skip;
+  lastname?: Prisma.SortOrder | runtime.Types.Skip;
+  avatar?: Prisma.SortOrder | runtime.Types.Skip;
+  bio?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type ProfileMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  firstname?: Prisma.SortOrder;
-  lastname?: Prisma.SortOrder;
-  avatar?: Prisma.SortOrder;
-  bio?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  firstname?: Prisma.SortOrder | runtime.Types.Skip;
+  lastname?: Prisma.SortOrder | runtime.Types.Skip;
+  avatar?: Prisma.SortOrder | runtime.Types.Skip;
+  bio?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type ProfileSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  userId?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type ProfileCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<
-    Prisma.ProfileCreateWithoutUserInput,
-    Prisma.ProfileUncheckedCreateWithoutUserInput
-  >;
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutUserInput;
-  connect?: Prisma.ProfileWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.ProfileCreateWithoutUserInput,
+        Prisma.ProfileUncheckedCreateWithoutUserInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.ProfileCreateOrConnectWithoutUserInput
+    | runtime.Types.Skip;
+  connect?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type ProfileUncheckedCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<
-    Prisma.ProfileCreateWithoutUserInput,
-    Prisma.ProfileUncheckedCreateWithoutUserInput
-  >;
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutUserInput;
-  connect?: Prisma.ProfileWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.ProfileCreateWithoutUserInput,
+        Prisma.ProfileUncheckedCreateWithoutUserInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.ProfileCreateOrConnectWithoutUserInput
+    | runtime.Types.Skip;
+  connect?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type ProfileUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.ProfileCreateWithoutUserInput,
-    Prisma.ProfileUncheckedCreateWithoutUserInput
-  >;
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutUserInput;
-  upsert?: Prisma.ProfileUpsertWithoutUserInput;
-  disconnect?: Prisma.ProfileWhereInput | boolean;
-  delete?: Prisma.ProfileWhereInput | boolean;
-  connect?: Prisma.ProfileWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.ProfileUpdateToOneWithWhereWithoutUserInput,
-      Prisma.ProfileUpdateWithoutUserInput
-    >,
-    Prisma.ProfileUncheckedUpdateWithoutUserInput
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.ProfileCreateWithoutUserInput,
+        Prisma.ProfileUncheckedCreateWithoutUserInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.ProfileCreateOrConnectWithoutUserInput
+    | runtime.Types.Skip;
+  upsert?: Prisma.ProfileUpsertWithoutUserInput | runtime.Types.Skip;
+  disconnect?: Prisma.ProfileWhereInput | boolean | runtime.Types.Skip;
+  delete?: Prisma.ProfileWhereInput | boolean | runtime.Types.Skip;
+  connect?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.ProfileUpdateToOneWithWhereWithoutUserInput,
+          Prisma.ProfileUpdateWithoutUserInput
+        >,
+        Prisma.ProfileUncheckedUpdateWithoutUserInput
+      >
+    | runtime.Types.Skip;
 };
 
 export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.ProfileCreateWithoutUserInput,
-    Prisma.ProfileUncheckedCreateWithoutUserInput
-  >;
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutUserInput;
-  upsert?: Prisma.ProfileUpsertWithoutUserInput;
-  disconnect?: Prisma.ProfileWhereInput | boolean;
-  delete?: Prisma.ProfileWhereInput | boolean;
-  connect?: Prisma.ProfileWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.ProfileUpdateToOneWithWhereWithoutUserInput,
-      Prisma.ProfileUpdateWithoutUserInput
-    >,
-    Prisma.ProfileUncheckedUpdateWithoutUserInput
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.ProfileCreateWithoutUserInput,
+        Prisma.ProfileUncheckedCreateWithoutUserInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.ProfileCreateOrConnectWithoutUserInput
+    | runtime.Types.Skip;
+  upsert?: Prisma.ProfileUpsertWithoutUserInput | runtime.Types.Skip;
+  disconnect?: Prisma.ProfileWhereInput | boolean | runtime.Types.Skip;
+  delete?: Prisma.ProfileWhereInput | boolean | runtime.Types.Skip;
+  connect?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.ProfileUpdateToOneWithWhereWithoutUserInput,
+          Prisma.ProfileUpdateWithoutUserInput
+        >,
+        Prisma.ProfileUncheckedUpdateWithoutUserInput
+      >
+    | runtime.Types.Skip;
 };
 
 export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null;
+  set?: string | null | runtime.Types.Skip;
 };
 
 export type ProfileCreateWithoutUserInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   firstname: string;
   lastname: string;
-  avatar?: string | null;
-  bio?: string;
+  avatar?: string | null | runtime.Types.Skip;
+  bio?: string | runtime.Types.Skip;
 };
 
 export type ProfileUncheckedCreateWithoutUserInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   firstname: string;
   lastname: string;
-  avatar?: string | null;
-  bio?: string;
+  avatar?: string | null | runtime.Types.Skip;
+  bio?: string | runtime.Types.Skip;
 };
 
 export type ProfileCreateOrConnectWithoutUserInput = {
@@ -532,11 +694,11 @@ export type ProfileUpsertWithoutUserInput = {
     Prisma.ProfileCreateWithoutUserInput,
     Prisma.ProfileUncheckedCreateWithoutUserInput
   >;
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
 };
 
 export type ProfileUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.ProfileUpdateWithoutUserInput,
     Prisma.ProfileUncheckedUpdateWithoutUserInput
@@ -544,22 +706,58 @@ export type ProfileUpdateToOneWithWhereWithoutUserInput = {
 };
 
 export type ProfileUpdateWithoutUserInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string;
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  bio?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  lastname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  avatar?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
 };
 
 export type ProfileUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  firstname?: Prisma.StringFieldUpdateOperationsInput | string;
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string;
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  bio?: Prisma.StringFieldUpdateOperationsInput | string;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  firstname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  lastname?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  avatar?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null
+    | runtime.Types.Skip;
+  bio?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
 };
 
 export type ProfileSelect<
@@ -567,15 +765,15 @@ export type ProfileSelect<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean;
-    userId?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    firstname?: boolean;
-    lastname?: boolean;
-    avatar?: boolean;
-    bio?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    id?: boolean | runtime.Types.Skip;
+    userId?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    updatedAt?: boolean | runtime.Types.Skip;
+    firstname?: boolean | runtime.Types.Skip;
+    lastname?: boolean | runtime.Types.Skip;
+    avatar?: boolean | runtime.Types.Skip;
+    bio?: boolean | runtime.Types.Skip;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
   },
   ExtArgs['result']['profile']
 >;
@@ -585,15 +783,15 @@ export type ProfileSelectCreateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean;
-    userId?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    firstname?: boolean;
-    lastname?: boolean;
-    avatar?: boolean;
-    bio?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    id?: boolean | runtime.Types.Skip;
+    userId?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    updatedAt?: boolean | runtime.Types.Skip;
+    firstname?: boolean | runtime.Types.Skip;
+    lastname?: boolean | runtime.Types.Skip;
+    avatar?: boolean | runtime.Types.Skip;
+    bio?: boolean | runtime.Types.Skip;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
   },
   ExtArgs['result']['profile']
 >;
@@ -603,28 +801,28 @@ export type ProfileSelectUpdateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean;
-    userId?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    firstname?: boolean;
-    lastname?: boolean;
-    avatar?: boolean;
-    bio?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    id?: boolean | runtime.Types.Skip;
+    userId?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    updatedAt?: boolean | runtime.Types.Skip;
+    firstname?: boolean | runtime.Types.Skip;
+    lastname?: boolean | runtime.Types.Skip;
+    avatar?: boolean | runtime.Types.Skip;
+    bio?: boolean | runtime.Types.Skip;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
   },
   ExtArgs['result']['profile']
 >;
 
 export type ProfileSelectScalar = {
-  id?: boolean;
-  userId?: boolean;
-  createdAt?: boolean;
-  updatedAt?: boolean;
-  firstname?: boolean;
-  lastname?: boolean;
-  avatar?: boolean;
-  bio?: boolean;
+  id?: boolean | runtime.Types.Skip;
+  userId?: boolean | runtime.Types.Skip;
+  createdAt?: boolean | runtime.Types.Skip;
+  updatedAt?: boolean | runtime.Types.Skip;
+  firstname?: boolean | runtime.Types.Skip;
+  lastname?: boolean | runtime.Types.Skip;
+  avatar?: boolean | runtime.Types.Skip;
+  bio?: boolean | runtime.Types.Skip;
 };
 
 export type ProfileOmit<
@@ -639,25 +837,26 @@ export type ProfileOmit<
   | 'lastname'
   | 'avatar'
   | 'bio',
-  ExtArgs['result']['profile']
+  ExtArgs['result']['profile'],
+  runtime.Types.Skip
 >;
 export type ProfileInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
 };
 export type ProfileIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
 };
 export type ProfileIncludeUpdateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
 };
 
 export type $ProfilePayload<
@@ -1367,7 +1566,7 @@ export type ProfileFindFirstArgs<
   /**
    * Filter, which Profile to fetch.
    */
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1375,31 +1574,35 @@ export type ProfileFindFirstArgs<
    */
   orderBy?:
     | Prisma.ProfileOrderByWithRelationInput
-    | Prisma.ProfileOrderByWithRelationInput[];
+    | Prisma.ProfileOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Profiles.
    */
-  cursor?: Prisma.ProfileWhereUniqueInput;
+  cursor?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Profiles from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Profiles.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Profiles.
    */
-  distinct?: Prisma.ProfileScalarFieldEnum | Prisma.ProfileScalarFieldEnum[];
+  distinct?:
+    | Prisma.ProfileScalarFieldEnum
+    | Prisma.ProfileScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -1424,7 +1627,7 @@ export type ProfileFindFirstOrThrowArgs<
   /**
    * Filter, which Profile to fetch.
    */
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1432,31 +1635,35 @@ export type ProfileFindFirstOrThrowArgs<
    */
   orderBy?:
     | Prisma.ProfileOrderByWithRelationInput
-    | Prisma.ProfileOrderByWithRelationInput[];
+    | Prisma.ProfileOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Profiles.
    */
-  cursor?: Prisma.ProfileWhereUniqueInput;
+  cursor?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Profiles from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Profiles.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Profiles.
    */
-  distinct?: Prisma.ProfileScalarFieldEnum | Prisma.ProfileScalarFieldEnum[];
+  distinct?:
+    | Prisma.ProfileScalarFieldEnum
+    | Prisma.ProfileScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -1481,7 +1688,7 @@ export type ProfileFindManyArgs<
   /**
    * Filter, which Profiles to fetch.
    */
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1489,31 +1696,35 @@ export type ProfileFindManyArgs<
    */
   orderBy?:
     | Prisma.ProfileOrderByWithRelationInput
-    | Prisma.ProfileOrderByWithRelationInput[];
+    | Prisma.ProfileOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing Profiles.
    */
-  cursor?: Prisma.ProfileWhereUniqueInput;
+  cursor?: Prisma.ProfileWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Profiles from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Profiles.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Profiles.
    */
-  distinct?: Prisma.ProfileScalarFieldEnum | Prisma.ProfileScalarFieldEnum[];
+  distinct?:
+    | Prisma.ProfileScalarFieldEnum
+    | Prisma.ProfileScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -1555,7 +1766,7 @@ export type ProfileCreateManyArgs<
    * The data used to create many Profiles.
    */
   data: Prisma.ProfileCreateManyInput | Prisma.ProfileCreateManyInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
 };
 
 /**
@@ -1577,7 +1788,7 @@ export type ProfileCreateManyAndReturnArgs<
    * The data used to create many Profiles.
    */
   data: Prisma.ProfileCreateManyInput | Prisma.ProfileCreateManyInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -1633,11 +1844,11 @@ export type ProfileUpdateManyArgs<
   /**
    * Filter which Profiles to update
    */
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Profiles to update.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
 };
 
 /**
@@ -1665,11 +1876,11 @@ export type ProfileUpdateManyAndReturnArgs<
   /**
    * Filter which Profiles to update
    */
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Profiles to update.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -1750,11 +1961,11 @@ export type ProfileDeleteManyArgs<
   /**
    * Filter which Profiles to delete
    */
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Profiles to delete.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
 };
 
 /**

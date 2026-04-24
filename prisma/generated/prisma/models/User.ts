@@ -66,42 +66,42 @@ export type UserCountAggregateOutputType = {
 };
 
 export type UserAvgAggregateInputType = {
-  id?: true;
+  id?: true | runtime.Types.Skip;
 };
 
 export type UserSumAggregateInputType = {
-  id?: true;
+  id?: true | runtime.Types.Skip;
 };
 
 export type UserMinAggregateInputType = {
-  id?: true;
-  createdAt?: true;
-  updatedAt?: true;
-  username?: true;
-  email?: true;
-  password?: true;
-  role?: true;
+  id?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
+  updatedAt?: true | runtime.Types.Skip;
+  username?: true | runtime.Types.Skip;
+  email?: true | runtime.Types.Skip;
+  password?: true | runtime.Types.Skip;
+  role?: true | runtime.Types.Skip;
 };
 
 export type UserMaxAggregateInputType = {
-  id?: true;
-  createdAt?: true;
-  updatedAt?: true;
-  username?: true;
-  email?: true;
-  password?: true;
-  role?: true;
+  id?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
+  updatedAt?: true | runtime.Types.Skip;
+  username?: true | runtime.Types.Skip;
+  email?: true | runtime.Types.Skip;
+  password?: true | runtime.Types.Skip;
+  role?: true | runtime.Types.Skip;
 };
 
 export type UserCountAggregateInputType = {
-  id?: true;
-  createdAt?: true;
-  updatedAt?: true;
-  username?: true;
-  email?: true;
-  password?: true;
-  role?: true;
-  _all?: true;
+  id?: true | runtime.Types.Skip;
+  createdAt?: true | runtime.Types.Skip;
+  updatedAt?: true | runtime.Types.Skip;
+  username?: true | runtime.Types.Skip;
+  email?: true | runtime.Types.Skip;
+  password?: true | runtime.Types.Skip;
+  role?: true | runtime.Types.Skip;
+  _all?: true | runtime.Types.Skip;
 };
 
 export type UserAggregateArgs<
@@ -111,7 +111,7 @@ export type UserAggregateArgs<
   /**
    * Filter which User to aggregate.
    */
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -119,25 +119,26 @@ export type UserAggregateArgs<
    */
   orderBy?:
     | Prisma.UserOrderByWithRelationInput
-    | Prisma.UserOrderByWithRelationInput[];
+    | Prisma.UserOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.UserWhereUniqueInput;
+  cursor?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
@@ -182,14 +183,15 @@ export type UserGroupByArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.UserOrderByWithAggregationInput
-    | Prisma.UserOrderByWithAggregationInput[];
+    | Prisma.UserOrderByWithAggregationInput[]
+    | runtime.Types.Skip;
   by: Prisma.UserScalarFieldEnum[] | Prisma.UserScalarFieldEnum;
-  having?: Prisma.UserScalarWhereWithAggregatesInput;
-  take?: number;
-  skip?: number;
+  having?: Prisma.UserScalarWhereWithAggregatesInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
   _count?: UserCountAggregateInputType | true;
   _avg?: UserAvgAggregateInputType;
   _sum?: UserSumAggregateInputType;
@@ -226,472 +228,722 @@ export type GetUserGroupByPayload<T extends UserGroupByArgs> =
   >;
 
 export type UserWhereInput = {
-  AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
-  OR?: Prisma.UserWhereInput[];
-  NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
-  id?: Prisma.IntFilter<'User'> | number;
-  createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-  username?: Prisma.StringFilter<'User'> | string;
-  email?: Prisma.StringFilter<'User'> | string;
-  password?: Prisma.StringFilter<'User'> | string;
-  role?: Prisma.EnumRoleFilter<'User'> | $Enums.Role;
-  profile?: Prisma.XOR<
-    Prisma.ProfileNullableScalarRelationFilter,
-    Prisma.ProfileWhereInput
-  > | null;
-  post?: Prisma.PostListRelationFilter;
-  comment?: Prisma.CommentListRelationFilter;
-  user1?: Prisma.FriendshipListRelationFilter;
-  user2?: Prisma.FriendshipListRelationFilter;
-  post_likes?: Prisma.Post_LikeListRelationFilter;
-  comment_likes?: Prisma.Comment_LikeListRelationFilter;
+  AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[] | runtime.Types.Skip;
+  OR?: Prisma.UserWhereInput[] | runtime.Types.Skip;
+  NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[] | runtime.Types.Skip;
+  id?: Prisma.IntFilter<'User'> | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFilter<'User'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFilter<'User'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?: Prisma.StringFilter<'User'> | string | runtime.Types.Skip;
+  email?: Prisma.StringFilter<'User'> | string | runtime.Types.Skip;
+  password?: Prisma.StringFilter<'User'> | string | runtime.Types.Skip;
+  role?: Prisma.EnumRoleFilter<'User'> | $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.XOR<
+        Prisma.ProfileNullableScalarRelationFilter,
+        Prisma.ProfileWhereInput
+      >
+    | null
+    | runtime.Types.Skip;
+  post?: Prisma.PostListRelationFilter | runtime.Types.Skip;
+  comment?: Prisma.CommentListRelationFilter | runtime.Types.Skip;
+  user1?: Prisma.FriendshipListRelationFilter | runtime.Types.Skip;
+  user2?: Prisma.FriendshipListRelationFilter | runtime.Types.Skip;
+  post_likes?: Prisma.Post_LikeListRelationFilter | runtime.Types.Skip;
+  comment_likes?: Prisma.Comment_LikeListRelationFilter | runtime.Types.Skip;
 };
 
 export type UserOrderByWithRelationInput = {
-  id?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  username?: Prisma.SortOrder;
-  email?: Prisma.SortOrder;
-  password?: Prisma.SortOrder;
-  role?: Prisma.SortOrder;
-  profile?: Prisma.ProfileOrderByWithRelationInput;
-  post?: Prisma.PostOrderByRelationAggregateInput;
-  comment?: Prisma.CommentOrderByRelationAggregateInput;
-  user1?: Prisma.FriendshipOrderByRelationAggregateInput;
-  user2?: Prisma.FriendshipOrderByRelationAggregateInput;
-  post_likes?: Prisma.Post_LikeOrderByRelationAggregateInput;
-  comment_likes?: Prisma.Comment_LikeOrderByRelationAggregateInput;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  username?: Prisma.SortOrder | runtime.Types.Skip;
+  email?: Prisma.SortOrder | runtime.Types.Skip;
+  password?: Prisma.SortOrder | runtime.Types.Skip;
+  role?: Prisma.SortOrder | runtime.Types.Skip;
+  profile?: Prisma.ProfileOrderByWithRelationInput | runtime.Types.Skip;
+  post?: Prisma.PostOrderByRelationAggregateInput | runtime.Types.Skip;
+  comment?: Prisma.CommentOrderByRelationAggregateInput | runtime.Types.Skip;
+  user1?: Prisma.FriendshipOrderByRelationAggregateInput | runtime.Types.Skip;
+  user2?: Prisma.FriendshipOrderByRelationAggregateInput | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeOrderByRelationAggregateInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeOrderByRelationAggregateInput
+    | runtime.Types.Skip;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
   {
-    id?: number;
-    username?: string;
-    email?: string;
-    AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
-    OR?: Prisma.UserWhereInput[];
-    NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
-    createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
-    password?: Prisma.StringFilter<'User'> | string;
-    role?: Prisma.EnumRoleFilter<'User'> | $Enums.Role;
-    profile?: Prisma.XOR<
-      Prisma.ProfileNullableScalarRelationFilter,
-      Prisma.ProfileWhereInput
-    > | null;
-    post?: Prisma.PostListRelationFilter;
-    comment?: Prisma.CommentListRelationFilter;
-    user1?: Prisma.FriendshipListRelationFilter;
-    user2?: Prisma.FriendshipListRelationFilter;
-    post_likes?: Prisma.Post_LikeListRelationFilter;
-    comment_likes?: Prisma.Comment_LikeListRelationFilter;
+    id?: number | runtime.Types.Skip;
+    username?: string | runtime.Types.Skip;
+    email?: string | runtime.Types.Skip;
+    AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[] | runtime.Types.Skip;
+    OR?: Prisma.UserWhereInput[] | runtime.Types.Skip;
+    NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[] | runtime.Types.Skip;
+    createdAt?:
+      | Prisma.DateTimeFilter<'User'>
+      | Date
+      | string
+      | runtime.Types.Skip;
+    updatedAt?:
+      | Prisma.DateTimeFilter<'User'>
+      | Date
+      | string
+      | runtime.Types.Skip;
+    password?: Prisma.StringFilter<'User'> | string | runtime.Types.Skip;
+    role?: Prisma.EnumRoleFilter<'User'> | $Enums.Role | runtime.Types.Skip;
+    profile?:
+      | Prisma.XOR<
+          Prisma.ProfileNullableScalarRelationFilter,
+          Prisma.ProfileWhereInput
+        >
+      | null
+      | runtime.Types.Skip;
+    post?: Prisma.PostListRelationFilter | runtime.Types.Skip;
+    comment?: Prisma.CommentListRelationFilter | runtime.Types.Skip;
+    user1?: Prisma.FriendshipListRelationFilter | runtime.Types.Skip;
+    user2?: Prisma.FriendshipListRelationFilter | runtime.Types.Skip;
+    post_likes?: Prisma.Post_LikeListRelationFilter | runtime.Types.Skip;
+    comment_likes?: Prisma.Comment_LikeListRelationFilter | runtime.Types.Skip;
   },
   'id' | 'username' | 'email'
 >;
 
 export type UserOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  username?: Prisma.SortOrder;
-  email?: Prisma.SortOrder;
-  password?: Prisma.SortOrder;
-  role?: Prisma.SortOrder;
-  _count?: Prisma.UserCountOrderByAggregateInput;
-  _avg?: Prisma.UserAvgOrderByAggregateInput;
-  _max?: Prisma.UserMaxOrderByAggregateInput;
-  _min?: Prisma.UserMinOrderByAggregateInput;
-  _sum?: Prisma.UserSumOrderByAggregateInput;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  username?: Prisma.SortOrder | runtime.Types.Skip;
+  email?: Prisma.SortOrder | runtime.Types.Skip;
+  password?: Prisma.SortOrder | runtime.Types.Skip;
+  role?: Prisma.SortOrder | runtime.Types.Skip;
+  _count?: Prisma.UserCountOrderByAggregateInput | runtime.Types.Skip;
+  _avg?: Prisma.UserAvgOrderByAggregateInput | runtime.Types.Skip;
+  _max?: Prisma.UserMaxOrderByAggregateInput | runtime.Types.Skip;
+  _min?: Prisma.UserMinOrderByAggregateInput | runtime.Types.Skip;
+  _sum?: Prisma.UserSumOrderByAggregateInput | runtime.Types.Skip;
 };
 
 export type UserScalarWhereWithAggregatesInput = {
   AND?:
     | Prisma.UserScalarWhereWithAggregatesInput
-    | Prisma.UserScalarWhereWithAggregatesInput[];
-  OR?: Prisma.UserScalarWhereWithAggregatesInput[];
+    | Prisma.UserScalarWhereWithAggregatesInput[]
+    | runtime.Types.Skip;
+  OR?: Prisma.UserScalarWhereWithAggregatesInput[] | runtime.Types.Skip;
   NOT?:
     | Prisma.UserScalarWhereWithAggregatesInput
-    | Prisma.UserScalarWhereWithAggregatesInput[];
-  id?: Prisma.IntWithAggregatesFilter<'User'> | number;
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
-  username?: Prisma.StringWithAggregatesFilter<'User'> | string;
-  email?: Prisma.StringWithAggregatesFilter<'User'> | string;
-  password?: Prisma.StringWithAggregatesFilter<'User'> | string;
-  role?: Prisma.EnumRoleWithAggregatesFilter<'User'> | $Enums.Role;
+    | Prisma.UserScalarWhereWithAggregatesInput[]
+    | runtime.Types.Skip;
+  id?: Prisma.IntWithAggregatesFilter<'User'> | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'User'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'User'>
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringWithAggregatesFilter<'User'>
+    | string
+    | runtime.Types.Skip;
+  email?:
+    | Prisma.StringWithAggregatesFilter<'User'>
+    | string
+    | runtime.Types.Skip;
+  password?:
+    | Prisma.StringWithAggregatesFilter<'User'>
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleWithAggregatesFilter<'User'>
+    | $Enums.Role
+    | runtime.Types.Skip;
 };
 
 export type UserCreateInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput | runtime.Types.Skip;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUpdateInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput | runtime.Types.Skip;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateManyInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
+  role?: $Enums.Role | runtime.Types.Skip;
 };
 
 export type UserUpdateManyMutationInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
 };
 
 export type UserCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  username?: Prisma.SortOrder;
-  email?: Prisma.SortOrder;
-  password?: Prisma.SortOrder;
-  role?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  username?: Prisma.SortOrder | runtime.Types.Skip;
+  email?: Prisma.SortOrder | runtime.Types.Skip;
+  password?: Prisma.SortOrder | runtime.Types.Skip;
+  role?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type UserAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type UserMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  username?: Prisma.SortOrder;
-  email?: Prisma.SortOrder;
-  password?: Prisma.SortOrder;
-  role?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  username?: Prisma.SortOrder | runtime.Types.Skip;
+  email?: Prisma.SortOrder | runtime.Types.Skip;
+  password?: Prisma.SortOrder | runtime.Types.Skip;
+  role?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type UserMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  createdAt?: Prisma.SortOrder;
-  updatedAt?: Prisma.SortOrder;
-  username?: Prisma.SortOrder;
-  email?: Prisma.SortOrder;
-  password?: Prisma.SortOrder;
-  role?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
+  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
+  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
+  username?: Prisma.SortOrder | runtime.Types.Skip;
+  email?: Prisma.SortOrder | runtime.Types.Skip;
+  password?: Prisma.SortOrder | runtime.Types.Skip;
+  role?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type UserSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
+  id?: Prisma.SortOrder | runtime.Types.Skip;
 };
 
 export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput;
-  isNot?: Prisma.UserWhereInput;
+  is?: Prisma.UserWhereInput | runtime.Types.Skip;
+  isNot?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string;
+  set?: Date | string | runtime.Types.Skip;
 };
 
 export type StringFieldUpdateOperationsInput = {
-  set?: string;
+  set?: string | runtime.Types.Skip;
 };
 
 export type EnumRoleFieldUpdateOperationsInput = {
-  set?: $Enums.Role;
+  set?: $Enums.Role | runtime.Types.Skip;
 };
 
 export type IntFieldUpdateOperationsInput = {
-  set?: number;
-  increment?: number;
-  decrement?: number;
-  multiply?: number;
-  divide?: number;
+  set?: number | runtime.Types.Skip;
+  increment?: number | runtime.Types.Skip;
+  decrement?: number | runtime.Types.Skip;
+  multiply?: number | runtime.Types.Skip;
+  divide?: number | runtime.Types.Skip;
 };
 
 export type UserCreateNestedOneWithoutProfileInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutProfileInput,
-    Prisma.UserUncheckedCreateWithoutProfileInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput;
-  connect?: Prisma.UserWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutProfileInput,
+        Prisma.UserUncheckedCreateWithoutProfileInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutProfileInput
+    | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type UserUpdateOneRequiredWithoutProfileNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutProfileInput,
-    Prisma.UserUncheckedCreateWithoutProfileInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput;
-  upsert?: Prisma.UserUpsertWithoutProfileInput;
-  connect?: Prisma.UserWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.UserUpdateToOneWithWhereWithoutProfileInput,
-      Prisma.UserUpdateWithoutProfileInput
-    >,
-    Prisma.UserUncheckedUpdateWithoutProfileInput
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutProfileInput,
+        Prisma.UserUncheckedCreateWithoutProfileInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutProfileInput
+    | runtime.Types.Skip;
+  upsert?: Prisma.UserUpsertWithoutProfileInput | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.UserUpdateToOneWithWhereWithoutProfileInput,
+          Prisma.UserUpdateWithoutProfileInput
+        >,
+        Prisma.UserUncheckedUpdateWithoutProfileInput
+      >
+    | runtime.Types.Skip;
 };
 
 export type UserCreateNestedOneWithoutPostInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutPostInput,
-    Prisma.UserUncheckedCreateWithoutPostInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostInput;
-  connect?: Prisma.UserWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutPostInput,
+        Prisma.UserUncheckedCreateWithoutPostInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutPostInput
+    | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type UserUpdateOneRequiredWithoutPostNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutPostInput,
-    Prisma.UserUncheckedCreateWithoutPostInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostInput;
-  upsert?: Prisma.UserUpsertWithoutPostInput;
-  connect?: Prisma.UserWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.UserUpdateToOneWithWhereWithoutPostInput,
-      Prisma.UserUpdateWithoutPostInput
-    >,
-    Prisma.UserUncheckedUpdateWithoutPostInput
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutPostInput,
+        Prisma.UserUncheckedCreateWithoutPostInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutPostInput
+    | runtime.Types.Skip;
+  upsert?: Prisma.UserUpsertWithoutPostInput | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.UserUpdateToOneWithWhereWithoutPostInput,
+          Prisma.UserUpdateWithoutPostInput
+        >,
+        Prisma.UserUncheckedUpdateWithoutPostInput
+      >
+    | runtime.Types.Skip;
 };
 
 export type UserCreateNestedOneWithoutPost_likesInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutPost_likesInput,
-    Prisma.UserUncheckedCreateWithoutPost_likesInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPost_likesInput;
-  connect?: Prisma.UserWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutPost_likesInput,
+        Prisma.UserUncheckedCreateWithoutPost_likesInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutPost_likesInput
+    | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type UserUpdateOneRequiredWithoutPost_likesNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutPost_likesInput,
-    Prisma.UserUncheckedCreateWithoutPost_likesInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPost_likesInput;
-  upsert?: Prisma.UserUpsertWithoutPost_likesInput;
-  connect?: Prisma.UserWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.UserUpdateToOneWithWhereWithoutPost_likesInput,
-      Prisma.UserUpdateWithoutPost_likesInput
-    >,
-    Prisma.UserUncheckedUpdateWithoutPost_likesInput
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutPost_likesInput,
+        Prisma.UserUncheckedCreateWithoutPost_likesInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutPost_likesInput
+    | runtime.Types.Skip;
+  upsert?: Prisma.UserUpsertWithoutPost_likesInput | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.UserUpdateToOneWithWhereWithoutPost_likesInput,
+          Prisma.UserUpdateWithoutPost_likesInput
+        >,
+        Prisma.UserUncheckedUpdateWithoutPost_likesInput
+      >
+    | runtime.Types.Skip;
 };
 
 export type UserCreateNestedOneWithoutCommentInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutCommentInput,
-    Prisma.UserUncheckedCreateWithoutCommentInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentInput;
-  connect?: Prisma.UserWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutCommentInput,
+        Prisma.UserUncheckedCreateWithoutCommentInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutCommentInput
+    | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type UserUpdateOneRequiredWithoutCommentNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutCommentInput,
-    Prisma.UserUncheckedCreateWithoutCommentInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentInput;
-  upsert?: Prisma.UserUpsertWithoutCommentInput;
-  connect?: Prisma.UserWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.UserUpdateToOneWithWhereWithoutCommentInput,
-      Prisma.UserUpdateWithoutCommentInput
-    >,
-    Prisma.UserUncheckedUpdateWithoutCommentInput
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutCommentInput,
+        Prisma.UserUncheckedCreateWithoutCommentInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutCommentInput
+    | runtime.Types.Skip;
+  upsert?: Prisma.UserUpsertWithoutCommentInput | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.UserUpdateToOneWithWhereWithoutCommentInput,
+          Prisma.UserUpdateWithoutCommentInput
+        >,
+        Prisma.UserUncheckedUpdateWithoutCommentInput
+      >
+    | runtime.Types.Skip;
 };
 
 export type UserCreateNestedOneWithoutComment_likesInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutComment_likesInput,
-    Prisma.UserUncheckedCreateWithoutComment_likesInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutComment_likesInput;
-  connect?: Prisma.UserWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutComment_likesInput,
+        Prisma.UserUncheckedCreateWithoutComment_likesInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutComment_likesInput
+    | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type UserUpdateOneRequiredWithoutComment_likesNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutComment_likesInput,
-    Prisma.UserUncheckedCreateWithoutComment_likesInput
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutComment_likesInput;
-  upsert?: Prisma.UserUpsertWithoutComment_likesInput;
-  connect?: Prisma.UserWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.UserUpdateToOneWithWhereWithoutComment_likesInput,
-      Prisma.UserUpdateWithoutComment_likesInput
-    >,
-    Prisma.UserUncheckedUpdateWithoutComment_likesInput
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutComment_likesInput,
+        Prisma.UserUncheckedCreateWithoutComment_likesInput
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutComment_likesInput
+    | runtime.Types.Skip;
+  upsert?: Prisma.UserUpsertWithoutComment_likesInput | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.UserUpdateToOneWithWhereWithoutComment_likesInput,
+          Prisma.UserUpdateWithoutComment_likesInput
+        >,
+        Prisma.UserUncheckedUpdateWithoutComment_likesInput
+      >
+    | runtime.Types.Skip;
 };
 
 export type UserCreateNestedOneWithoutUser1Input = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutUser1Input,
-    Prisma.UserUncheckedCreateWithoutUser1Input
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser1Input;
-  connect?: Prisma.UserWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutUser1Input,
+        Prisma.UserUncheckedCreateWithoutUser1Input
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutUser1Input
+    | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type UserCreateNestedOneWithoutUser2Input = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutUser2Input,
-    Prisma.UserUncheckedCreateWithoutUser2Input
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser2Input;
-  connect?: Prisma.UserWhereUniqueInput;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutUser2Input,
+        Prisma.UserUncheckedCreateWithoutUser2Input
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutUser2Input
+    | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
 };
 
 export type UserUpdateOneRequiredWithoutUser1NestedInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutUser1Input,
-    Prisma.UserUncheckedCreateWithoutUser1Input
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser1Input;
-  upsert?: Prisma.UserUpsertWithoutUser1Input;
-  connect?: Prisma.UserWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.UserUpdateToOneWithWhereWithoutUser1Input,
-      Prisma.UserUpdateWithoutUser1Input
-    >,
-    Prisma.UserUncheckedUpdateWithoutUser1Input
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutUser1Input,
+        Prisma.UserUncheckedCreateWithoutUser1Input
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutUser1Input
+    | runtime.Types.Skip;
+  upsert?: Prisma.UserUpsertWithoutUser1Input | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.UserUpdateToOneWithWhereWithoutUser1Input,
+          Prisma.UserUpdateWithoutUser1Input
+        >,
+        Prisma.UserUncheckedUpdateWithoutUser1Input
+      >
+    | runtime.Types.Skip;
 };
 
 export type UserUpdateOneRequiredWithoutUser2NestedInput = {
-  create?: Prisma.XOR<
-    Prisma.UserCreateWithoutUser2Input,
-    Prisma.UserUncheckedCreateWithoutUser2Input
-  >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUser2Input;
-  upsert?: Prisma.UserUpsertWithoutUser2Input;
-  connect?: Prisma.UserWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.UserUpdateToOneWithWhereWithoutUser2Input,
-      Prisma.UserUpdateWithoutUser2Input
-    >,
-    Prisma.UserUncheckedUpdateWithoutUser2Input
-  >;
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutUser2Input,
+        Prisma.UserUncheckedCreateWithoutUser2Input
+      >
+    | runtime.Types.Skip;
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutUser2Input
+    | runtime.Types.Skip;
+  upsert?: Prisma.UserUpsertWithoutUser2Input | runtime.Types.Skip;
+  connect?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
+  update?:
+    | Prisma.XOR<
+        Prisma.XOR<
+          Prisma.UserUpdateToOneWithWhereWithoutUser2Input,
+          Prisma.UserUpdateWithoutUser2Input
+        >,
+        Prisma.UserUncheckedUpdateWithoutUser2Input
+      >
+    | runtime.Types.Skip;
 };
 
 export type UserCreateWithoutProfileInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  post?: Prisma.PostCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateWithoutProfileInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -711,11 +963,11 @@ export type UserUpsertWithoutProfileInput = {
     Prisma.UserCreateWithoutProfileInput,
     Prisma.UserUncheckedCreateWithoutProfileInput
   >;
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type UserUpdateToOneWithWhereWithoutProfileInput = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.UserUpdateWithoutProfileInput,
     Prisma.UserUncheckedUpdateWithoutProfileInput
@@ -723,65 +975,139 @@ export type UserUpdateToOneWithWhereWithoutProfileInput = {
 };
 
 export type UserUpdateWithoutProfileInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateWithoutProfileInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateWithoutPostInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
-  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput | runtime.Types.Skip;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateWithoutPostInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
-  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateOrConnectWithoutPostInput = {
@@ -801,11 +1127,11 @@ export type UserUpsertWithoutPostInput = {
     Prisma.UserCreateWithoutPostInput,
     Prisma.UserUncheckedCreateWithoutPostInput
   >;
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type UserUpdateToOneWithWhereWithoutPostInput = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.UserUpdateWithoutPostInput,
     Prisma.UserUncheckedUpdateWithoutPostInput
@@ -813,65 +1139,137 @@ export type UserUpdateToOneWithWhereWithoutPostInput = {
 };
 
 export type UserUpdateWithoutPostInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
-  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput | runtime.Types.Skip;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateWithoutPostInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
-  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateWithoutPost_likesInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
-  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput | runtime.Types.Skip;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateWithoutPost_likesInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
-  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateOrConnectWithoutPost_likesInput = {
@@ -891,11 +1289,11 @@ export type UserUpsertWithoutPost_likesInput = {
     Prisma.UserCreateWithoutPost_likesInput,
     Prisma.UserUncheckedCreateWithoutPost_likesInput
   >;
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type UserUpdateToOneWithWhereWithoutPost_likesInput = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.UserUpdateWithoutPost_likesInput,
     Prisma.UserUncheckedUpdateWithoutPost_likesInput
@@ -903,65 +1301,137 @@ export type UserUpdateToOneWithWhereWithoutPost_likesInput = {
 };
 
 export type UserUpdateWithoutPost_likesInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
-  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput | runtime.Types.Skip;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateWithoutPost_likesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateWithoutCommentInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput | runtime.Types.Skip;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateWithoutCommentInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateOrConnectWithoutCommentInput = {
@@ -981,11 +1451,11 @@ export type UserUpsertWithoutCommentInput = {
     Prisma.UserCreateWithoutCommentInput,
     Prisma.UserUncheckedCreateWithoutCommentInput
   >;
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type UserUpdateToOneWithWhereWithoutCommentInput = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.UserUpdateWithoutCommentInput,
     Prisma.UserUncheckedUpdateWithoutCommentInput
@@ -993,65 +1463,137 @@ export type UserUpdateToOneWithWhereWithoutCommentInput = {
 };
 
 export type UserUpdateWithoutCommentInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput | runtime.Types.Skip;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateWithoutCommentInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateWithoutComment_likesInput = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput | runtime.Types.Skip;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateWithoutComment_likesInput = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
-  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateOrConnectWithoutComment_likesInput = {
@@ -1071,11 +1613,11 @@ export type UserUpsertWithoutComment_likesInput = {
     Prisma.UserCreateWithoutComment_likesInput,
     Prisma.UserUncheckedCreateWithoutComment_likesInput
   >;
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type UserUpdateToOneWithWhereWithoutComment_likesInput = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.UserUpdateWithoutComment_likesInput,
     Prisma.UserUncheckedUpdateWithoutComment_likesInput
@@ -1083,65 +1625,135 @@ export type UserUpdateToOneWithWhereWithoutComment_likesInput = {
 };
 
 export type UserUpdateWithoutComment_likesInput = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput | runtime.Types.Skip;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateWithoutComment_likesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
-  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateWithoutUser1Input = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
-  user2?: Prisma.FriendshipCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput | runtime.Types.Skip;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateWithoutUser1Input = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
-  user2?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input;
-  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser2Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateOrConnectWithoutUser1Input = {
@@ -1153,34 +1765,52 @@ export type UserCreateOrConnectWithoutUser1Input = {
 };
 
 export type UserCreateWithoutUser2Input = {
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipCreateNestedManyWithoutUser1Input;
-  post_likes?: Prisma.Post_LikeCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput | runtime.Types.Skip;
+  post?: Prisma.PostCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  comment?: Prisma.CommentCreateNestedManyWithoutUserInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedCreateWithoutUser2Input = {
-  id?: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
+  id?: number | runtime.Types.Skip;
+  createdAt?: Date | string | runtime.Types.Skip;
+  updatedAt?: Date | string | runtime.Types.Skip;
   username: string;
   email: string;
   password: string;
-  role?: $Enums.Role;
-  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput;
-  post?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput;
-  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput;
-  user1?: Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input;
-  post_likes?: Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput;
+  role?: $Enums.Role | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedCreateNestedManyWithoutUser1Input
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedCreateNestedManyWithoutUserInput
+    | runtime.Types.Skip;
 };
 
 export type UserCreateOrConnectWithoutUser2Input = {
@@ -1200,11 +1830,11 @@ export type UserUpsertWithoutUser1Input = {
     Prisma.UserCreateWithoutUser1Input,
     Prisma.UserUncheckedCreateWithoutUser1Input
   >;
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type UserUpdateToOneWithWhereWithoutUser1Input = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.UserUpdateWithoutUser1Input,
     Prisma.UserUncheckedUpdateWithoutUser1Input
@@ -1212,34 +1842,86 @@ export type UserUpdateToOneWithWhereWithoutUser1Input = {
 };
 
 export type UserUpdateWithoutUser1Input = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
-  user2?: Prisma.FriendshipUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput | runtime.Types.Skip;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateWithoutUser1Input = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
-  user2?: Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput;
-  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user2?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser2NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUpsertWithoutUser2Input = {
@@ -1251,11 +1933,11 @@ export type UserUpsertWithoutUser2Input = {
     Prisma.UserCreateWithoutUser2Input,
     Prisma.UserUncheckedCreateWithoutUser2Input
   >;
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
 };
 
 export type UserUpdateToOneWithWhereWithoutUser2Input = {
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   data: Prisma.XOR<
     Prisma.UserUpdateWithoutUser2Input,
     Prisma.UserUncheckedUpdateWithoutUser2Input
@@ -1263,34 +1945,86 @@ export type UserUpdateToOneWithWhereWithoutUser2Input = {
 };
 
 export type UserUpdateWithoutUser2Input = {
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUpdateManyWithoutUser1NestedInput;
-  post_likes?: Prisma.Post_LikeUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUpdateManyWithoutUserNestedInput;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput | runtime.Types.Skip;
+  post?: Prisma.PostUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  comment?: Prisma.CommentUpdateManyWithoutUserNestedInput | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 export type UserUncheckedUpdateWithoutUser2Input = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  username?: Prisma.StringFieldUpdateOperationsInput | string;
-  email?: Prisma.StringFieldUpdateOperationsInput | string;
-  password?: Prisma.StringFieldUpdateOperationsInput | string;
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput;
-  post?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput;
-  comment?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput;
-  user1?: Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput;
-  post_likes?: Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput;
-  comment_likes?: Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput;
+  id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
+  createdAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  updatedAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | runtime.Types.Skip;
+  username?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  email?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
+  password?:
+    | Prisma.StringFieldUpdateOperationsInput
+    | string
+    | runtime.Types.Skip;
+  role?:
+    | Prisma.EnumRoleFieldUpdateOperationsInput
+    | $Enums.Role
+    | runtime.Types.Skip;
+  profile?:
+    | Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+    | runtime.Types.Skip;
+  post?:
+    | Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment?:
+    | Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  user1?:
+    | Prisma.FriendshipUncheckedUpdateManyWithoutUser1NestedInput
+    | runtime.Types.Skip;
+  post_likes?:
+    | Prisma.Post_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
+  comment_likes?:
+    | Prisma.Comment_LikeUncheckedUpdateManyWithoutUserNestedInput
+    | runtime.Types.Skip;
 };
 
 /**
@@ -1338,7 +2072,7 @@ export type UserCountOutputTypeCountPostArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.PostWhereInput;
+  where?: Prisma.PostWhereInput | runtime.Types.Skip;
 };
 
 /**
@@ -1348,7 +2082,7 @@ export type UserCountOutputTypeCountCommentArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.CommentWhereInput;
+  where?: Prisma.CommentWhereInput | runtime.Types.Skip;
 };
 
 /**
@@ -1358,7 +2092,7 @@ export type UserCountOutputTypeCountUser1Args<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.FriendshipWhereInput;
+  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
 };
 
 /**
@@ -1368,7 +2102,7 @@ export type UserCountOutputTypeCountUser2Args<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.FriendshipWhereInput;
+  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
 };
 
 /**
@@ -1378,7 +2112,7 @@ export type UserCountOutputTypeCountPost_likesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
 };
 
 /**
@@ -1388,7 +2122,7 @@ export type UserCountOutputTypeCountComment_likesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.Comment_LikeWhereInput;
+  where?: Prisma.Comment_LikeWhereInput | runtime.Types.Skip;
 };
 
 export type UserSelect<
@@ -1396,21 +2130,30 @@ export type UserSelect<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    username?: boolean;
-    email?: boolean;
-    password?: boolean;
-    role?: boolean;
-    profile?: boolean | Prisma.User$profileArgs<ExtArgs>;
-    post?: boolean | Prisma.User$postArgs<ExtArgs>;
-    comment?: boolean | Prisma.User$commentArgs<ExtArgs>;
-    user1?: boolean | Prisma.User$user1Args<ExtArgs>;
-    user2?: boolean | Prisma.User$user2Args<ExtArgs>;
-    post_likes?: boolean | Prisma.User$post_likesArgs<ExtArgs>;
-    comment_likes?: boolean | Prisma.User$comment_likesArgs<ExtArgs>;
-    _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
+    id?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    updatedAt?: boolean | runtime.Types.Skip;
+    username?: boolean | runtime.Types.Skip;
+    email?: boolean | runtime.Types.Skip;
+    password?: boolean | runtime.Types.Skip;
+    role?: boolean | runtime.Types.Skip;
+    profile?: boolean | Prisma.User$profileArgs<ExtArgs> | runtime.Types.Skip;
+    post?: boolean | Prisma.User$postArgs<ExtArgs> | runtime.Types.Skip;
+    comment?: boolean | Prisma.User$commentArgs<ExtArgs> | runtime.Types.Skip;
+    user1?: boolean | Prisma.User$user1Args<ExtArgs> | runtime.Types.Skip;
+    user2?: boolean | Prisma.User$user2Args<ExtArgs> | runtime.Types.Skip;
+    post_likes?:
+      | boolean
+      | Prisma.User$post_likesArgs<ExtArgs>
+      | runtime.Types.Skip;
+    comment_likes?:
+      | boolean
+      | Prisma.User$comment_likesArgs<ExtArgs>
+      | runtime.Types.Skip;
+    _count?:
+      | boolean
+      | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+      | runtime.Types.Skip;
   },
   ExtArgs['result']['user']
 >;
@@ -1420,13 +2163,13 @@ export type UserSelectCreateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    username?: boolean;
-    email?: boolean;
-    password?: boolean;
-    role?: boolean;
+    id?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    updatedAt?: boolean | runtime.Types.Skip;
+    username?: boolean | runtime.Types.Skip;
+    email?: boolean | runtime.Types.Skip;
+    password?: boolean | runtime.Types.Skip;
+    role?: boolean | runtime.Types.Skip;
   },
   ExtArgs['result']['user']
 >;
@@ -1436,25 +2179,25 @@ export type UserSelectUpdateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    username?: boolean;
-    email?: boolean;
-    password?: boolean;
-    role?: boolean;
+    id?: boolean | runtime.Types.Skip;
+    createdAt?: boolean | runtime.Types.Skip;
+    updatedAt?: boolean | runtime.Types.Skip;
+    username?: boolean | runtime.Types.Skip;
+    email?: boolean | runtime.Types.Skip;
+    password?: boolean | runtime.Types.Skip;
+    role?: boolean | runtime.Types.Skip;
   },
   ExtArgs['result']['user']
 >;
 
 export type UserSelectScalar = {
-  id?: boolean;
-  createdAt?: boolean;
-  updatedAt?: boolean;
-  username?: boolean;
-  email?: boolean;
-  password?: boolean;
-  role?: boolean;
+  id?: boolean | runtime.Types.Skip;
+  createdAt?: boolean | runtime.Types.Skip;
+  updatedAt?: boolean | runtime.Types.Skip;
+  username?: boolean | runtime.Types.Skip;
+  email?: boolean | runtime.Types.Skip;
+  password?: boolean | runtime.Types.Skip;
+  role?: boolean | runtime.Types.Skip;
 };
 
 export type UserOmit<
@@ -1462,20 +2205,30 @@ export type UserOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   'id' | 'createdAt' | 'updatedAt' | 'username' | 'email' | 'password' | 'role',
-  ExtArgs['result']['user']
+  ExtArgs['result']['user'],
+  runtime.Types.Skip
 >;
 export type UserInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  profile?: boolean | Prisma.User$profileArgs<ExtArgs>;
-  post?: boolean | Prisma.User$postArgs<ExtArgs>;
-  comment?: boolean | Prisma.User$commentArgs<ExtArgs>;
-  user1?: boolean | Prisma.User$user1Args<ExtArgs>;
-  user2?: boolean | Prisma.User$user2Args<ExtArgs>;
-  post_likes?: boolean | Prisma.User$post_likesArgs<ExtArgs>;
-  comment_likes?: boolean | Prisma.User$comment_likesArgs<ExtArgs>;
-  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs> | runtime.Types.Skip;
+  post?: boolean | Prisma.User$postArgs<ExtArgs> | runtime.Types.Skip;
+  comment?: boolean | Prisma.User$commentArgs<ExtArgs> | runtime.Types.Skip;
+  user1?: boolean | Prisma.User$user1Args<ExtArgs> | runtime.Types.Skip;
+  user2?: boolean | Prisma.User$user2Args<ExtArgs> | runtime.Types.Skip;
+  post_likes?:
+    | boolean
+    | Prisma.User$post_likesArgs<ExtArgs>
+    | runtime.Types.Skip;
+  comment_likes?:
+    | boolean
+    | Prisma.User$comment_likesArgs<ExtArgs>
+    | runtime.Types.Skip;
+  _count?:
+    | boolean
+    | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+    | runtime.Types.Skip;
 };
 export type UserIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
@@ -2262,7 +3015,7 @@ export type UserFindFirstArgs<
   /**
    * Filter, which User to fetch.
    */
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -2270,31 +3023,35 @@ export type UserFindFirstArgs<
    */
   orderBy?:
     | Prisma.UserOrderByWithRelationInput
-    | Prisma.UserOrderByWithRelationInput[];
+    | Prisma.UserOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Users.
    */
-  cursor?: Prisma.UserWhereUniqueInput;
+  cursor?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Users.
    */
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[];
+  distinct?:
+    | Prisma.UserScalarFieldEnum
+    | Prisma.UserScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2319,7 +3076,7 @@ export type UserFindFirstOrThrowArgs<
   /**
    * Filter, which User to fetch.
    */
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -2327,31 +3084,35 @@ export type UserFindFirstOrThrowArgs<
    */
   orderBy?:
     | Prisma.UserOrderByWithRelationInput
-    | Prisma.UserOrderByWithRelationInput[];
+    | Prisma.UserOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Users.
    */
-  cursor?: Prisma.UserWhereUniqueInput;
+  cursor?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Users.
    */
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[];
+  distinct?:
+    | Prisma.UserScalarFieldEnum
+    | Prisma.UserScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2376,7 +3137,7 @@ export type UserFindManyArgs<
   /**
    * Filter, which Users to fetch.
    */
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -2384,31 +3145,35 @@ export type UserFindManyArgs<
    */
   orderBy?:
     | Prisma.UserOrderByWithRelationInput
-    | Prisma.UserOrderByWithRelationInput[];
+    | Prisma.UserOrderByWithRelationInput[]
+    | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing Users.
    */
-  cursor?: Prisma.UserWhereUniqueInput;
+  cursor?: Prisma.UserWhereUniqueInput | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number;
+  take?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number;
+  skip?: number | runtime.Types.Skip;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Users.
    */
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[];
+  distinct?:
+    | Prisma.UserScalarFieldEnum
+    | Prisma.UserScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2447,7 +3212,7 @@ export type UserCreateManyArgs<
    * The data used to create many Users.
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
 };
 
 /**
@@ -2469,7 +3234,7 @@ export type UserCreateManyAndReturnArgs<
    * The data used to create many Users.
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[];
-  skipDuplicates?: boolean;
+  skipDuplicates?: boolean | runtime.Types.Skip;
 };
 
 /**
@@ -2518,11 +3283,11 @@ export type UserUpdateManyArgs<
   /**
    * Filter which Users to update
    */
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Users to update.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
 };
 
 /**
@@ -2550,11 +3315,11 @@ export type UserUpdateManyAndReturnArgs<
   /**
    * Filter which Users to update
    */
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Users to update.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
 };
 
 /**
@@ -2625,11 +3390,11 @@ export type UserDeleteManyArgs<
   /**
    * Filter which Users to delete
    */
-  where?: Prisma.UserWhereInput;
+  where?: Prisma.UserWhereInput | runtime.Types.Skip;
   /**
    * Limit how many Users to delete.
    */
-  limit?: number;
+  limit?: number | runtime.Types.Skip;
 };
 
 /**
@@ -2651,7 +3416,7 @@ export type User$profileArgs<
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.ProfileInclude<ExtArgs> | null;
-  where?: Prisma.ProfileWhereInput;
+  where?: Prisma.ProfileWhereInput | runtime.Types.Skip;
 };
 
 /**
@@ -2673,14 +3438,18 @@ export type User$postArgs<
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.PostInclude<ExtArgs> | null;
-  where?: Prisma.PostWhereInput;
+  where?: Prisma.PostWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.PostOrderByWithRelationInput
-    | Prisma.PostOrderByWithRelationInput[];
-  cursor?: Prisma.PostWhereUniqueInput;
-  take?: number;
-  skip?: number;
-  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[];
+    | Prisma.PostOrderByWithRelationInput[]
+    | runtime.Types.Skip;
+  cursor?: Prisma.PostWhereUniqueInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
+  distinct?:
+    | Prisma.PostScalarFieldEnum
+    | Prisma.PostScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2702,14 +3471,18 @@ export type User$commentArgs<
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.CommentInclude<ExtArgs> | null;
-  where?: Prisma.CommentWhereInput;
+  where?: Prisma.CommentWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.CommentOrderByWithRelationInput
-    | Prisma.CommentOrderByWithRelationInput[];
-  cursor?: Prisma.CommentWhereUniqueInput;
-  take?: number;
-  skip?: number;
-  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[];
+    | Prisma.CommentOrderByWithRelationInput[]
+    | runtime.Types.Skip;
+  cursor?: Prisma.CommentWhereUniqueInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
+  distinct?:
+    | Prisma.CommentScalarFieldEnum
+    | Prisma.CommentScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2731,16 +3504,18 @@ export type User$user1Args<
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.FriendshipInclude<ExtArgs> | null;
-  where?: Prisma.FriendshipWhereInput;
+  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.FriendshipOrderByWithRelationInput
-    | Prisma.FriendshipOrderByWithRelationInput[];
-  cursor?: Prisma.FriendshipWhereUniqueInput;
-  take?: number;
-  skip?: number;
+    | Prisma.FriendshipOrderByWithRelationInput[]
+    | runtime.Types.Skip;
+  cursor?: Prisma.FriendshipWhereUniqueInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
   distinct?:
     | Prisma.FriendshipScalarFieldEnum
-    | Prisma.FriendshipScalarFieldEnum[];
+    | Prisma.FriendshipScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2762,16 +3537,18 @@ export type User$user2Args<
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.FriendshipInclude<ExtArgs> | null;
-  where?: Prisma.FriendshipWhereInput;
+  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.FriendshipOrderByWithRelationInput
-    | Prisma.FriendshipOrderByWithRelationInput[];
-  cursor?: Prisma.FriendshipWhereUniqueInput;
-  take?: number;
-  skip?: number;
+    | Prisma.FriendshipOrderByWithRelationInput[]
+    | runtime.Types.Skip;
+  cursor?: Prisma.FriendshipWhereUniqueInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
   distinct?:
     | Prisma.FriendshipScalarFieldEnum
-    | Prisma.FriendshipScalarFieldEnum[];
+    | Prisma.FriendshipScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2793,16 +3570,18 @@ export type User$post_likesArgs<
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.Post_LikeInclude<ExtArgs> | null;
-  where?: Prisma.Post_LikeWhereInput;
+  where?: Prisma.Post_LikeWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.Post_LikeOrderByWithRelationInput
-    | Prisma.Post_LikeOrderByWithRelationInput[];
-  cursor?: Prisma.Post_LikeWhereUniqueInput;
-  take?: number;
-  skip?: number;
+    | Prisma.Post_LikeOrderByWithRelationInput[]
+    | runtime.Types.Skip;
+  cursor?: Prisma.Post_LikeWhereUniqueInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
   distinct?:
     | Prisma.Post_LikeScalarFieldEnum
-    | Prisma.Post_LikeScalarFieldEnum[];
+    | Prisma.Post_LikeScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
@@ -2824,16 +3603,18 @@ export type User$comment_likesArgs<
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.Comment_LikeInclude<ExtArgs> | null;
-  where?: Prisma.Comment_LikeWhereInput;
+  where?: Prisma.Comment_LikeWhereInput | runtime.Types.Skip;
   orderBy?:
     | Prisma.Comment_LikeOrderByWithRelationInput
-    | Prisma.Comment_LikeOrderByWithRelationInput[];
-  cursor?: Prisma.Comment_LikeWhereUniqueInput;
-  take?: number;
-  skip?: number;
+    | Prisma.Comment_LikeOrderByWithRelationInput[]
+    | runtime.Types.Skip;
+  cursor?: Prisma.Comment_LikeWhereUniqueInput | runtime.Types.Skip;
+  take?: number | runtime.Types.Skip;
+  skip?: number | runtime.Types.Skip;
   distinct?:
     | Prisma.Comment_LikeScalarFieldEnum
-    | Prisma.Comment_LikeScalarFieldEnum[];
+    | Prisma.Comment_LikeScalarFieldEnum[]
+    | runtime.Types.Skip;
 };
 
 /**
