@@ -5,8 +5,11 @@ import { verifyValidSession } from '../helpers/protectRoutes.js';
 import { validate } from '../validation/validator.js';
 import { profileValidationRules } from '../validation/profileValidators.js';
 import { uploadMulter } from '../helpers/multerConfig.js';
+import multer from 'multer';
 
 const router = express.Router();
+
+const upload = uploadMulter.single('avatar');
 
 // GET selected profile
 router.get(
@@ -18,7 +21,19 @@ router.get(
 // POST create profile
 router.post(
   '/create',
-  uploadMulter.single('avatar'),
+  function (req, res) {
+    upload(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        res.json({
+          message: err.message,
+        });
+      } else if (err) {
+        res.json({
+          message: err.message,
+        });
+      }
+    });
+  },
   verifyValidSession,
   profileValidationRules,
   validate,
@@ -28,7 +43,19 @@ router.post(
 // PUT update profile
 router.put(
   '/:profileId/update',
-  uploadMulter.single('avatar'),
+  function (req, res) {
+    upload(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        res.json({
+          message: err.message,
+        });
+      } else if (err) {
+        res.json({
+          message: err.message,
+        });
+      }
+    });
+  },
   verifyValidSession,
   profileValidationRules,
   validate,
