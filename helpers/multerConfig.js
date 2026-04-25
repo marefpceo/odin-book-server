@@ -47,4 +47,20 @@ const uploadMulter = multer({
   fileFilter: imageFilter,
 });
 
-export { storageMulter, uploadMulter };
+const upload = uploadMulter.single('avatar');
+
+function fileUpload(req, res) {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      res.json({
+        message: err.message,
+      });
+    } else if (err) {
+      res.json({
+        message: err.message,
+      });
+    }
+  });
+}
+
+export { fileUpload };
