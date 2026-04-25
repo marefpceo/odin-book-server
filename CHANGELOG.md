@@ -9,12 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added route to validate session
-- Added avatar to user log in data
+- Route to validate session
+- Avatar file size restriction of 2MB
 
 ### Changed
 
-- Updated sign up endpoint to create a profile
+- Profile now created during sign up
 
 ## [0.1.0] - 2026-18-01
 
