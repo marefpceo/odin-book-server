@@ -12,6 +12,7 @@ async function usersGet(req, res) {
     select: {
       id: true,
       username: true,
+      email: true,
       user1: {
         include: true,
       },
@@ -20,9 +21,7 @@ async function usersGet(req, res) {
       },
     },
   });
-  res.status(200).json({
-    globalUserList,
-  });
+  res.status(200).json(globalUserList);
 }
 
 // POST request to add selected user as a friend

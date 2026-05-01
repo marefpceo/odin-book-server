@@ -81,6 +81,13 @@ async function main() {
       username: 'billy',
       email: 'willbill@test.com',
       password: hashpass,
+      profile: {
+        create: {
+          firstname: 'William',
+          lastname: 'Bill',
+          avatar: 'NULL',
+        },
+      },
     },
   });
 
