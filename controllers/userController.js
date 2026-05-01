@@ -13,6 +13,11 @@ async function usersGet(req, res) {
       id: true,
       username: true,
       email: true,
+      profile: {
+        select: {
+          avatar: true,
+        },
+      },
       user1: {
         include: true,
       },
