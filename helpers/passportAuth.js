@@ -60,7 +60,7 @@ export const configureLocalStrategy = () => {
         role: user.role,
         profile: user.profile == null ? '' : user.profile.id,
         avatar:
-          user.profile.avatar == 'NULL' || null ? '' : user.profile.avatar,
+          user.profile.avatar == 'NULL' || null ? 'NULL' : user.profile.avatar,
       });
     });
   });
