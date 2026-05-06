@@ -81,9 +81,9 @@ model Comment_Like {
 
 model Friendship {
   user1           User      @relation("user1", fields: [user1Id], references: [id])
-  user1Id         Int       @unique
+  user1Id         Int       
   user2           User      @relation("user2", fields: [user2Id], references: [id])
-  user2Id         Int       @unique
+  user2Id         Int       
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   status          Status    @default(PENDING)
@@ -100,6 +100,8 @@ model Session {
 enum Status {
   PENDING
   ACTIVE
+  DECLINED
+  BLOCKED
 }
 
 enum Role {

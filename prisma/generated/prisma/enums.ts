@@ -11,6 +11,8 @@
 export const Status = {
   PENDING: 'PENDING',
   ACTIVE: 'ACTIVE',
+  DECLINED: 'DECLINED',
+  BLOCKED: 'BLOCKED',
 } as const;
 
 export type Status = (typeof Status)[keyof typeof Status];

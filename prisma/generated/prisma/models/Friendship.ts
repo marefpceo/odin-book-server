@@ -240,19 +240,19 @@ export type FriendshipOrderByWithRelationInput = {
 
 export type FriendshipWhereUniqueInput = Prisma.AtLeast<
   {
-    user1Id?: number;
-    user2Id?: number;
     user2Id_user1Id?: Prisma.FriendshipUser2IdUser1IdCompoundUniqueInput;
     AND?: Prisma.FriendshipWhereInput | Prisma.FriendshipWhereInput[];
     OR?: Prisma.FriendshipWhereInput[];
     NOT?: Prisma.FriendshipWhereInput | Prisma.FriendshipWhereInput[];
+    user1Id?: Prisma.IntFilter<'Friendship'> | number;
+    user2Id?: Prisma.IntFilter<'Friendship'> | number;
     createdAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
     status?: Prisma.EnumStatusFilter<'Friendship'> | $Enums.Status;
     user1?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     user2?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
   },
-  'user2Id_user1Id' | 'user1Id' | 'user2Id'
+  'user2Id_user1Id'
 >;
 
 export type FriendshipOrderByWithAggregationInput = {
