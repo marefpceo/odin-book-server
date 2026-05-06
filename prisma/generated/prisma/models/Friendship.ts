@@ -62,38 +62,38 @@ export type FriendshipCountAggregateOutputType = {
 };
 
 export type FriendshipAvgAggregateInputType = {
-  user1Id?: true | runtime.Types.Skip;
-  user2Id?: true | runtime.Types.Skip;
+  user1Id?: true;
+  user2Id?: true;
 };
 
 export type FriendshipSumAggregateInputType = {
-  user1Id?: true | runtime.Types.Skip;
-  user2Id?: true | runtime.Types.Skip;
+  user1Id?: true;
+  user2Id?: true;
 };
 
 export type FriendshipMinAggregateInputType = {
-  user1Id?: true | runtime.Types.Skip;
-  user2Id?: true | runtime.Types.Skip;
-  createdAt?: true | runtime.Types.Skip;
-  updatedAt?: true | runtime.Types.Skip;
-  status?: true | runtime.Types.Skip;
+  user1Id?: true;
+  user2Id?: true;
+  createdAt?: true;
+  updatedAt?: true;
+  status?: true;
 };
 
 export type FriendshipMaxAggregateInputType = {
-  user1Id?: true | runtime.Types.Skip;
-  user2Id?: true | runtime.Types.Skip;
-  createdAt?: true | runtime.Types.Skip;
-  updatedAt?: true | runtime.Types.Skip;
-  status?: true | runtime.Types.Skip;
+  user1Id?: true;
+  user2Id?: true;
+  createdAt?: true;
+  updatedAt?: true;
+  status?: true;
 };
 
 export type FriendshipCountAggregateInputType = {
-  user1Id?: true | runtime.Types.Skip;
-  user2Id?: true | runtime.Types.Skip;
-  createdAt?: true | runtime.Types.Skip;
-  updatedAt?: true | runtime.Types.Skip;
-  status?: true | runtime.Types.Skip;
-  _all?: true | runtime.Types.Skip;
+  user1Id?: true;
+  user2Id?: true;
+  createdAt?: true;
+  updatedAt?: true;
+  status?: true;
+  _all?: true;
 };
 
 export type FriendshipAggregateArgs<
@@ -103,7 +103,7 @@ export type FriendshipAggregateArgs<
   /**
    * Filter which Friendship to aggregate.
    */
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -111,26 +111,25 @@ export type FriendshipAggregateArgs<
    */
   orderBy?:
     | Prisma.FriendshipOrderByWithRelationInput
-    | Prisma.FriendshipOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.FriendshipWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.FriendshipWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Friendships from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Friendships.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
@@ -175,15 +174,14 @@ export type FriendshipGroupByArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   orderBy?:
     | Prisma.FriendshipOrderByWithAggregationInput
-    | Prisma.FriendshipOrderByWithAggregationInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipOrderByWithAggregationInput[];
   by: Prisma.FriendshipScalarFieldEnum[] | Prisma.FriendshipScalarFieldEnum;
-  having?: Prisma.FriendshipScalarWhereWithAggregatesInput | runtime.Types.Skip;
-  take?: number | runtime.Types.Skip;
-  skip?: number | runtime.Types.Skip;
+  having?: Prisma.FriendshipScalarWhereWithAggregatesInput;
+  take?: number;
+  skip?: number;
   _count?: FriendshipCountAggregateInputType | true;
   _avg?: FriendshipAvgAggregateInputType;
   _sum?: FriendshipSumAggregateInputType;
@@ -218,140 +216,77 @@ export type GetFriendshipGroupByPayload<T extends FriendshipGroupByArgs> =
   >;
 
 export type FriendshipWhereInput = {
-  AND?:
-    | Prisma.FriendshipWhereInput
-    | Prisma.FriendshipWhereInput[]
-    | runtime.Types.Skip;
-  OR?: Prisma.FriendshipWhereInput[] | runtime.Types.Skip;
-  NOT?:
-    | Prisma.FriendshipWhereInput
-    | Prisma.FriendshipWhereInput[]
-    | runtime.Types.Skip;
-  user1Id?: Prisma.IntFilter<'Friendship'> | number | runtime.Types.Skip;
-  user2Id?: Prisma.IntFilter<'Friendship'> | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFilter<'Friendship'>
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFilter<'Friendship'>
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFilter<'Friendship'>
-    | $Enums.Status
-    | runtime.Types.Skip;
-  user1?:
-    | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-    | runtime.Types.Skip;
-  user2?:
-    | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-    | runtime.Types.Skip;
+  AND?: Prisma.FriendshipWhereInput | Prisma.FriendshipWhereInput[];
+  OR?: Prisma.FriendshipWhereInput[];
+  NOT?: Prisma.FriendshipWhereInput | Prisma.FriendshipWhereInput[];
+  user1Id?: Prisma.IntFilter<'Friendship'> | number;
+  user2Id?: Prisma.IntFilter<'Friendship'> | number;
+  createdAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
+  status?: Prisma.EnumStatusFilter<'Friendship'> | $Enums.Status;
+  user1?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  user2?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 };
 
 export type FriendshipOrderByWithRelationInput = {
-  user1Id?: Prisma.SortOrder | runtime.Types.Skip;
-  user2Id?: Prisma.SortOrder | runtime.Types.Skip;
-  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
-  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
-  status?: Prisma.SortOrder | runtime.Types.Skip;
-  user1?: Prisma.UserOrderByWithRelationInput | runtime.Types.Skip;
-  user2?: Prisma.UserOrderByWithRelationInput | runtime.Types.Skip;
+  user1Id?: Prisma.SortOrder;
+  user2Id?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  user1?: Prisma.UserOrderByWithRelationInput;
+  user2?: Prisma.UserOrderByWithRelationInput;
 };
 
 export type FriendshipWhereUniqueInput = Prisma.AtLeast<
   {
-    user1Id?: number | runtime.Types.Skip;
-    user2Id?: number | runtime.Types.Skip;
-    user2Id_user1Id?:
-      | Prisma.FriendshipUser2IdUser1IdCompoundUniqueInput
-      | runtime.Types.Skip;
-    AND?:
-      | Prisma.FriendshipWhereInput
-      | Prisma.FriendshipWhereInput[]
-      | runtime.Types.Skip;
-    OR?: Prisma.FriendshipWhereInput[] | runtime.Types.Skip;
-    NOT?:
-      | Prisma.FriendshipWhereInput
-      | Prisma.FriendshipWhereInput[]
-      | runtime.Types.Skip;
-    createdAt?:
-      | Prisma.DateTimeFilter<'Friendship'>
-      | Date
-      | string
-      | runtime.Types.Skip;
-    updatedAt?:
-      | Prisma.DateTimeFilter<'Friendship'>
-      | Date
-      | string
-      | runtime.Types.Skip;
-    status?:
-      | Prisma.EnumStatusFilter<'Friendship'>
-      | $Enums.Status
-      | runtime.Types.Skip;
-    user1?:
-      | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-      | runtime.Types.Skip;
-    user2?:
-      | Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-      | runtime.Types.Skip;
+    user1Id?: number;
+    user2Id?: number;
+    user2Id_user1Id?: Prisma.FriendshipUser2IdUser1IdCompoundUniqueInput;
+    AND?: Prisma.FriendshipWhereInput | Prisma.FriendshipWhereInput[];
+    OR?: Prisma.FriendshipWhereInput[];
+    NOT?: Prisma.FriendshipWhereInput | Prisma.FriendshipWhereInput[];
+    createdAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
+    status?: Prisma.EnumStatusFilter<'Friendship'> | $Enums.Status;
+    user1?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    user2?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
   },
   'user2Id_user1Id' | 'user1Id' | 'user2Id'
 >;
 
 export type FriendshipOrderByWithAggregationInput = {
-  user1Id?: Prisma.SortOrder | runtime.Types.Skip;
-  user2Id?: Prisma.SortOrder | runtime.Types.Skip;
-  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
-  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
-  status?: Prisma.SortOrder | runtime.Types.Skip;
-  _count?: Prisma.FriendshipCountOrderByAggregateInput | runtime.Types.Skip;
-  _avg?: Prisma.FriendshipAvgOrderByAggregateInput | runtime.Types.Skip;
-  _max?: Prisma.FriendshipMaxOrderByAggregateInput | runtime.Types.Skip;
-  _min?: Prisma.FriendshipMinOrderByAggregateInput | runtime.Types.Skip;
-  _sum?: Prisma.FriendshipSumOrderByAggregateInput | runtime.Types.Skip;
+  user1Id?: Prisma.SortOrder;
+  user2Id?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  _count?: Prisma.FriendshipCountOrderByAggregateInput;
+  _avg?: Prisma.FriendshipAvgOrderByAggregateInput;
+  _max?: Prisma.FriendshipMaxOrderByAggregateInput;
+  _min?: Prisma.FriendshipMinOrderByAggregateInput;
+  _sum?: Prisma.FriendshipSumOrderByAggregateInput;
 };
 
 export type FriendshipScalarWhereWithAggregatesInput = {
   AND?:
     | Prisma.FriendshipScalarWhereWithAggregatesInput
-    | Prisma.FriendshipScalarWhereWithAggregatesInput[]
-    | runtime.Types.Skip;
-  OR?: Prisma.FriendshipScalarWhereWithAggregatesInput[] | runtime.Types.Skip;
+    | Prisma.FriendshipScalarWhereWithAggregatesInput[];
+  OR?: Prisma.FriendshipScalarWhereWithAggregatesInput[];
   NOT?:
     | Prisma.FriendshipScalarWhereWithAggregatesInput
-    | Prisma.FriendshipScalarWhereWithAggregatesInput[]
-    | runtime.Types.Skip;
-  user1Id?:
-    | Prisma.IntWithAggregatesFilter<'Friendship'>
-    | number
-    | runtime.Types.Skip;
-  user2Id?:
-    | Prisma.IntWithAggregatesFilter<'Friendship'>
-    | number
-    | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeWithAggregatesFilter<'Friendship'>
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeWithAggregatesFilter<'Friendship'>
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusWithAggregatesFilter<'Friendship'>
-    | $Enums.Status
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarWhereWithAggregatesInput[];
+  user1Id?: Prisma.IntWithAggregatesFilter<'Friendship'> | number;
+  user2Id?: Prisma.IntWithAggregatesFilter<'Friendship'> | number;
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<'Friendship'> | Date | string;
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<'Friendship'> | Date | string;
+  status?: Prisma.EnumStatusWithAggregatesFilter<'Friendship'> | $Enums.Status;
 };
 
 export type FriendshipCreateInput = {
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
   user1: Prisma.UserCreateNestedOneWithoutUser1Input;
   user2: Prisma.UserCreateNestedOneWithoutUser2Input;
 };
@@ -359,105 +294,57 @@ export type FriendshipCreateInput = {
 export type FriendshipUncheckedCreateInput = {
   user1Id: number;
   user2Id: number;
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
 };
 
 export type FriendshipUpdateInput = {
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
-  user1?:
-    | Prisma.UserUpdateOneRequiredWithoutUser1NestedInput
-    | runtime.Types.Skip;
-  user2?:
-    | Prisma.UserUpdateOneRequiredWithoutUser2NestedInput
-    | runtime.Types.Skip;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+  user1?: Prisma.UserUpdateOneRequiredWithoutUser1NestedInput;
+  user2?: Prisma.UserUpdateOneRequiredWithoutUser2NestedInput;
 };
 
 export type FriendshipUncheckedUpdateInput = {
-  user1Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  user2Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
+  user1Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  user2Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
 };
 
 export type FriendshipCreateManyInput = {
   user1Id: number;
   user2Id: number;
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
 };
 
 export type FriendshipUpdateManyMutationInput = {
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
 };
 
 export type FriendshipUncheckedUpdateManyInput = {
-  user1Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  user2Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
+  user1Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  user2Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
 };
 
 export type FriendshipListRelationFilter = {
-  every?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
-  some?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
-  none?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  every?: Prisma.FriendshipWhereInput;
+  some?: Prisma.FriendshipWhereInput;
+  none?: Prisma.FriendshipWhereInput;
 };
 
 export type FriendshipOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder | runtime.Types.Skip;
+  _count?: Prisma.SortOrder;
 };
 
 export type FriendshipUser2IdUser1IdCompoundUniqueInput = {
@@ -466,37 +353,37 @@ export type FriendshipUser2IdUser1IdCompoundUniqueInput = {
 };
 
 export type FriendshipCountOrderByAggregateInput = {
-  user1Id?: Prisma.SortOrder | runtime.Types.Skip;
-  user2Id?: Prisma.SortOrder | runtime.Types.Skip;
-  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
-  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
-  status?: Prisma.SortOrder | runtime.Types.Skip;
+  user1Id?: Prisma.SortOrder;
+  user2Id?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
 };
 
 export type FriendshipAvgOrderByAggregateInput = {
-  user1Id?: Prisma.SortOrder | runtime.Types.Skip;
-  user2Id?: Prisma.SortOrder | runtime.Types.Skip;
+  user1Id?: Prisma.SortOrder;
+  user2Id?: Prisma.SortOrder;
 };
 
 export type FriendshipMaxOrderByAggregateInput = {
-  user1Id?: Prisma.SortOrder | runtime.Types.Skip;
-  user2Id?: Prisma.SortOrder | runtime.Types.Skip;
-  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
-  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
-  status?: Prisma.SortOrder | runtime.Types.Skip;
+  user1Id?: Prisma.SortOrder;
+  user2Id?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
 };
 
 export type FriendshipMinOrderByAggregateInput = {
-  user1Id?: Prisma.SortOrder | runtime.Types.Skip;
-  user2Id?: Prisma.SortOrder | runtime.Types.Skip;
-  createdAt?: Prisma.SortOrder | runtime.Types.Skip;
-  updatedAt?: Prisma.SortOrder | runtime.Types.Skip;
-  status?: Prisma.SortOrder | runtime.Types.Skip;
+  user1Id?: Prisma.SortOrder;
+  user2Id?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
 };
 
 export type FriendshipSumOrderByAggregateInput = {
-  user1Id?: Prisma.SortOrder | runtime.Types.Skip;
-  user2Id?: Prisma.SortOrder | runtime.Types.Skip;
+  user1Id?: Prisma.SortOrder;
+  user2Id?: Prisma.SortOrder;
 };
 
 export type FriendshipCreateNestedManyWithoutUser1Input = {
@@ -506,19 +393,14 @@ export type FriendshipCreateNestedManyWithoutUser1Input = {
         Prisma.FriendshipUncheckedCreateWithoutUser1Input
       >
     | Prisma.FriendshipCreateWithoutUser1Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser1Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser1InputEnvelope
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[];
+  createMany?: Prisma.FriendshipCreateManyUser1InputEnvelope;
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
 };
 
 export type FriendshipCreateNestedManyWithoutUser2Input = {
@@ -528,19 +410,14 @@ export type FriendshipCreateNestedManyWithoutUser2Input = {
         Prisma.FriendshipUncheckedCreateWithoutUser2Input
       >
     | Prisma.FriendshipCreateWithoutUser2Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser2Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser2InputEnvelope
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[];
+  createMany?: Prisma.FriendshipCreateManyUser2InputEnvelope;
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
 };
 
 export type FriendshipUncheckedCreateNestedManyWithoutUser1Input = {
@@ -550,19 +427,14 @@ export type FriendshipUncheckedCreateNestedManyWithoutUser1Input = {
         Prisma.FriendshipUncheckedCreateWithoutUser1Input
       >
     | Prisma.FriendshipCreateWithoutUser1Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser1Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser1InputEnvelope
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[];
+  createMany?: Prisma.FriendshipCreateManyUser1InputEnvelope;
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
 };
 
 export type FriendshipUncheckedCreateNestedManyWithoutUser2Input = {
@@ -572,19 +444,14 @@ export type FriendshipUncheckedCreateNestedManyWithoutUser2Input = {
         Prisma.FriendshipUncheckedCreateWithoutUser2Input
       >
     | Prisma.FriendshipCreateWithoutUser2Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser2Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser2InputEnvelope
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[];
+  createMany?: Prisma.FriendshipCreateManyUser2InputEnvelope;
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
 };
 
 export type FriendshipUpdateManyWithoutUser1NestedInput = {
@@ -594,47 +461,33 @@ export type FriendshipUpdateManyWithoutUser1NestedInput = {
         Prisma.FriendshipUncheckedCreateWithoutUser1Input
       >
     | Prisma.FriendshipCreateWithoutUser1Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser1Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[];
   upsert?:
     | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser1Input
-    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser1Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser1InputEnvelope
-    | runtime.Types.Skip;
-  set?:
-    | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser1Input[];
+  createMany?: Prisma.FriendshipCreateManyUser1InputEnvelope;
+  set?: Prisma.FriendshipWhereUniqueInput | Prisma.FriendshipWhereUniqueInput[];
   disconnect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   delete?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   update?:
     | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser1Input
-    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser1Input[];
   updateMany?:
     | Prisma.FriendshipUpdateManyWithWhereWithoutUser1Input
-    | Prisma.FriendshipUpdateManyWithWhereWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateManyWithWhereWithoutUser1Input[];
   deleteMany?:
     | Prisma.FriendshipScalarWhereInput
-    | Prisma.FriendshipScalarWhereInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarWhereInput[];
 };
 
 export type FriendshipUpdateManyWithoutUser2NestedInput = {
@@ -644,47 +497,33 @@ export type FriendshipUpdateManyWithoutUser2NestedInput = {
         Prisma.FriendshipUncheckedCreateWithoutUser2Input
       >
     | Prisma.FriendshipCreateWithoutUser2Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser2Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[];
   upsert?:
     | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser2Input
-    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser2Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser2InputEnvelope
-    | runtime.Types.Skip;
-  set?:
-    | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser2Input[];
+  createMany?: Prisma.FriendshipCreateManyUser2InputEnvelope;
+  set?: Prisma.FriendshipWhereUniqueInput | Prisma.FriendshipWhereUniqueInput[];
   disconnect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   delete?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   update?:
     | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser2Input
-    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser2Input[];
   updateMany?:
     | Prisma.FriendshipUpdateManyWithWhereWithoutUser2Input
-    | Prisma.FriendshipUpdateManyWithWhereWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateManyWithWhereWithoutUser2Input[];
   deleteMany?:
     | Prisma.FriendshipScalarWhereInput
-    | Prisma.FriendshipScalarWhereInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarWhereInput[];
 };
 
 export type FriendshipUncheckedUpdateManyWithoutUser1NestedInput = {
@@ -694,47 +533,33 @@ export type FriendshipUncheckedUpdateManyWithoutUser1NestedInput = {
         Prisma.FriendshipUncheckedCreateWithoutUser1Input
       >
     | Prisma.FriendshipCreateWithoutUser1Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser1Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser1Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser1Input[];
   upsert?:
     | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser1Input
-    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser1Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser1InputEnvelope
-    | runtime.Types.Skip;
-  set?:
-    | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser1Input[];
+  createMany?: Prisma.FriendshipCreateManyUser1InputEnvelope;
+  set?: Prisma.FriendshipWhereUniqueInput | Prisma.FriendshipWhereUniqueInput[];
   disconnect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   delete?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   update?:
     | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser1Input
-    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser1Input[];
   updateMany?:
     | Prisma.FriendshipUpdateManyWithWhereWithoutUser1Input
-    | Prisma.FriendshipUpdateManyWithWhereWithoutUser1Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateManyWithWhereWithoutUser1Input[];
   deleteMany?:
     | Prisma.FriendshipScalarWhereInput
-    | Prisma.FriendshipScalarWhereInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarWhereInput[];
 };
 
 export type FriendshipUncheckedUpdateManyWithoutUser2NestedInput = {
@@ -744,65 +569,51 @@ export type FriendshipUncheckedUpdateManyWithoutUser2NestedInput = {
         Prisma.FriendshipUncheckedCreateWithoutUser2Input
       >
     | Prisma.FriendshipCreateWithoutUser2Input[]
-    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUncheckedCreateWithoutUser2Input[];
   connectOrCreate?:
     | Prisma.FriendshipCreateOrConnectWithoutUser2Input
-    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipCreateOrConnectWithoutUser2Input[];
   upsert?:
     | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser2Input
-    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser2Input[]
-    | runtime.Types.Skip;
-  createMany?:
-    | Prisma.FriendshipCreateManyUser2InputEnvelope
-    | runtime.Types.Skip;
-  set?:
-    | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpsertWithWhereUniqueWithoutUser2Input[];
+  createMany?: Prisma.FriendshipCreateManyUser2InputEnvelope;
+  set?: Prisma.FriendshipWhereUniqueInput | Prisma.FriendshipWhereUniqueInput[];
   disconnect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   delete?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   connect?:
     | Prisma.FriendshipWhereUniqueInput
-    | Prisma.FriendshipWhereUniqueInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipWhereUniqueInput[];
   update?:
     | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser2Input
-    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateWithWhereUniqueWithoutUser2Input[];
   updateMany?:
     | Prisma.FriendshipUpdateManyWithWhereWithoutUser2Input
-    | Prisma.FriendshipUpdateManyWithWhereWithoutUser2Input[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipUpdateManyWithWhereWithoutUser2Input[];
   deleteMany?:
     | Prisma.FriendshipScalarWhereInput
-    | Prisma.FriendshipScalarWhereInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarWhereInput[];
 };
 
 export type EnumStatusFieldUpdateOperationsInput = {
-  set?: $Enums.Status | runtime.Types.Skip;
+  set?: $Enums.Status;
 };
 
 export type FriendshipCreateWithoutUser1Input = {
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
   user2: Prisma.UserCreateNestedOneWithoutUser2Input;
 };
 
 export type FriendshipUncheckedCreateWithoutUser1Input = {
   user2Id: number;
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
 };
 
 export type FriendshipCreateOrConnectWithoutUser1Input = {
@@ -817,21 +628,21 @@ export type FriendshipCreateManyUser1InputEnvelope = {
   data:
     | Prisma.FriendshipCreateManyUser1Input
     | Prisma.FriendshipCreateManyUser1Input[];
-  skipDuplicates?: boolean | runtime.Types.Skip;
+  skipDuplicates?: boolean;
 };
 
 export type FriendshipCreateWithoutUser2Input = {
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
   user1: Prisma.UserCreateNestedOneWithoutUser1Input;
 };
 
 export type FriendshipUncheckedCreateWithoutUser2Input = {
   user1Id: number;
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
 };
 
 export type FriendshipCreateOrConnectWithoutUser2Input = {
@@ -846,7 +657,7 @@ export type FriendshipCreateManyUser2InputEnvelope = {
   data:
     | Prisma.FriendshipCreateManyUser2Input
     | Prisma.FriendshipCreateManyUser2Input[];
-  skipDuplicates?: boolean | runtime.Types.Skip;
+  skipDuplicates?: boolean;
 };
 
 export type FriendshipUpsertWithWhereUniqueWithoutUser1Input = {
@@ -878,31 +689,14 @@ export type FriendshipUpdateManyWithWhereWithoutUser1Input = {
 };
 
 export type FriendshipScalarWhereInput = {
-  AND?:
-    | Prisma.FriendshipScalarWhereInput
-    | Prisma.FriendshipScalarWhereInput[]
-    | runtime.Types.Skip;
-  OR?: Prisma.FriendshipScalarWhereInput[] | runtime.Types.Skip;
-  NOT?:
-    | Prisma.FriendshipScalarWhereInput
-    | Prisma.FriendshipScalarWhereInput[]
-    | runtime.Types.Skip;
-  user1Id?: Prisma.IntFilter<'Friendship'> | number | runtime.Types.Skip;
-  user2Id?: Prisma.IntFilter<'Friendship'> | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFilter<'Friendship'>
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFilter<'Friendship'>
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFilter<'Friendship'>
-    | $Enums.Status
-    | runtime.Types.Skip;
+  AND?: Prisma.FriendshipScalarWhereInput | Prisma.FriendshipScalarWhereInput[];
+  OR?: Prisma.FriendshipScalarWhereInput[];
+  NOT?: Prisma.FriendshipScalarWhereInput | Prisma.FriendshipScalarWhereInput[];
+  user1Id?: Prisma.IntFilter<'Friendship'> | number;
+  user2Id?: Prisma.IntFilter<'Friendship'> | number;
+  createdAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'Friendship'> | Date | string;
+  status?: Prisma.EnumStatusFilter<'Friendship'> | $Enums.Status;
 };
 
 export type FriendshipUpsertWithWhereUniqueWithoutUser2Input = {
@@ -935,128 +729,58 @@ export type FriendshipUpdateManyWithWhereWithoutUser2Input = {
 
 export type FriendshipCreateManyUser1Input = {
   user2Id: number;
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
 };
 
 export type FriendshipCreateManyUser2Input = {
   user1Id: number;
-  createdAt?: Date | string | runtime.Types.Skip;
-  updatedAt?: Date | string | runtime.Types.Skip;
-  status?: $Enums.Status | runtime.Types.Skip;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  status?: $Enums.Status;
 };
 
 export type FriendshipUpdateWithoutUser1Input = {
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
-  user2?:
-    | Prisma.UserUpdateOneRequiredWithoutUser2NestedInput
-    | runtime.Types.Skip;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+  user2?: Prisma.UserUpdateOneRequiredWithoutUser2NestedInput;
 };
 
 export type FriendshipUncheckedUpdateWithoutUser1Input = {
-  user2Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
+  user2Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
 };
 
 export type FriendshipUncheckedUpdateManyWithoutUser1Input = {
-  user2Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
+  user2Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
 };
 
 export type FriendshipUpdateWithoutUser2Input = {
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
-  user1?:
-    | Prisma.UserUpdateOneRequiredWithoutUser1NestedInput
-    | runtime.Types.Skip;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
+  user1?: Prisma.UserUpdateOneRequiredWithoutUser1NestedInput;
 };
 
 export type FriendshipUncheckedUpdateWithoutUser2Input = {
-  user1Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
+  user1Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
 };
 
 export type FriendshipUncheckedUpdateManyWithoutUser2Input = {
-  user1Id?: Prisma.IntFieldUpdateOperationsInput | number | runtime.Types.Skip;
-  createdAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  updatedAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
-  status?:
-    | Prisma.EnumStatusFieldUpdateOperationsInput
-    | $Enums.Status
-    | runtime.Types.Skip;
+  user1Id?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status;
 };
 
 export type FriendshipSelect<
@@ -1064,13 +788,13 @@ export type FriendshipSelect<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    user1Id?: boolean | runtime.Types.Skip;
-    user2Id?: boolean | runtime.Types.Skip;
-    createdAt?: boolean | runtime.Types.Skip;
-    updatedAt?: boolean | runtime.Types.Skip;
-    status?: boolean | runtime.Types.Skip;
-    user1?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
-    user2?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
+    user1Id?: boolean;
+    user2Id?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    status?: boolean;
+    user1?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    user2?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['friendship']
 >;
@@ -1080,13 +804,13 @@ export type FriendshipSelectCreateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    user1Id?: boolean | runtime.Types.Skip;
-    user2Id?: boolean | runtime.Types.Skip;
-    createdAt?: boolean | runtime.Types.Skip;
-    updatedAt?: boolean | runtime.Types.Skip;
-    status?: boolean | runtime.Types.Skip;
-    user1?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
-    user2?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
+    user1Id?: boolean;
+    user2Id?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    status?: boolean;
+    user1?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    user2?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['friendship']
 >;
@@ -1096,23 +820,23 @@ export type FriendshipSelectUpdateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    user1Id?: boolean | runtime.Types.Skip;
-    user2Id?: boolean | runtime.Types.Skip;
-    createdAt?: boolean | runtime.Types.Skip;
-    updatedAt?: boolean | runtime.Types.Skip;
-    status?: boolean | runtime.Types.Skip;
-    user1?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
-    user2?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
+    user1Id?: boolean;
+    user2Id?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    status?: boolean;
+    user1?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    user2?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['friendship']
 >;
 
 export type FriendshipSelectScalar = {
-  user1Id?: boolean | runtime.Types.Skip;
-  user2Id?: boolean | runtime.Types.Skip;
-  createdAt?: boolean | runtime.Types.Skip;
-  updatedAt?: boolean | runtime.Types.Skip;
-  status?: boolean | runtime.Types.Skip;
+  user1Id?: boolean;
+  user2Id?: boolean;
+  createdAt?: boolean;
+  updatedAt?: boolean;
+  status?: boolean;
 };
 
 export type FriendshipOmit<
@@ -1120,29 +844,28 @@ export type FriendshipOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   'user1Id' | 'user2Id' | 'createdAt' | 'updatedAt' | 'status',
-  ExtArgs['result']['friendship'],
-  runtime.Types.Skip
+  ExtArgs['result']['friendship']
 >;
 export type FriendshipInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  user1?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
-  user2?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
+  user1?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  user2?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type FriendshipIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  user1?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
-  user2?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
+  user1?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  user2?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type FriendshipIncludeUpdateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  user1?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
-  user2?: boolean | Prisma.UserDefaultArgs<ExtArgs> | runtime.Types.Skip;
+  user1?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  user2?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 
 export type $FriendshipPayload<
@@ -1861,7 +1584,7 @@ export type FriendshipFindFirstArgs<
   /**
    * Filter, which Friendship to fetch.
    */
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1869,26 +1592,25 @@ export type FriendshipFindFirstArgs<
    */
   orderBy?:
     | Prisma.FriendshipOrderByWithRelationInput
-    | Prisma.FriendshipOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Friendships.
    */
-  cursor?: Prisma.FriendshipWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.FriendshipWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Friendships from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Friendships.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
@@ -1896,8 +1618,7 @@ export type FriendshipFindFirstArgs<
    */
   distinct?:
     | Prisma.FriendshipScalarFieldEnum
-    | Prisma.FriendshipScalarFieldEnum[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarFieldEnum[];
 };
 
 /**
@@ -1922,7 +1643,7 @@ export type FriendshipFindFirstOrThrowArgs<
   /**
    * Filter, which Friendship to fetch.
    */
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1930,26 +1651,25 @@ export type FriendshipFindFirstOrThrowArgs<
    */
   orderBy?:
     | Prisma.FriendshipOrderByWithRelationInput
-    | Prisma.FriendshipOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Friendships.
    */
-  cursor?: Prisma.FriendshipWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.FriendshipWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Friendships from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Friendships.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
@@ -1957,8 +1677,7 @@ export type FriendshipFindFirstOrThrowArgs<
    */
   distinct?:
     | Prisma.FriendshipScalarFieldEnum
-    | Prisma.FriendshipScalarFieldEnum[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarFieldEnum[];
 };
 
 /**
@@ -1983,7 +1702,7 @@ export type FriendshipFindManyArgs<
   /**
    * Filter, which Friendships to fetch.
    */
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1991,26 +1710,25 @@ export type FriendshipFindManyArgs<
    */
   orderBy?:
     | Prisma.FriendshipOrderByWithRelationInput
-    | Prisma.FriendshipOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing Friendships.
    */
-  cursor?: Prisma.FriendshipWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.FriendshipWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Friendships from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Friendships.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
@@ -2018,8 +1736,7 @@ export type FriendshipFindManyArgs<
    */
   distinct?:
     | Prisma.FriendshipScalarFieldEnum
-    | Prisma.FriendshipScalarFieldEnum[]
-    | runtime.Types.Skip;
+    | Prisma.FriendshipScalarFieldEnum[];
 };
 
 /**
@@ -2061,7 +1778,7 @@ export type FriendshipCreateManyArgs<
    * The data used to create many Friendships.
    */
   data: Prisma.FriendshipCreateManyInput | Prisma.FriendshipCreateManyInput[];
-  skipDuplicates?: boolean | runtime.Types.Skip;
+  skipDuplicates?: boolean;
 };
 
 /**
@@ -2083,7 +1800,7 @@ export type FriendshipCreateManyAndReturnArgs<
    * The data used to create many Friendships.
    */
   data: Prisma.FriendshipCreateManyInput | Prisma.FriendshipCreateManyInput[];
-  skipDuplicates?: boolean | runtime.Types.Skip;
+  skipDuplicates?: boolean;
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -2139,11 +1856,11 @@ export type FriendshipUpdateManyArgs<
   /**
    * Filter which Friendships to update
    */
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   /**
    * Limit how many Friendships to update.
    */
-  limit?: number | runtime.Types.Skip;
+  limit?: number;
 };
 
 /**
@@ -2171,11 +1888,11 @@ export type FriendshipUpdateManyAndReturnArgs<
   /**
    * Filter which Friendships to update
    */
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   /**
    * Limit how many Friendships to update.
    */
-  limit?: number | runtime.Types.Skip;
+  limit?: number;
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -2256,11 +1973,11 @@ export type FriendshipDeleteManyArgs<
   /**
    * Filter which Friendships to delete
    */
-  where?: Prisma.FriendshipWhereInput | runtime.Types.Skip;
+  where?: Prisma.FriendshipWhereInput;
   /**
    * Limit how many Friendships to delete.
    */
-  limit?: number | runtime.Types.Skip;
+  limit?: number;
 };
 
 /**

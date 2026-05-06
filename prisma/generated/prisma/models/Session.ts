@@ -47,25 +47,25 @@ export type SessionCountAggregateOutputType = {
 };
 
 export type SessionMinAggregateInputType = {
-  id?: true | runtime.Types.Skip;
-  sid?: true | runtime.Types.Skip;
-  data?: true | runtime.Types.Skip;
-  expiresAt?: true | runtime.Types.Skip;
+  id?: true;
+  sid?: true;
+  data?: true;
+  expiresAt?: true;
 };
 
 export type SessionMaxAggregateInputType = {
-  id?: true | runtime.Types.Skip;
-  sid?: true | runtime.Types.Skip;
-  data?: true | runtime.Types.Skip;
-  expiresAt?: true | runtime.Types.Skip;
+  id?: true;
+  sid?: true;
+  data?: true;
+  expiresAt?: true;
 };
 
 export type SessionCountAggregateInputType = {
-  id?: true | runtime.Types.Skip;
-  sid?: true | runtime.Types.Skip;
-  data?: true | runtime.Types.Skip;
-  expiresAt?: true | runtime.Types.Skip;
-  _all?: true | runtime.Types.Skip;
+  id?: true;
+  sid?: true;
+  data?: true;
+  expiresAt?: true;
+  _all?: true;
 };
 
 export type SessionAggregateArgs<
@@ -75,7 +75,7 @@ export type SessionAggregateArgs<
   /**
    * Filter which Session to aggregate.
    */
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -83,26 +83,25 @@ export type SessionAggregateArgs<
    */
   orderBy?:
     | Prisma.SessionOrderByWithRelationInput
-    | Prisma.SessionOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.SessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.SessionWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.SessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Sessions from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Sessions.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
@@ -135,15 +134,14 @@ export type SessionGroupByArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   orderBy?:
     | Prisma.SessionOrderByWithAggregationInput
-    | Prisma.SessionOrderByWithAggregationInput[]
-    | runtime.Types.Skip;
+    | Prisma.SessionOrderByWithAggregationInput[];
   by: Prisma.SessionScalarFieldEnum[] | Prisma.SessionScalarFieldEnum;
-  having?: Prisma.SessionScalarWhereWithAggregatesInput | runtime.Types.Skip;
-  take?: number | runtime.Types.Skip;
-  skip?: number | runtime.Types.Skip;
+  having?: Prisma.SessionScalarWhereWithAggregatesInput;
+  take?: number;
+  skip?: number;
   _count?: SessionCountAggregateInputType | true;
   _min?: SessionMinAggregateInputType;
   _max?: SessionMaxAggregateInputType;
@@ -173,92 +171,57 @@ export type GetSessionGroupByPayload<T extends SessionGroupByArgs> =
   >;
 
 export type SessionWhereInput = {
-  AND?:
-    | Prisma.SessionWhereInput
-    | Prisma.SessionWhereInput[]
-    | runtime.Types.Skip;
-  OR?: Prisma.SessionWhereInput[] | runtime.Types.Skip;
-  NOT?:
-    | Prisma.SessionWhereInput
-    | Prisma.SessionWhereInput[]
-    | runtime.Types.Skip;
-  id?: Prisma.StringFilter<'Session'> | string | runtime.Types.Skip;
-  sid?: Prisma.StringFilter<'Session'> | string | runtime.Types.Skip;
-  data?: Prisma.StringFilter<'Session'> | string | runtime.Types.Skip;
-  expiresAt?:
-    | Prisma.DateTimeFilter<'Session'>
-    | Date
-    | string
-    | runtime.Types.Skip;
+  AND?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[];
+  OR?: Prisma.SessionWhereInput[];
+  NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[];
+  id?: Prisma.StringFilter<'Session'> | string;
+  sid?: Prisma.StringFilter<'Session'> | string;
+  data?: Prisma.StringFilter<'Session'> | string;
+  expiresAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
 };
 
 export type SessionOrderByWithRelationInput = {
-  id?: Prisma.SortOrder | runtime.Types.Skip;
-  sid?: Prisma.SortOrder | runtime.Types.Skip;
-  data?: Prisma.SortOrder | runtime.Types.Skip;
-  expiresAt?: Prisma.SortOrder | runtime.Types.Skip;
+  id?: Prisma.SortOrder;
+  sid?: Prisma.SortOrder;
+  data?: Prisma.SortOrder;
+  expiresAt?: Prisma.SortOrder;
 };
 
 export type SessionWhereUniqueInput = Prisma.AtLeast<
   {
-    id?: string | runtime.Types.Skip;
-    sid?: string | runtime.Types.Skip;
-    AND?:
-      | Prisma.SessionWhereInput
-      | Prisma.SessionWhereInput[]
-      | runtime.Types.Skip;
-    OR?: Prisma.SessionWhereInput[] | runtime.Types.Skip;
-    NOT?:
-      | Prisma.SessionWhereInput
-      | Prisma.SessionWhereInput[]
-      | runtime.Types.Skip;
-    data?: Prisma.StringFilter<'Session'> | string | runtime.Types.Skip;
-    expiresAt?:
-      | Prisma.DateTimeFilter<'Session'>
-      | Date
-      | string
-      | runtime.Types.Skip;
+    id?: string;
+    sid?: string;
+    AND?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[];
+    OR?: Prisma.SessionWhereInput[];
+    NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[];
+    data?: Prisma.StringFilter<'Session'> | string;
+    expiresAt?: Prisma.DateTimeFilter<'Session'> | Date | string;
   },
   'id' | 'sid'
 >;
 
 export type SessionOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder | runtime.Types.Skip;
-  sid?: Prisma.SortOrder | runtime.Types.Skip;
-  data?: Prisma.SortOrder | runtime.Types.Skip;
-  expiresAt?: Prisma.SortOrder | runtime.Types.Skip;
-  _count?: Prisma.SessionCountOrderByAggregateInput | runtime.Types.Skip;
-  _max?: Prisma.SessionMaxOrderByAggregateInput | runtime.Types.Skip;
-  _min?: Prisma.SessionMinOrderByAggregateInput | runtime.Types.Skip;
+  id?: Prisma.SortOrder;
+  sid?: Prisma.SortOrder;
+  data?: Prisma.SortOrder;
+  expiresAt?: Prisma.SortOrder;
+  _count?: Prisma.SessionCountOrderByAggregateInput;
+  _max?: Prisma.SessionMaxOrderByAggregateInput;
+  _min?: Prisma.SessionMinOrderByAggregateInput;
 };
 
 export type SessionScalarWhereWithAggregatesInput = {
   AND?:
     | Prisma.SessionScalarWhereWithAggregatesInput
-    | Prisma.SessionScalarWhereWithAggregatesInput[]
-    | runtime.Types.Skip;
-  OR?: Prisma.SessionScalarWhereWithAggregatesInput[] | runtime.Types.Skip;
+    | Prisma.SessionScalarWhereWithAggregatesInput[];
+  OR?: Prisma.SessionScalarWhereWithAggregatesInput[];
   NOT?:
     | Prisma.SessionScalarWhereWithAggregatesInput
-    | Prisma.SessionScalarWhereWithAggregatesInput[]
-    | runtime.Types.Skip;
-  id?:
-    | Prisma.StringWithAggregatesFilter<'Session'>
-    | string
-    | runtime.Types.Skip;
-  sid?:
-    | Prisma.StringWithAggregatesFilter<'Session'>
-    | string
-    | runtime.Types.Skip;
-  data?:
-    | Prisma.StringWithAggregatesFilter<'Session'>
-    | string
-    | runtime.Types.Skip;
-  expiresAt?:
-    | Prisma.DateTimeWithAggregatesFilter<'Session'>
-    | Date
-    | string
-    | runtime.Types.Skip;
+    | Prisma.SessionScalarWhereWithAggregatesInput[];
+  id?: Prisma.StringWithAggregatesFilter<'Session'> | string;
+  sid?: Prisma.StringWithAggregatesFilter<'Session'> | string;
+  data?: Prisma.StringWithAggregatesFilter<'Session'> | string;
+  expiresAt?: Prisma.DateTimeWithAggregatesFilter<'Session'> | Date | string;
 };
 
 export type SessionCreateInput = {
@@ -276,25 +239,17 @@ export type SessionUncheckedCreateInput = {
 };
 
 export type SessionUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  sid?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  data?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  expiresAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sid?: Prisma.StringFieldUpdateOperationsInput | string;
+  data?: Prisma.StringFieldUpdateOperationsInput | string;
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type SessionUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  sid?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  data?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  expiresAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sid?: Prisma.StringFieldUpdateOperationsInput | string;
+  data?: Prisma.StringFieldUpdateOperationsInput | string;
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type SessionCreateManyInput = {
@@ -305,46 +260,38 @@ export type SessionCreateManyInput = {
 };
 
 export type SessionUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  sid?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  data?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  expiresAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sid?: Prisma.StringFieldUpdateOperationsInput | string;
+  data?: Prisma.StringFieldUpdateOperationsInput | string;
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type SessionUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  sid?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  data?: Prisma.StringFieldUpdateOperationsInput | string | runtime.Types.Skip;
-  expiresAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | runtime.Types.Skip;
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sid?: Prisma.StringFieldUpdateOperationsInput | string;
+  data?: Prisma.StringFieldUpdateOperationsInput | string;
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type SessionCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder | runtime.Types.Skip;
-  sid?: Prisma.SortOrder | runtime.Types.Skip;
-  data?: Prisma.SortOrder | runtime.Types.Skip;
-  expiresAt?: Prisma.SortOrder | runtime.Types.Skip;
+  id?: Prisma.SortOrder;
+  sid?: Prisma.SortOrder;
+  data?: Prisma.SortOrder;
+  expiresAt?: Prisma.SortOrder;
 };
 
 export type SessionMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder | runtime.Types.Skip;
-  sid?: Prisma.SortOrder | runtime.Types.Skip;
-  data?: Prisma.SortOrder | runtime.Types.Skip;
-  expiresAt?: Prisma.SortOrder | runtime.Types.Skip;
+  id?: Prisma.SortOrder;
+  sid?: Prisma.SortOrder;
+  data?: Prisma.SortOrder;
+  expiresAt?: Prisma.SortOrder;
 };
 
 export type SessionMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder | runtime.Types.Skip;
-  sid?: Prisma.SortOrder | runtime.Types.Skip;
-  data?: Prisma.SortOrder | runtime.Types.Skip;
-  expiresAt?: Prisma.SortOrder | runtime.Types.Skip;
+  id?: Prisma.SortOrder;
+  sid?: Prisma.SortOrder;
+  data?: Prisma.SortOrder;
+  expiresAt?: Prisma.SortOrder;
 };
 
 export type SessionSelect<
@@ -352,10 +299,10 @@ export type SessionSelect<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean | runtime.Types.Skip;
-    sid?: boolean | runtime.Types.Skip;
-    data?: boolean | runtime.Types.Skip;
-    expiresAt?: boolean | runtime.Types.Skip;
+    id?: boolean;
+    sid?: boolean;
+    data?: boolean;
+    expiresAt?: boolean;
   },
   ExtArgs['result']['session']
 >;
@@ -365,10 +312,10 @@ export type SessionSelectCreateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean | runtime.Types.Skip;
-    sid?: boolean | runtime.Types.Skip;
-    data?: boolean | runtime.Types.Skip;
-    expiresAt?: boolean | runtime.Types.Skip;
+    id?: boolean;
+    sid?: boolean;
+    data?: boolean;
+    expiresAt?: boolean;
   },
   ExtArgs['result']['session']
 >;
@@ -378,19 +325,19 @@ export type SessionSelectUpdateManyAndReturn<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
   {
-    id?: boolean | runtime.Types.Skip;
-    sid?: boolean | runtime.Types.Skip;
-    data?: boolean | runtime.Types.Skip;
-    expiresAt?: boolean | runtime.Types.Skip;
+    id?: boolean;
+    sid?: boolean;
+    data?: boolean;
+    expiresAt?: boolean;
   },
   ExtArgs['result']['session']
 >;
 
 export type SessionSelectScalar = {
-  id?: boolean | runtime.Types.Skip;
-  sid?: boolean | runtime.Types.Skip;
-  data?: boolean | runtime.Types.Skip;
-  expiresAt?: boolean | runtime.Types.Skip;
+  id?: boolean;
+  sid?: boolean;
+  data?: boolean;
+  expiresAt?: boolean;
 };
 
 export type SessionOmit<
@@ -398,8 +345,7 @@ export type SessionOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   'id' | 'sid' | 'data' | 'expiresAt',
-  ExtArgs['result']['session'],
-  runtime.Types.Skip
+  ExtArgs['result']['session']
 >;
 
 export type $SessionPayload<
@@ -1073,7 +1019,7 @@ export type SessionFindFirstArgs<
   /**
    * Filter, which Session to fetch.
    */
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1081,35 +1027,31 @@ export type SessionFindFirstArgs<
    */
   orderBy?:
     | Prisma.SessionOrderByWithRelationInput
-    | Prisma.SessionOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.SessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Sessions.
    */
-  cursor?: Prisma.SessionWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.SessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Sessions from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Sessions.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Sessions.
    */
-  distinct?:
-    | Prisma.SessionScalarFieldEnum
-    | Prisma.SessionScalarFieldEnum[]
-    | runtime.Types.Skip;
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[];
 };
 
 /**
@@ -1130,7 +1072,7 @@ export type SessionFindFirstOrThrowArgs<
   /**
    * Filter, which Session to fetch.
    */
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1138,35 +1080,31 @@ export type SessionFindFirstOrThrowArgs<
    */
   orderBy?:
     | Prisma.SessionOrderByWithRelationInput
-    | Prisma.SessionOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.SessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Sessions.
    */
-  cursor?: Prisma.SessionWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.SessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Sessions from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Sessions.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Sessions.
    */
-  distinct?:
-    | Prisma.SessionScalarFieldEnum
-    | Prisma.SessionScalarFieldEnum[]
-    | runtime.Types.Skip;
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[];
 };
 
 /**
@@ -1187,7 +1125,7 @@ export type SessionFindManyArgs<
   /**
    * Filter, which Sessions to fetch.
    */
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
@@ -1195,35 +1133,31 @@ export type SessionFindManyArgs<
    */
   orderBy?:
     | Prisma.SessionOrderByWithRelationInput
-    | Prisma.SessionOrderByWithRelationInput[]
-    | runtime.Types.Skip;
+    | Prisma.SessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing Sessions.
    */
-  cursor?: Prisma.SessionWhereUniqueInput | runtime.Types.Skip;
+  cursor?: Prisma.SessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Sessions from the position of the cursor.
    */
-  take?: number | runtime.Types.Skip;
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Sessions.
    */
-  skip?: number | runtime.Types.Skip;
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Sessions.
    */
-  distinct?:
-    | Prisma.SessionScalarFieldEnum
-    | Prisma.SessionScalarFieldEnum[]
-    | runtime.Types.Skip;
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[];
 };
 
 /**
@@ -1261,7 +1195,7 @@ export type SessionCreateManyArgs<
    * The data used to create many Sessions.
    */
   data: Prisma.SessionCreateManyInput | Prisma.SessionCreateManyInput[];
-  skipDuplicates?: boolean | runtime.Types.Skip;
+  skipDuplicates?: boolean;
 };
 
 /**
@@ -1283,7 +1217,7 @@ export type SessionCreateManyAndReturnArgs<
    * The data used to create many Sessions.
    */
   data: Prisma.SessionCreateManyInput | Prisma.SessionCreateManyInput[];
-  skipDuplicates?: boolean | runtime.Types.Skip;
+  skipDuplicates?: boolean;
 };
 
 /**
@@ -1331,11 +1265,11 @@ export type SessionUpdateManyArgs<
   /**
    * Filter which Sessions to update
    */
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   /**
    * Limit how many Sessions to update.
    */
-  limit?: number | runtime.Types.Skip;
+  limit?: number;
 };
 
 /**
@@ -1363,11 +1297,11 @@ export type SessionUpdateManyAndReturnArgs<
   /**
    * Filter which Sessions to update
    */
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   /**
    * Limit how many Sessions to update.
    */
-  limit?: number | runtime.Types.Skip;
+  limit?: number;
 };
 
 /**
@@ -1436,11 +1370,11 @@ export type SessionDeleteManyArgs<
   /**
    * Filter which Sessions to delete
    */
-  where?: Prisma.SessionWhereInput | runtime.Types.Skip;
+  where?: Prisma.SessionWhereInput;
   /**
    * Limit how many Sessions to delete.
    */
-  limit?: number | runtime.Types.Skip;
+  limit?: number;
 };
 
 /**
