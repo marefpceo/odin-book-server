@@ -52,7 +52,7 @@ async function updateFriendshipStatus(req, res) {
     where: {
       user2Id_user1Id: {
         user2Id: parseInt(req.params.userId),
-        user1Id: parseInt(req.body.user1Id),
+        user1Id: parseInt(req.body.friendId),
       },
     },
     data: {
@@ -71,8 +71,8 @@ async function removeFriend(req, res) {
   const removeFromFriendList = await prisma.friendship.delete({
     where: {
       user2Id_user1Id: {
-        user1Id: parseInt(req.body.user1Id),
-        user2Id: parseInt(req.body.user2Id),
+        user2Id: parseInt(req.params.userId),
+        user1Id: parseInt(req.body.friendId),
       },
     },
   });
